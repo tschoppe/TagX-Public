@@ -21,7 +21,7 @@ sudo pip install virtualenv
 You can check if it was installed properly by running:
 
 ```
-virtualenv —version
+virtualenv --version
 ```
 
 ### 2. Create virtual environment
@@ -59,7 +59,7 @@ pip install django
 You can test that it installed correctly by running:
 
 ```
-python -m django —version
+python -m django --version
 ```
 
 
