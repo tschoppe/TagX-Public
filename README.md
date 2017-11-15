@@ -48,7 +48,7 @@ In Windows, the equivalent command is:
 \path\to\env\Scripts\activate.bat
 ```
 
-For example, if 
+The virtual environment is created in the current directory you are in. So, if you name it "tagx_env," you can type .\tagx_env\Scripts\activate.bat.
 
 You can deactivate this environment by simply typing:
 
