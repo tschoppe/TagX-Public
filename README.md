@@ -42,10 +42,18 @@ Run the following command (no arrow brackets) to activate your virtual environme
 source <env_name>/bin/activate
 ```
 
+In Windows, the equivalent command is:
+
+```
+\path\to\env\Scripts\activate.bat
+```
+
+For example, if 
+
 You can deactivate this environment by simply typing:
 
 ```
-deactivate
+deactivate 
 ```
 
 ### 4. Install Django
