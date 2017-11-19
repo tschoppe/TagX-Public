@@ -1,0 +1,110 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+
+h1 {
+	float: left;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+table {
+	width: 100%;
+	line-height: 40px;
+	border: 3px solid #0096d6;
+}
+
+thead {
+	background: #0096d6;
+}
+
+form {
+	overflow: hidden;
+}
+
+th {
+	color: white;
+}
+
+th, td {
+	padding-left: 10px;
+}
+
+tr:nth-child(even) {
+	background: #CCC;
+}
+
+input {
+	display: table-cell; 
+	width: 100%;
+	margin: 10px auto;
+    height: 3em;
+}
+
+input[type="radio"] {
+	height: 100%;
+	margin-top: 0;
+}
+
+img {
+	width: 75px;
+	padding: 5px 0;
+}
+
+label {
+  display: inline-block;
+  float: left;
+}
+
+.container {
+	padding: 0;
+}
+
+.my-systems {
+	margin-left: 20px;
+}
+
+.search-by {
+	margin: 0 20px 0 0;
+	float: left;
+	display: inline-block;
+}
+
+.radio-inline {
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.form-group {
+	margin: 0;
+}
+
+.radio {
+	margin: 0;
+}
+
+#search-bar:focus {
+	outline: none;
+	border: 2px solid #0096d6;
+}
+
+/* navbar stuff */
+.navbar.navbar-default {
+	background: #0096d6;
+	width: 100%;
+	border-style: none;
+	color: white;
+	border-radius: 0px;
+	height: 4em;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white;
+	height: 4em;
+}
