@@ -1,28 +1,24 @@
-<!DOCTYPE html>
-<html>
+{% extends "TagX/header.html" %}
 
-<head>
-    <title>TagX</title>
-    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded" rel="stylesheet">
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
-</head>
+{% load staticfiles %}
 
-<body>
-    <div class="container">
-        <div class="header">
-            <img src="{% static 'img/TagX.png' %}">
-            <h4>Login</h4>
-        </div>
-        <form method="GET" action="mysystems">
-            <p class="login-form labels">username:</p>
-            <input class="login-form" type="text" name="username" placeholder="username">
-            <p class="login-form labels">password:</p>
-            <input class="login-form" type="text" name="password" placeholder="password">
-            <button class="login-form login-button">Log in</button>
-            <a class="login-form forgot-password">forgot password?</a>
-        </form>
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <img src="{% static 'img/TagX.png' %}">
+        <h4>Login</h4>
     </div>
-</body>
-
-</html>
+    <form method="GET" action="mysystems">
+        <p class="login-form labels">username:</p>
+        <input class="login-form" type="text" name="username" placeholder="username">
+        <p class="login-form labels">password:</p>
+        <input class="login-form" type="text" name="password" placeholder="password">
+        <button class="login-form login-button">Log in</button>
+        <a class="login-form forgot-password">forgot password?</a>
+    </form>
+</div>
+{% endblock %}

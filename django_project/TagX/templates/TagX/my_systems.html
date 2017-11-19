@@ -1,5 +1,11 @@
 {% extends "TagX/header.html" %}
 
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+{% endblock %}
+
 {% block content %}
 
 {% include "TagX/includes/nav.html" %}
