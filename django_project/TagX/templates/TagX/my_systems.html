@@ -1,5 +1,7 @@
 {% extends "TagX/header.html" %}
 
+{% load render_bundle from webpack_loader %}
+
 {% load staticfiles %}
 
 {% block styles %}
@@ -88,4 +90,9 @@
         </tbody>
     </table>
 </div>
+
+<div id="container">
+    {% render_bundle 'main' %}
+</div>
+
 {% endblock %}
