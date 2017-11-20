@@ -45,7 +45,7 @@ input[type="text"]:focus {
 
 button:focus {
 	outline: 0;
-	background-color: blue;
+	background-color: #286090;
 }
 
 .forgot-password {
