@@ -1,5 +1,7 @@
 {% extends "TagX/header.html" %}
 
+{% load render_bundle from webpack_loader %}
+
 {% load staticfiles %}
 
 {% block styles %}
@@ -21,4 +23,8 @@
         <a class="login-form forgot-password">forgot password?</a>
     </form>
 </div>
+
+
+<div id="container">{% render_bundle 'main' %}</div>
+
 {% endblock %}
