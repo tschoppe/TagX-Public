@@ -1,0 +1,24 @@
+{% extends "TagX/header.html" %}
+
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <img src="{% static 'img/TagX.png' %}">
+        <h4>Login</h4>
+    </div>
+    <form method="GET" action="mysystems">
+        <p class="login-form labels">username:</p>
+        <input class="login-form" type="text" name="username" placeholder="username">
+        <p class="login-form labels">password:</p>
+        <input class="login-form" type="text" name="password" placeholder="password">
+        <button class="login-form login-button">Log in</button>
+        <a class="login-form forgot-password">forgot password?</a>
+    </form>
+</div>
+{% endblock %}
