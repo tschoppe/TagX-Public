@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"main":[{"name":"main-8d69d08bee24fa6cc0e7.js","path":"/Users/nickrose/tag-x/django_project/TagX/static/bundles/main-8d69d08bee24fa6cc0e7.js"}]}}
+{"status":"done","chunks":{"mysystems":[{"name":"mysystems.js","path":"/Users/nickrose/tag-x/django_project/TagX/static/bundles/mysystems.js"}],"login":[{"name":"login.js","path":"/Users/nickrose/tag-x/django_project/TagX/static/bundles/login.js"}],"commons":[{"name":"commons.js","path":"/Users/nickrose/tag-x/django_project/TagX/static/bundles/commons.js"}]}}

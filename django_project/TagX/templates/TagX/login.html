@@ -14,7 +14,8 @@
         <img src="{% static 'img/TagX.png' %}">
         <h4>Login</h4>
     </div>
-    <form method="GET" action="mysystems">
+    <form method="POST" action="login/">
+        {% csrf_token %}
         <p class="login-form labels">username:</p>
         <input class="login-form" type="text" name="username" placeholder="username">
         <p class="login-form labels">password:</p>
@@ -24,8 +25,9 @@
     </form>
 </div>
 
-<div id="container">
-    {% render_bundle 'main' %}
+<div id="login">
+    <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
+    <script src="{% static 'bundles/login.js' %}" charset="utf-8"></script>
 </div>
 
 {% endblock %}
