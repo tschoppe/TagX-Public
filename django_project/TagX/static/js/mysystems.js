@@ -6,7 +6,7 @@ var Goodbye = createReactClass({
     render() {
         return (
             <h1>
-            React: This is the mysystems page!!
+            React: This is the mysystems page.
             </h1>
         )
     }

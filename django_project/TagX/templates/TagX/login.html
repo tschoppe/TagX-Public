@@ -16,9 +16,7 @@
     </div>
     <form method="POST" action="login/">
         {% csrf_token %}
-        <p class="login-form labels">username:</p>
         <input class="login-form" type="text" name="username" placeholder="username">
-        <p class="login-form labels">password:</p>
         <input class="login-form" type="text" name="password" placeholder="password">
         <button class="login-form login-button">Log in</button>
         <a class="login-form forgot-password">forgot password?</a>
