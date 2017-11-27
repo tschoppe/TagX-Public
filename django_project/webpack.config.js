@@ -12,8 +12,7 @@ module.exports = {
     // because you will specify extensions later in the `resolve` section
 
     entry: {
-		login: './TagX/static/js/login',
-		mysystems: './TagX/static/js/mysystems'
+		systemtable: './TagX/static/js/systemtable'
 	},
 	output: {
 		path: path.resolve('./TagX/static/bundles/'),
