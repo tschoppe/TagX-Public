@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.http import JsonResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import Login
 
@@ -19,6 +20,7 @@ def login(request):
     if request.method == 'POST':
         form = Login(request.POST)
         if form.is_valid() and form['username'].value() == 'Nick' and form['password'].value() == 'Rose':
+            # JsonResponse({'foo': 'bar'})
             return HttpResponseRedirect('/mysystems/')
     return HttpResponseRedirect('/')
 
