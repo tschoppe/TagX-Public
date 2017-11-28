@@ -7,11 +7,13 @@ input[type="text"] {
 	font-size: 14px;
 	border: none;
 	border-bottom: 2px solid #0096d6;
+	-webkit-transition: border-bottom 750ms; /* For Safari 3.1 to 6.0 */
+    transition: border-bottom 750ms;
 }
 
 input[type="text"]:focus {
 	outline: none;
-	border-bottom: 2px solid #286090;
+	border-bottom: 2px solid black;
 }
 
 .container {
@@ -43,11 +45,19 @@ input[type="text"]:focus {
 	height: 50px;
 	width: 100%;
 	padding: 0;
+	-webkit-transition: background 200ms; /* For Safari 3.1 to 6.0 */
+    transition: background 200ms;
+}
+
+button:hover {
+	outline: 0;
+	/*background-color: #286090;*/
+	background: #0474a5;
 }
 
 button:focus {
 	outline: 0;
-	background-color: #286090;
+	background-color: #0474a5bf;
 }
 
 .forgot-password {

@@ -2,14 +2,13 @@
 from __future__ import unicode_literals
 from django.http import JsonResponse
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import Login
-
+from .forms import *
 import json
-
 from django.shortcuts import render
-
 from django.views.decorators.http import require_http_methods
 
+
+# This is just sample test data for systems. The real data will need to be retrieved from the databse.
 testData = {
     "system1": {
         "name": "System 1",
@@ -46,12 +45,14 @@ testData = {
 }
 
 
+# route for loading the initial homepage, which is the login page in this case.
 @require_http_methods(["GET"])
 def index(request):
     print(request.method)
     return render(request, "TagX/login.html")
 
 
+# route for logging in a user
 @require_http_methods(["POST"])
 def login(request):
     if request.method == 'POST':
@@ -62,10 +63,13 @@ def login(request):
     return HttpResponseRedirect('/')
 
 
+# route for rendering the My Systems page.
 @require_http_methods(["GET", "POST"])
 def mysystems(request):
+    # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
     return render(request, "TagX/my_systems.html", {'testData': json.dumps(testData)})
 
 
+# route for rendering the System page.
 def system(request):
     return render(request, "TagX/system.html")

@@ -18,7 +18,6 @@ var Systemtable = createReactClass({
 	        )
     	});
     	return (
-
             <table key="systemtable">
         		<thead key="head">
 		            <tr key="head-row">
