@@ -57,7 +57,9 @@ def index(request):
 def login(request):
     if request.method == 'POST':
         form = Login(request.POST)
-        if form.is_valid() and form['username'].value() == 'Nick' and form['password'].value() == 'Rose':
+        # form['username'].value() can be used to get the username
+        # form['password'].value() can be used to get the password
+        if form.is_valid():
             # JsonResponse({'foo': 'bar'})
             return HttpResponseRedirect('/mysystems/')
     return HttpResponseRedirect('/')

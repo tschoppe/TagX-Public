@@ -58,6 +58,10 @@ label {
   float: left;
 }
 
+li {
+	padding-left: 10px;
+}
+
 .container {
 	padding: 0;
 }
@@ -103,7 +107,6 @@ label {
 	border-style: none;
 	color: white;
 	border-radius: 0px;
-	height: 4em;
 }
 
 .navbar-default .navbar-brand {
@@ -113,4 +116,13 @@ label {
 .navbar-default .navbar-nav>li>a {
 	color: white;
 	height: 4em;
+}
+
+.navbar-default .navbar-toggle {
+	background: white;
+	margin-right: 30px;
+}
+
+.navbar-default .navbar-brand {
+	padding-left: 30px;
 }
