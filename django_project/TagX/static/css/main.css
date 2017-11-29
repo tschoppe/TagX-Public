@@ -126,3 +126,7 @@ li {
 .navbar-default .navbar-brand {
 	padding-left: 30px;
 }
+
+.navbar-brand {
+	font-size: 2em;
+}
