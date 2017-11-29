@@ -105,3 +105,18 @@ http://127.0.0.1:8000/
 ```
 
 You should now have the application up and running
+
+
+## Setting up React.js
+
+Run the following commands in your tag-x directory to get React.js up and running for the application.
+
+```
+npm install --save-dev jquery react react-dom webpack@2.1.0-beta.22 webpack-bundle-tracker babel-loader babel-core babel-preset-es2015 babel-preset-react
+```
+```
+sudo pip install django-webpack-loader
+```
+```
+npm install create-react-class --save-dev
+```
