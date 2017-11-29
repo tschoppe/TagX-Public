@@ -63,7 +63,7 @@ li {
 }
 
 .container {
-	padding: 0;
+	padding: 10px;
 }
 
 .my-systems {
@@ -89,15 +89,41 @@ li {
 	margin: 0;
 }
 
-#search-bar {
+.search {
+    display: inline-block;
+}
+
+.search.bar {
+	width: 90%;
+}
+
+.search.button {
+	float: right;
+	width: 10%;
+}
+
+#bar {
 	border: 2px solid #c3c3c3;
 	-webkit-transition: border 500ms; /* For Safari 3.1 to 6.0 */
     transition: border 500ms;
+    border-right: 2px solid #0096d6;
 }
 
-#search-bar:focus {
+#bar:focus {
 	outline: none;
 	border: 2px solid #0096d6;
+}
+
+#button {
+	background: #0096d6;
+	border: none;
+	border-radius: 0;
+	color: white;
+}
+
+#button:focus {
+	outline: none;
+	background: #0474a5;
 }
 
 /* navbar stuff */
@@ -120,11 +146,6 @@ li {
 
 .navbar-default .navbar-toggle {
 	background: white;
-	margin-right: 30px;
-}
-
-.navbar-default .navbar-brand {
-	padding-left: 30px;
 }
 
 .navbar-brand {

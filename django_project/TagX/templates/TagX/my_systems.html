@@ -14,33 +14,38 @@
 
 <!-- search bar -->
 <div class="container">
-    <div class="container">
-        <h1>My Systems</h1>
-        <form class="search-form">
-            <input id="search-bar" type="text" name="search" placeholder="Search..">
-            <p class="search-by">Search By: </p>
-            <div class="form-group">
-                <label class="radio-inline control-label">
-                    <input type="radio" name="criteria" value="system_name" checked="checked"> System Name
-                </label>
+    <h1>My Systems</h1>
+    <form class="search-form">
+        <div class="search-bar">
+            <div class="search bar">
+                <input id="bar" type="text" name="search" placeholder="Search..">
             </div>
-            <div class="form-group">
-                <label class="radio-inline control-label">
-                    <input type="radio" name="criteria" value="operating_system"> Operating System
-                </label>
+            <div class="search button">
+                <input id="button" type="submit" value="Go" />
             </div>
-            <div class="form-group">
-                <label class="radio-inline control-label">
-                    <input type="radio" name="criteria" value="location"> Location
-                </label>
-            </div>
-            <div class="form-group">
-                <label class="radio-inline control-label">
-                    <input type="radio" name="criteria" value="tags"> Tags
-                </label>
-            </div>
-        </form>
-    </div>
+        </div>
+        <p class="search-by">Search By: </p>
+        <div class="form-group">
+            <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="system_name" checked="checked"> System Name
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="operating_system"> Operating System
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="location"> Location
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="tags"> Tags
+            </label>
+        </div>
+    </form>
     <br>
     <!-- systems table -->
     <div id="systemtable">
