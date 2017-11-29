@@ -58,6 +58,10 @@ label {
   float: left;
 }
 
+li {
+	padding-left: 10px;
+}
+
 .container {
 	padding: 0;
 }
@@ -85,6 +89,12 @@ label {
 	margin: 0;
 }
 
+#search-bar {
+	border: 2px solid #c3c3c3;
+	-webkit-transition: border 500ms; /* For Safari 3.1 to 6.0 */
+    transition: border 500ms;
+}
+
 #search-bar:focus {
 	outline: none;
 	border: 2px solid #0096d6;
@@ -97,7 +107,6 @@ label {
 	border-style: none;
 	color: white;
 	border-radius: 0px;
-	height: 4em;
 }
 
 .navbar-default .navbar-brand {
@@ -107,4 +116,17 @@ label {
 .navbar-default .navbar-nav>li>a {
 	color: white;
 	height: 4em;
+}
+
+.navbar-default .navbar-toggle {
+	background: white;
+	margin-right: 30px;
+}
+
+.navbar-default .navbar-brand {
+	padding-left: 30px;
+}
+
+.navbar-brand {
+	font-size: 2em;
 }

@@ -1,5 +1,7 @@
 {% extends "TagX/header.html" %}
 
+{% load render_bundle from webpack_loader %}
+
 {% load staticfiles %}
 
 {% block styles %}
@@ -41,51 +43,15 @@
     </div>
     <br>
     <!-- systems table -->
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Group</th>
-                <th>Basic 1</th>
-                <th>Basic 2</th>
-                <th>Basic 3</th>
-                <th>Tags</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>System 1</td>
-                <td>Group 1</td>
-                <td>Basic 1</td>
-                <td>Basic 2</td>
-                <td>Basic 3</td>
-                <td>Tags</td>
-            </tr>
-            <tr>
-                <td>System 2</td>
-                <td>Group 2</td>
-                <td>Basic 1</td>
-                <td>Basic 2</td>
-                <td>Basic 3</td>
-                <td>Tags</td>
-            </tr>
-            <tr>
-                <td>System 3</td>
-                <td>Group 3</td>
-                <td>Basic 1</td>
-                <td>Basic 2</td>
-                <td>Basic 3</td>
-                <td>Tags</td>
-            </tr>
-            <tr>
-                <td>System 4</td>
-                <td>Group 4</td>
-                <td>Basic 1</td>
-                <td>Basic 2</td>
-                <td>Basic 3</td>
-                <td>Tags</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="systemtable">
+        <script type="text/javascript">
+            var test = {{ testData|safe }}
+        </script>
+        <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
+        <script src="{% static 'bundles/systemtable.js' %}" charset="utf-8"></script>
+    </div>
 </div>
+
+
+
 {% endblock %}
