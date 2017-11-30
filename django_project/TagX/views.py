@@ -2,6 +2,11 @@
 from __future__ import unicode_literals
 from django.http import JsonResponse
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+from django import forms
 from .forms import *
 import json
 from django.shortcuts import render
@@ -54,34 +59,62 @@ testData = {
 def index(request):
     if request.method == 'GET':
         return render(request, "TagX/login.html")
-    return
+    return None
 
 
 # route for logging in a user
 def login(request):
     if request.method == 'POST':
-        form = Login(request.POST)
-        # form['username'].value() can be used to get the username
-        # form['password'].value() can be used to get the password
+        form = LoginForm(request.POST)
         if form.is_valid():
-            # JsonResponse({'foo': 'bar'})
-            return HttpResponseRedirect('/mysystems/')
+            userObj = form.cleaned_data
+            username = userObj['username']
+            password =  userObj['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                return HttpResponseRedirect('/mysystems/')
+    return HttpResponseRedirect('/')
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            userObj = form.cleaned_data
+            username = userObj['username']
+            password =  userObj['password']
+            if not (User.objects.filter(username=username).exists()):
+                User.objects.create_user(username, password)
+                user = authenticate(username = username, password = password)
+                auth_login(request, user)
+                return HttpResponseRedirect('/mysystems/')
+            else:
+                raise forms.ValidationError('Looks like a username already exists')
+    return HttpResponseRedirect('/')
+
+
+def logout(request):
+    if request.method == 'POST' and request.user.is_authenticated():
+        auth_logout(request)
     return HttpResponseRedirect('/')
 
 
 # route for rendering the My Systems page.
 def mysystems(request):
-    if request.method == 'GET':
+    if request.method == 'GET' and request.user.is_authenticated():
+        print(request.user)
         # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
         return render(request, "TagX/my_systems.html", {'testData': json.dumps(testData)})
-    return
+    return HttpResponseRedirect('/')
 
 
 # route for rendering the System page.
 def system(request):
-    if request.method == 'GET':
+    if request.method == 'GET' and request.user.is_authenticated():
         return render(request, "TagX/system.html")
-    return
+    return HttpResponseRedirect('/')
+
 
 def search(self):
     #For Alpha only. Need more specific queries in future

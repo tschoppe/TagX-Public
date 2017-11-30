@@ -1,3 +1,5 @@
+import DjangoCSRFToken from 'django-react-csrftoken'
+
 var React = require('react')
 var ReactDOM = require('react-dom')
 var createReactClass = require('create-react-class')
@@ -23,7 +25,12 @@ var Nav = createReactClass({
                         <li className=""><a href="#">Admin</a></li>
                       </ul>
                       <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#">Signed In As current_user</a></li>
+                        <li>
+                          <form method="POST" action="/logout/">
+                            <DjangoCSRFToken/>
+                            <button className="logout-button">Logout</button>
+                          </form>
+                        </li>
                       </ul>
                     </div>
                 </div>
