@@ -46,14 +46,13 @@ testData = {
 
 
 # route for loading the initial homepage, which is the login page in this case.
-@require_http_methods(["GET"])
 def index(request):
-    print(request.method)
-    return render(request, "TagX/login.html")
+    if request.method == 'GET':
+        return render(request, "TagX/login.html")
+    return
 
 
 # route for logging in a user
-@require_http_methods(["POST"])
 def login(request):
     if request.method == 'POST':
         form = Login(request.POST)
@@ -66,12 +65,15 @@ def login(request):
 
 
 # route for rendering the My Systems page.
-@require_http_methods(["GET", "POST"])
 def mysystems(request):
-    # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
-    return render(request, "TagX/my_systems.html", {'testData': json.dumps(testData)})
+    if request.method == 'GET':
+        # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
+        return render(request, "TagX/my_systems.html", {'testData': json.dumps(testData)})
+    return
 
 
 # route for rendering the System page.
 def system(request):
-    return render(request, "TagX/system.html")
+    if request.method == 'GET':
+        return render(request, "TagX/system.html")
+    return
