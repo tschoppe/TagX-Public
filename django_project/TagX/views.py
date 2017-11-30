@@ -6,6 +6,11 @@ from .forms import *
 import json
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
+from elasticsearch import Elasticsearch
+from elasticsearch_dsl import Search
+import json
+
+client = Elasticsearch()
 
 
 # This is just sample test data for systems. The real data will need to be retrieved from the databse.
@@ -75,3 +80,13 @@ def mysystems(request):
 # route for rendering the System page.
 def system(request):
     return render(request, "TagX/system.html")
+
+def search(self):
+    #For Alpha only. Need more specific queries in future
+    #Returns list of systems from companyName "Arkon"
+    search = Search(using=client, index="devices").query("match", companyName="Arkon")
+    response = search.execute()
+    Arkon_systems = []
+    for hit in response:
+        Arkon_systems.append(hit)
+    return Arkon_systems
