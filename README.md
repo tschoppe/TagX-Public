@@ -111,8 +111,9 @@ You should now have the application up and running
 
 Run the following commands in your tag-x directory to get React.js up and running for the application.
 
-(These are Mac commands)
+(These are Mac commands, for Windows, remove the sudo)
 
+Note that you first need to install node.js on your machine. Download can be found at https://nodejs.org/en/download/
 ```
 npm install --save-dev jquery react react-dom webpack@2.1.0-beta.22 webpack-bundle-tracker babel-loader babel-core babel-preset-es2015 babel-preset-react
 ```
