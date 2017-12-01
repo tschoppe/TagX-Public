@@ -122,3 +122,6 @@ sudo pip install django-webpack-loader
 ```
 npm install create-react-class --save-dev
 ```
+```
+npm install --save django-react-csrftoken
+```
