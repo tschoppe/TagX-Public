@@ -3,6 +3,29 @@ from django import forms
 
 # This class is for HTML forms. You must add the form in here in order to retrieve the information from it.
 
-class Login(forms.Form):
-    username = forms.CharField(label='username', max_length=100)
-    password = forms.CharField(label='password', max_length=100)
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        required = True,
+        label = 'Username',
+        max_length = 100
+    )
+    password = forms.CharField(
+        required = True,
+        label = 'Password',
+        max_length = 100,
+        widget = forms.PasswordInput()
+    )
+
+
+class UserRegistrationForm(forms.Form):
+    username = forms.CharField(
+        required = True,
+        label = 'Username',
+        max_length = 100
+    )
+    password = forms.CharField(
+        required = True,
+        label = 'Password',
+        max_length = 100,
+        widget = forms.PasswordInput()
+    )
