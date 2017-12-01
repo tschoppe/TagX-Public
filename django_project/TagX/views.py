@@ -90,5 +90,5 @@ def search(self):
     response = search.execute()
     Arkon_systems = []
     for hit in response:
-        Arkon_systems.append(hit)
+        Arkon_systems.append(hit.systemName)
     return Arkon_systems
