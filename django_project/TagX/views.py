@@ -103,7 +103,6 @@ def logout(request):
 # route for rendering the My Systems page.
 def mysystems(request):
     if request.method == 'GET' and request.user.is_authenticated():
-        print(request.user)
         # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
         return render(request, "TagX/my_systems.html", {'testData': json.dumps(testData)})
     return HttpResponseRedirect('/')
@@ -123,5 +122,6 @@ def search(self):
     response = search.execute()
     Arkon_systems = []
     for hit in response:
-        Arkon_systems.append(hit)
-    return Arkon_systems
+        print(hit)
+        Arkon_systems.append(hit.__dict__)
+    return JsonResponse(dict(Arkon_systems))
