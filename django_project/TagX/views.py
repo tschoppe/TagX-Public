@@ -122,6 +122,5 @@ def search(self):
     response = search.execute()
     Arkon_systems = []
     for hit in response:
-        print(hit)
-        Arkon_systems.append(hit.__dict__)
-    return JsonResponse(dict(Arkon_systems))
+        Arkon_systems.append(hit.systemName)
+    return Arkon_systems
