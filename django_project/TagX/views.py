@@ -15,7 +15,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 import json
 
-client = Elasticsearch()
+client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.found.io:9243'], http_auth=('elastic', '9eRZdikmjjmMWJjpaf8zoo7U'), port=443, use_ssl=True)
 
 
 # This is just sample test data for systems. The real data will need to be retrieved from the databse.
