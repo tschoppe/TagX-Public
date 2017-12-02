@@ -7,32 +7,32 @@ var Systemtable = createReactClass({
         var rows = [];
     	Object.keys(test).forEach(function(key) {
     		rows.push(
-    			<tr key={ key }>
-            		<td>{ test[key].name }</td>
-	                <td>{ test[key].group }</td>
-	                <td>{ test[key].basic1 }</td>
-	                <td>{ test[key].basic2 }</td>
-	                <td>{ test[key].basic3 }</td>
-	                <td>{ test[key].tags }</td>
-	            </tr>
+                <tr key={ key }>
+                    <th scope="row">{ test[key].name }</th>
+                    <td>{ test[key].group }</td>
+                    <td>{ test[key].basic1 }</td>
+                    <td>{ test[key].basic2 }</td>
+                    <td>{ test[key].basic3 }</td>
+                    <td>{ test[key].tags }</td>
+                </tr>
 	        )
     	});
     	return (
-            <table key="systemtable">
-        		<thead key="head">
-		            <tr key="head-row">
-		                <th>Name</th>
-		                <th>Group</th>
-		                <th>Basic 1</th>
-		                <th>Basic 2</th>
-		                <th>Basic 3</th>
-		                <th>Tags</th>
-		            </tr>
-        		</thead>
-        		<tbody>
-        			{ rows }
-        		</tbody>
-    		</table>
+            <table key="systemtable" className="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Group(s)</th>
+                        <th scope="col">Basic1</th>
+                        <th scope="col">Basic2</th>
+                        <th scope="col">Basic3</th>
+                        <th scope="col">Tag(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { rows }
+                </tbody>
+            </table>
         )
     }
 })

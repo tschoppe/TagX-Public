@@ -104,18 +104,47 @@ def logout(request):
 def mysystems(request):
     if request.method == 'GET' and request.user.is_authenticated():
         # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
-        return render(request, "TagX/my_systems.html", {'testData': json.dumps(testData)})
+        return render(request, "TagX/my_systems.html", {'url': str(request.path), 'testData': json.dumps(testData)})
     return HttpResponseRedirect('/')
 
 
 # route for rendering the System page.
 def system(request):
     if request.method == 'GET' and request.user.is_authenticated():
-        return render(request, "TagX/system.html")
+        return render(request, "TagX/system.html", {'url': str(request.path)})
     return HttpResponseRedirect('/')
 
 
-def search(self):
+# route for rendering the Groups page.
+def mygroups(request):
+    if request.method == 'GET' and request.user.is_authenticated():
+        return render(request, "TagX/mygroups.html", {'url': str(request.path), 'testData': json.dumps(testData)})
+    return HttpResponseRedirect('/')
+
+
+# route for rendering the Admin page.
+def administration(request):
+    if request.method == 'GET' and request.user.is_authenticated():
+        return render(request, "TagX/administration.html", {'url': str(request.path)})
+    return HttpResponseRedirect('/')
+
+
+# post request for performing a search
+def search(request):
+    if request.method == 'POST' and request.user.is_authenticated():
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            searchObj = form.cleaned_data
+            search = searchObj['search']
+            criteria = searchObj['criteria']
+            # 'search' and 'criteria' variables need to be used to query elastic search
+            return HttpResponseRedirect('/mysystems/')
+    return HttpResponseRedirect('/')
+
+
+
+# route we will use for alpha release
+def elastic(self):
     #For Alpha only. Need more specific queries in future
     #Returns list of systems from companyName "Arkon"
     search = Search(using=client, index="devices").query("match", companyName="Arkon")

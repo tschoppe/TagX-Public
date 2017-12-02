@@ -1,11 +1,11 @@
 webpackJsonp([1],{
 
-/***/ 146:
+/***/ 147:
 /***/ function(module, exports, __webpack_require__) {
 
-var React = __webpack_require__(7);
-var ReactDOM = __webpack_require__(26);
-var createReactClass = __webpack_require__(25);
+var React = __webpack_require__(3);
+var ReactDOM = __webpack_require__(19);
+var createReactClass = __webpack_require__(18);
 
 var Systemtable = createReactClass({
     displayName: 'Systemtable',
@@ -17,8 +17,8 @@ var Systemtable = createReactClass({
                 'tr',
                 { key: key },
                 React.createElement(
-                    'td',
-                    null,
+                    'th',
+                    { scope: 'row' },
                     test[key].name
                 ),
                 React.createElement(
@@ -50,42 +50,42 @@ var Systemtable = createReactClass({
         });
         return React.createElement(
             'table',
-            { key: 'systemtable' },
+            { key: 'systemtable', className: 'table table-hover' },
             React.createElement(
                 'thead',
-                { key: 'head' },
+                null,
                 React.createElement(
                     'tr',
-                    { key: 'head-row' },
+                    null,
                     React.createElement(
                         'th',
-                        null,
+                        { scope: 'col' },
                         'Name'
                     ),
                     React.createElement(
                         'th',
-                        null,
-                        'Group'
+                        { scope: 'col' },
+                        'Group(s)'
                     ),
                     React.createElement(
                         'th',
-                        null,
-                        'Basic 1'
+                        { scope: 'col' },
+                        'Basic1'
                     ),
                     React.createElement(
                         'th',
-                        null,
-                        'Basic 2'
+                        { scope: 'col' },
+                        'Basic2'
                     ),
                     React.createElement(
                         'th',
-                        null,
-                        'Basic 3'
+                        { scope: 'col' },
+                        'Basic3'
                     ),
                     React.createElement(
                         'th',
-                        null,
-                        'Tags'
+                        { scope: 'col' },
+                        'Tag(s)'
                     )
                 )
             ),
@@ -102,4 +102,4 @@ ReactDOM.render(React.createElement(Systemtable, null), document.getElementById(
 
 /***/ }
 
-},[146]);
+},[147]);

@@ -3,7 +3,8 @@ webpackJsonp([0],[
 /* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 var core = module.exports = { version: '2.5.1' };
@@ -11,7 +12,7 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -23,13 +24,12 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 
 /***/ },
-/* 6 */,
 /* 7 */,
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(19)(function () {
+module.exports = !__webpack_require__(21)(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
 
@@ -48,7 +48,7 @@ module.exports = function (it, key) {
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(18);
+var anObject = __webpack_require__(20);
 var IE8_DOM_DEFINE = __webpack_require__(48);
 var toPrimitive = __webpack_require__(38);
 var dP = Object.defineProperty;
@@ -81,12 +81,12 @@ exports.f = __webpack_require__(8) ? Object.defineProperty : function defineProp
 
 'use strict';
 
-var _assign = __webpack_require__(3);
+var _assign = __webpack_require__(4);
 
-var ReactCurrentOwner = __webpack_require__(23);
+var ReactCurrentOwner = __webpack_require__(25);
 
 var warning = __webpack_require__(2);
-var canDefineProperty = __webpack_require__(24);
+var canDefineProperty = __webpack_require__(26);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 var REACT_ELEMENT_TYPE = __webpack_require__(59);
@@ -415,8 +415,8 @@ module.exports = ReactElement;
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(5);
-var core = __webpack_require__(4);
+var global = __webpack_require__(6);
+var core = __webpack_require__(5);
 var ctx = __webpack_require__(46);
 var hide = __webpack_require__(13);
 var PROTOTYPE = 'prototype';
@@ -483,7 +483,7 @@ module.exports = $export;
 /***/ function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(10);
-var createDesc = __webpack_require__(21);
+var createDesc = __webpack_require__(23);
 module.exports = __webpack_require__(8) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -509,8 +509,8 @@ module.exports = function (it) {
 /***/ function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(36)('wks');
-var uid = __webpack_require__(22);
-var Symbol = __webpack_require__(5).Symbol;
+var uid = __webpack_require__(24);
+var Symbol = __webpack_require__(6).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function (name) {
@@ -565,10 +565,12 @@ module.exports = reactProdInvariant;
 
 /***/ },
 /* 17 */,
-/* 18 */
+/* 18 */,
+/* 19 */,
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(20);
+var isObject = __webpack_require__(22);
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
@@ -576,7 +578,7 @@ module.exports = function (it) {
 
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports) {
 
 module.exports = function (exec) {
@@ -589,7 +591,7 @@ module.exports = function (exec) {
 
 
 /***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports) {
 
 module.exports = function (it) {
@@ -598,7 +600,7 @@ module.exports = function (it) {
 
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -612,7 +614,7 @@ module.exports = function (bitmap, value) {
 
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports) {
 
 var id = 0;
@@ -623,7 +625,7 @@ module.exports = function (key) {
 
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -655,7 +657,7 @@ var ReactCurrentOwner = {
 module.exports = ReactCurrentOwner;
 
 /***/ },
-/* 24 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -685,8 +687,6 @@ module.exports = canDefineProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ },
-/* 25 */,
-/* 26 */,
 /* 27 */
 /***/ function(module, exports) {
 
@@ -726,7 +726,7 @@ module.exports = true;
 /***/ function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(18);
+var anObject = __webpack_require__(20);
 var dPs = __webpack_require__(98);
 var enumBugKeys = __webpack_require__(28);
 var IE_PROTO = __webpack_require__(35)('IE_PROTO');
@@ -806,7 +806,7 @@ module.exports = function (it, tag, stat) {
 /***/ function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(36)('keys');
-var uid = __webpack_require__(22);
+var uid = __webpack_require__(24);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -816,7 +816,7 @@ module.exports = function (key) {
 /* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(5);
+var global = __webpack_require__(6);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
 module.exports = function (key) {
@@ -841,7 +841,7 @@ module.exports = function (it) {
 /***/ function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(20);
+var isObject = __webpack_require__(22);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function (it, S) {
@@ -858,8 +858,8 @@ module.exports = function (it, S) {
 /* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(5);
-var core = __webpack_require__(4);
+var global = __webpack_require__(6);
+var core = __webpack_require__(5);
 var LIBRARY = __webpack_require__(30);
 var wksExt = __webpack_require__(40);
 var defineProperty = __webpack_require__(10).f;
@@ -894,7 +894,7 @@ exports.f = __webpack_require__(15);
 
 var _prodInvariant = __webpack_require__(16);
 
-var ReactCurrentOwner = __webpack_require__(23);
+var ReactCurrentOwner = __webpack_require__(25);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -1397,8 +1397,8 @@ module.exports = function (fn, that, length) {
 /* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(20);
-var document = __webpack_require__(5).document;
+var isObject = __webpack_require__(22);
+var document = __webpack_require__(6).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
@@ -1410,7 +1410,7 @@ module.exports = function (it) {
 /* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(8) && !__webpack_require__(19)(function () {
+module.exports = !__webpack_require__(8) && !__webpack_require__(21)(function () {
   return Object.defineProperty(__webpack_require__(47)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
@@ -1497,7 +1497,7 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 /***/ function(module, exports, __webpack_require__) {
 
 var pIE = __webpack_require__(33);
-var createDesc = __webpack_require__(21);
+var createDesc = __webpack_require__(23);
 var toIObject = __webpack_require__(14);
 var toPrimitive = __webpack_require__(38);
 var has = __webpack_require__(9);
@@ -1611,11 +1611,11 @@ module.exports = function (it) {
 'use strict';
 
 var _prodInvariant = __webpack_require__(16),
-    _assign = __webpack_require__(3);
+    _assign = __webpack_require__(4);
 
 var ReactNoopUpdateQueue = __webpack_require__(61);
 
-var canDefineProperty = __webpack_require__(24);
+var canDefineProperty = __webpack_require__(26);
 var emptyObject = __webpack_require__(17);
 var invariant = __webpack_require__(1);
 var lowPriorityWarning = __webpack_require__(42);
@@ -1787,13 +1787,13 @@ module.exports = REACT_ELEMENT_TYPE;
 
 'use strict';
 
-var ReactCurrentOwner = __webpack_require__(23);
+var ReactCurrentOwner = __webpack_require__(25);
 var ReactComponentTreeHook = __webpack_require__(41);
 var ReactElement = __webpack_require__(11);
 
 var checkReactTypeSpec = __webpack_require__(126);
 
-var canDefineProperty = __webpack_require__(24);
+var canDefineProperty = __webpack_require__(26);
 var getIteratorFn = __webpack_require__(62);
 var warning = __webpack_require__(2);
 var lowPriorityWarning = __webpack_require__(42);
@@ -2533,7 +2533,7 @@ function tryDecode(str, decode) {
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(106);
-var $Object = __webpack_require__(4).Object;
+var $Object = __webpack_require__(5).Object;
 module.exports = function create(P, D) {
   return $Object.create(P, D);
 };
@@ -2544,7 +2544,7 @@ module.exports = function create(P, D) {
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(107);
-var $Object = __webpack_require__(4).Object;
+var $Object = __webpack_require__(5).Object;
 module.exports = function defineProperty(it, key, desc) {
   return $Object.defineProperty(it, key, desc);
 };
@@ -2555,7 +2555,7 @@ module.exports = function defineProperty(it, key, desc) {
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(108);
-module.exports = __webpack_require__(4).Object.getPrototypeOf;
+module.exports = __webpack_require__(5).Object.getPrototypeOf;
 
 
 /***/ },
@@ -2563,7 +2563,7 @@ module.exports = __webpack_require__(4).Object.getPrototypeOf;
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(109);
-module.exports = __webpack_require__(4).Object.setPrototypeOf;
+module.exports = __webpack_require__(5).Object.setPrototypeOf;
 
 
 /***/ },
@@ -2574,7 +2574,7 @@ __webpack_require__(112);
 __webpack_require__(110);
 __webpack_require__(113);
 __webpack_require__(114);
-module.exports = __webpack_require__(4).Symbol;
+module.exports = __webpack_require__(5).Symbol;
 
 
 /***/ },
@@ -2657,7 +2657,7 @@ module.exports = function (it) {
 /* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
-var document = __webpack_require__(5).document;
+var document = __webpack_require__(6).document;
 module.exports = document && document.documentElement;
 
 
@@ -2691,7 +2691,7 @@ module.exports = Array.isArray || function isArray(arg) {
 "use strict";
 'use strict';
 var create = __webpack_require__(31);
-var descriptor = __webpack_require__(21);
+var descriptor = __webpack_require__(23);
 var setToStringTag = __webpack_require__(34);
 var IteratorPrototype = {};
 
@@ -2717,15 +2717,15 @@ module.exports = function (done, value) {
 /* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(22)('meta');
-var isObject = __webpack_require__(20);
+var META = __webpack_require__(24)('meta');
+var isObject = __webpack_require__(22);
 var has = __webpack_require__(9);
 var setDesc = __webpack_require__(10).f;
 var id = 0;
 var isExtensible = Object.isExtensible || function () {
   return true;
 };
-var FREEZE = !__webpack_require__(19)(function () {
+var FREEZE = !__webpack_require__(21)(function () {
   return isExtensible(Object.preventExtensions({}));
 });
 var setMeta = function (it) {
@@ -2777,7 +2777,7 @@ var meta = module.exports = {
 /***/ function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(10);
-var anObject = __webpack_require__(18);
+var anObject = __webpack_require__(20);
 var getKeys = __webpack_require__(32);
 
 module.exports = __webpack_require__(8) ? Object.defineProperties : function defineProperties(O, Properties) {
@@ -2822,8 +2822,8 @@ module.exports.f = function getOwnPropertyNames(it) {
 
 // most Object methods by ES6 should accept primitives
 var $export = __webpack_require__(12);
-var core = __webpack_require__(4);
-var fails = __webpack_require__(19);
+var core = __webpack_require__(5);
+var fails = __webpack_require__(21);
 module.exports = function (KEY, exec) {
   var fn = (core.Object || {})[KEY] || Object[KEY];
   var exp = {};
@@ -2838,8 +2838,8 @@ module.exports = function (KEY, exec) {
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
-var isObject = __webpack_require__(20);
-var anObject = __webpack_require__(18);
+var isObject = __webpack_require__(22);
+var anObject = __webpack_require__(20);
 var check = function (O, proto) {
   anObject(O);
   if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
@@ -3031,25 +3031,25 @@ __webpack_require__(49)(String, 'String', function (iterated) {
 "use strict";
 'use strict';
 // ECMAScript 6 symbols shim
-var global = __webpack_require__(5);
+var global = __webpack_require__(6);
 var has = __webpack_require__(9);
 var DESCRIPTORS = __webpack_require__(8);
 var $export = __webpack_require__(12);
 var redefine = __webpack_require__(55);
 var META = __webpack_require__(97).KEY;
-var $fails = __webpack_require__(19);
+var $fails = __webpack_require__(21);
 var shared = __webpack_require__(36);
 var setToStringTag = __webpack_require__(34);
-var uid = __webpack_require__(22);
+var uid = __webpack_require__(24);
 var wks = __webpack_require__(15);
 var wksExt = __webpack_require__(40);
 var wksDefine = __webpack_require__(39);
 var enumKeys = __webpack_require__(91);
 var isArray = __webpack_require__(94);
-var anObject = __webpack_require__(18);
+var anObject = __webpack_require__(20);
 var toIObject = __webpack_require__(14);
 var toPrimitive = __webpack_require__(38);
-var createDesc = __webpack_require__(21);
+var createDesc = __webpack_require__(23);
 var _create = __webpack_require__(31);
 var gOPNExt = __webpack_require__(99);
 var $GOPD = __webpack_require__(50);
@@ -3284,7 +3284,7 @@ __webpack_require__(39)('observable');
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(105);
-var global = __webpack_require__(5);
+var global = __webpack_require__(6);
 var hide = __webpack_require__(13);
 var Iterators = __webpack_require__(29);
 var TO_STRING_TAG = __webpack_require__(15)('toStringTag');
@@ -3571,7 +3571,7 @@ module.exports = PooledClass;
 
 'use strict';
 
-var _assign = __webpack_require__(3);
+var _assign = __webpack_require__(4);
 
 var ReactBaseClasses = __webpack_require__(58);
 var ReactChildren = __webpack_require__(120);
@@ -3589,7 +3589,7 @@ var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
   var lowPriorityWarning = __webpack_require__(42);
-  var canDefineProperty = __webpack_require__(24);
+  var canDefineProperty = __webpack_require__(26);
   var ReactElementValidator = __webpack_require__(60);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
@@ -3710,7 +3710,7 @@ module.exports = React;
 var PooledClass = __webpack_require__(118);
 var ReactElement = __webpack_require__(11);
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 var traverseAllChildren = __webpack_require__(129);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -4323,7 +4323,7 @@ module.exports = onlyChild;
 
 var _prodInvariant = __webpack_require__(16);
 
-var ReactCurrentOwner = __webpack_require__(23);
+var ReactCurrentOwner = __webpack_require__(25);
 var REACT_ELEMENT_TYPE = __webpack_require__(59);
 
 var getIteratorFn = __webpack_require__(62);
@@ -4542,10 +4542,10 @@ module.exports = function(isValidElement) {
 
 'use strict';
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
-var assign = __webpack_require__(3);
+var assign = __webpack_require__(4);
 
 var ReactPropTypesSecret = __webpack_require__(69);
 var checkPropTypes = __webpack_require__(43);
@@ -5252,7 +5252,7 @@ module.exports = reactCookie;
 
 (function(f) {
   if (true) {
-    module.exports = f(__webpack_require__(7));
+    module.exports = f(__webpack_require__(3));
     /* global define */
   } else if (typeof define === 'function' && define.amd) {
     define(['react'], f);
@@ -5443,7 +5443,8 @@ module.exports = reactCookie;
 /* 142 */,
 /* 143 */,
 /* 144 */,
-/* 145 */
+/* 145 */,
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5451,9 +5452,9 @@ module.exports = reactCookie;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_django_react_csrftoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_django_react_csrftoken__);
 
 
-var React = __webpack_require__(7);
-var ReactDOM = __webpack_require__(26);
-var createReactClass = __webpack_require__(25);
+var React = __webpack_require__(3);
+var ReactDOM = __webpack_require__(19);
+var createReactClass = __webpack_require__(18);
 
 var Nav = createReactClass({
   displayName: 'Nav',
@@ -5464,7 +5465,7 @@ var Nav = createReactClass({
       { className: 'navbar navbar-default' },
       React.createElement(
         'div',
-        { className: 'container' },
+        { className: 'container navbar' },
         React.createElement(
           'div',
           { className: 'navbar-header' },
@@ -5482,7 +5483,7 @@ var Nav = createReactClass({
           ),
           React.createElement(
             'a',
-            { className: 'navbar-brand', href: '/' },
+            { className: 'navbar-brand', href: '/mysystems/' },
             'TagX'
           )
         ),
@@ -5494,28 +5495,28 @@ var Nav = createReactClass({
             { className: 'nav navbar-nav' },
             React.createElement(
               'li',
-              { className: '' },
+              { className: url.toString() === '/mysystems/' ? 'active' : '' },
               React.createElement(
                 'a',
-                { href: '#' },
+                { href: '/mysystems/' },
                 'My Systems'
               )
             ),
             React.createElement(
               'li',
-              { className: '' },
+              { className: url.toString() === '/mygroups/' ? 'active' : '' },
               React.createElement(
                 'a',
-                { href: '#' },
+                { href: '/mygroups/' },
                 'My Groups'
               )
             ),
             React.createElement(
               'li',
-              { className: '' },
+              { className: url.toString() === '/administration/' ? 'active' : '' },
               React.createElement(
                 'a',
-                { href: '#' },
+                { href: '/administration/' },
                 'Admin'
               )
             )
@@ -5547,4 +5548,4 @@ var Nav = createReactClass({
 ReactDOM.render(React.createElement(Nav, null), document.getElementById('nav'));
 
 /***/ }
-],[145]);
+],[146]);

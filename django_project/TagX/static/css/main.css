@@ -1,3 +1,5 @@
+/*this stuff is global css*/
+
 html, body {
     padding: 0;
     margin: 0;
@@ -10,30 +12,20 @@ h1 {
 	margin-right: 20px;
 }
 
+
+/*this stuff is for the mysystems page*/
+
 table {
-	width: 100%;
-	line-height: 40px;
-	border: 3px solid #0096d6;
+	margin-top: 35px;
 }
 
 thead {
 	background: #0096d6;
+	color: white;
 }
 
 form {
 	overflow: hidden;
-}
-
-th {
-	color: white;
-}
-
-th, td {
-	padding-left: 10px;
-}
-
-tr:nth-child(even) {
-	background: #CCC;
 }
 
 input {
@@ -126,6 +118,26 @@ li {
 	background: #0474a5;
 }
 
+
+/*this stuff is for the mygroups page*/
+
+div.thumbnail {
+	text-align: center;
+}
+
+.thumbnail {
+	border: 2px solid #0096d6;
+}
+
+div.row.header {
+	padding-left: 10px;
+	margin-bottom: 35px;
+}
+
+.glyphicon {
+	color: #0096d6;
+}
+
 /* navbar stuff */
 .navbar.navbar-default {
 	background: #0096d6;
@@ -162,4 +174,15 @@ li {
 
 .logout-button:hover {
 	color: black;
+}
+
+div.container.navbar {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.navbar {
+	border: none;
 }
