@@ -29,3 +29,15 @@ class UserRegistrationForm(forms.Form):
         max_length = 100,
         widget = forms.PasswordInput()
     )
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(
+        required = True,
+        label = 'search',
+        max_length = 100
+    )
+    criteria = forms.CharField(
+        required = True,
+        label = 'criteria'
+    )

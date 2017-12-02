@@ -6,6 +6,9 @@
 
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<script type="text/javascript">
+    var url = {{ url|safe }}
+</script>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +18,8 @@
 <!-- search bar -->
 <div class="container">
     <h1>My Systems</h1>
-    <form class="search-form">
+    <form action="/search/" method="POST" class="search-form">
+        {% csrf_token %}
         <div class="search-bar">
             <div class="search bar">
                 <input id="bar" type="text" name="search" placeholder="Search..">
@@ -51,6 +55,7 @@
     <div id="systemtable">
         <script type="text/javascript">
             var test = {{ testData|safe }}
+            var url = {{ url|safe }}
         </script>
         <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
         <script src="{% static 'bundles/systemtable.js' %}" charset="utf-8"></script>

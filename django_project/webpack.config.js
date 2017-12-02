@@ -13,7 +13,8 @@ module.exports = {
 
     entry: {
 		systemtable: './TagX/static/js/systemtable',
-        navbar: './TagX/static/js/navbar'
+        navbar: './TagX/static/js/navbar',
+        groups: './TagX/static/js/groups'
 	},
 	output: {
 		path: path.resolve('./TagX/static/bundles/'),

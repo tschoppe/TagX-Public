@@ -1,0 +1,26 @@
+{% extends "TagX/header.html" %}
+
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<script type="text/javascript">
+    var url = {{ url|safe }}
+</script>
+{% endblock %}
+
+{% block content %}
+
+{% include "TagX/includes/nav.html" %}
+
+<!-- groups table -->
+<div id="groups">
+    <script type="text/javascript">
+        var test = {{ testData|safe }}
+        var url = {{ url|safe }}
+    </script>
+    <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
+    <script src="{% static 'bundles/groups.js' %}" charset="utf-8"></script>
+</div>
+
+{% endblock %}
