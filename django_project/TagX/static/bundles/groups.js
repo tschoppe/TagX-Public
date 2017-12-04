@@ -22,7 +22,9 @@ var Groups = createReactClass({
                     React.createElement(
                         'p',
                         null,
-                        'This is group number one  ',
+                        'This is group number ',
+                        key,
+                        ' ',
                         React.createElement('span', { className: 'glyphicon glyphicon-chevron-down' })
                     )
                 )

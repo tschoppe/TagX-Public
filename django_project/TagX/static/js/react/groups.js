@@ -9,7 +9,7 @@ var Groups = createReactClass({
     		groups.push(
                 <div key={ key } className="col-lg-4 col-sm-6">
                     <div className="thumbnail">
-                        <p>This is group number one <span className="glyphicon glyphicon-chevron-down"></span></p>
+                        <p>This is group number { key } <span className="glyphicon glyphicon-chevron-down"></span></p>
                     </div>
                 </div>
 	        )

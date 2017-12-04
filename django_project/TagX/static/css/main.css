@@ -98,7 +98,6 @@ li {
 	border: 2px solid #c3c3c3;
 	-webkit-transition: border 500ms; /* For Safari 3.1 to 6.0 */
     transition: border 500ms;
-    border-right: 2px solid #0096d6;
 }
 
 #bar:focus {
@@ -107,7 +106,7 @@ li {
 }
 
 #button {
-	background: #0096d6;
+	background: #c3c3c3;
 	border: none;
 	border-radius: 0;
 	color: white;

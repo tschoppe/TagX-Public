@@ -12,9 +12,9 @@ module.exports = {
     // because you will specify extensions later in the `resolve` section
 
     entry: {
-		systemtable: './TagX/static/js/systemtable',
-        navbar: './TagX/static/js/navbar',
-        groups: './TagX/static/js/groups'
+		systemtable: './TagX/static/js/react/systemtable',
+        navbar: './TagX/static/js/react/navbar',
+        groups: './TagX/static/js/react/groups'
 	},
 	output: {
 		path: path.resolve('./TagX/static/bundles/'),

@@ -104,7 +104,14 @@ def logout(request):
 def mysystems(request):
     if request.method == 'GET' and request.user.is_authenticated():
         # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
-        return render(request, "TagX/my_systems.html", {'url': str(request.path), 'testData': json.dumps(testData)})
+        return render(request, "TagX/my_systems.html", {
+            'url': str(request.path), 
+            'testData': json.dumps(testData),
+            'search': {
+                'searchStr': request.GET.get('search', ''),
+                'criteria': request.GET.get('criteria', '')
+            }
+        })
     return HttpResponseRedirect('/')
 
 
@@ -138,7 +145,7 @@ def search(request):
             search = searchObj['search']
             criteria = searchObj['criteria']
             # 'search' and 'criteria' variables need to be used to query elastic search
-            return HttpResponseRedirect('/mysystems/')
+            return HttpResponseRedirect('/mysystems/?search=%s&criteria=%s' % (search, criteria))
     return HttpResponseRedirect('/')
 
 
