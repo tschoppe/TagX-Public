@@ -50,12 +50,11 @@
             </label>
         </div>
     </form>
-    <br>
+    <hr>
     <!-- systems table -->
     <div id="systemtable">
         <script type="text/javascript">
-            var test = {{ testData|safe }}
-            var url = {{ url|safe }}
+            var systems = {{ systems|safe }}
         </script>
         <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
         <script src="{% static 'bundles/systemtable.js' %}" charset="utf-8"></script>

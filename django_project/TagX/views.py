@@ -17,44 +17,6 @@ import json
 
 client = Elasticsearch()
 
-
-# This is just sample test data for systems. The real data will need to be retrieved from the databse.
-testData = {
-    "system1": {
-        "name": "System 1",
-        "group": "Group 1",
-        "basic1": "Basic 1",
-        "basic2": "Basic 2",
-        "basic3": "Basic 3",
-        "tags": ["tag1", "tag2", "tag3"]
-    },
-    "system2": {
-        "name": "System 2",
-        "group": "Group 2",
-        "basic1": "Basic 1",
-        "basic2": "Basic 2",
-        "basic3": "Basic 3",
-        "tags": ["tag1", "tag2", "tag3"]
-    },
-    "system3": {
-        "name": "System 3",
-        "group": "Group 3",
-        "basic1": "Basic 1",
-        "basic2": "Basic 2",
-        "basic3": "Basic 3",
-        "tags": ["tag1", "tag2", "tag3"]
-    },
-    "system4": {
-        "name": "System 4",
-        "group": "Group 4",
-        "basic1": "Basic 1",
-        "basic2": "Basic 2",
-        "basic3": "Basic 3",
-        "tags": ["tag1", "tag2", "tag3"]
-    }
-}
-
-
 # route for loading the initial homepage, which is the login page in this case.
 def index(request):
     if request.method == 'GET':
@@ -103,13 +65,35 @@ def logout(request):
 # route for rendering the My Systems page.
 def mysystems(request):
     if request.method == 'GET' and request.user.is_authenticated():
-        # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
+        searchStr = request.GET.get('search', '')
+        criteria = request.GET.get('criteria', '')
+        search = Search(using=client, index="devices") \
+                .query("match", companyName="Arkon")
+        if searchStr != '' and criteria == 'system_name':
+            search = search.query("match", systemName=searchStr)
+        elif searchStr != '' and criteria == 'operating_system':
+            search = search.query("match", osVersion=searchStr)
+        elif searchStr != '' and criteria == 'location':
+            search = search.query("match", location__country=searchStr)
+        elif searchStr != '' and criteria == 'tags':
+            search = search.query("match", companyName="Arkon")
+        response = search.execute()
+        systems = {}
+        for hit in response:
+            systems[hit.serialNumber] = {
+                    "name": hit.systemName, 
+                    "groups": [],
+                    "osVersion": hit.osVersion,
+                    "model": hit.model,
+                    "location": hit["location.country"],
+                    "tags": ["tag1", "tag2", "tag3"]
+                }
         return render(request, "TagX/my_systems.html", {
             'url': str(request.path), 
-            'testData': json.dumps(testData),
+            'systems': json.dumps(systems),
             'search': {
-                'searchStr': request.GET.get('search', ''),
-                'criteria': request.GET.get('criteria', '')
+                'searchStr': searchStr,
+                'criteria': criteria
             }
         })
     return HttpResponseRedirect('/')
@@ -144,7 +128,6 @@ def search(request):
             searchObj = form.cleaned_data
             search = searchObj['search']
             criteria = searchObj['criteria']
-            # 'search' and 'criteria' variables need to be used to query elastic search
             return HttpResponseRedirect('/mysystems/?search=%s&criteria=%s' % (search, criteria))
     return HttpResponseRedirect('/')
 

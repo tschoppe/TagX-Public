@@ -6,15 +6,15 @@ var createReactClass = require('create-react-class')
 var Systemtable = createReactClass({
     render() {
         var rows = [];
-    	Object.keys(test).forEach(function(key) {
+    	Object.keys(systems).forEach(function(system) {
     		rows.push(
-                <tr key={ key }>
-                    <th scope="row">{ test[key].name }</th>
-                    <td>{ test[key].group }</td>
-                    <td>{ test[key].basic1 }</td>
-                    <td>{ test[key].basic2 }</td>
-                    <td>{ test[key].basic3 }</td>
-                    <td>{ test[key].tags }</td>
+                <tr key={ system }>
+                    <th scope="row">{ systems[system].name }</th>
+                    <td>{ systems[system].groups }</td>
+                    <td>{ systems[system].osVersion }</td>
+                    <td>{ systems[system].model }</td>
+                    <td>{ systems[system].location }</td>
+                    <td>{ systems[system].tags }</td>
                 </tr>
 	        )
     	});
@@ -24,9 +24,9 @@ var Systemtable = createReactClass({
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Group(s)</th>
-                        <th scope="col">Basic1</th>
-                        <th scope="col">Basic2</th>
-                        <th scope="col">Basic3</th>
+                        <th scope="col">Operating System</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Location</th>
                         <th scope="col">Tag(s)</th>
                     </tr>
                 </thead>
