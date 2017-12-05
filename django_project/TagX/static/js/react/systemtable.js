@@ -10,11 +10,11 @@ var Systemtable = createReactClass({
     		rows.push(
                 <tr key={ system }>
                     <th scope="row">{ systems[system].name }</th>
-                    <td>{ systems[system].groups }</td>
-                    <td>{ systems[system].osVersion }</td>
-                    <td>{ systems[system].model }</td>
-                    <td>{ systems[system].location }</td>
-                    <td>{ systems[system].tags }</td>
+                    <td className="sys_row">{ systems[system].groups }</td>
+                    <td className="sys_row">{ systems[system].osVersion }</td>
+                    <td className="sys_row">{ systems[system].model }</td>
+                    <td className="sys_row">{ systems[system].location }</td>
+                    <td className="sys_row">{ systems[system].tags }</td>
                 </tr>
 	        )
     	});

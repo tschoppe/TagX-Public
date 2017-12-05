@@ -18,3 +18,10 @@ $(document).ready(function() {
 		changeButton();
 	});
 });
+
+
+$(document).ready(function() {
+	$(".sys_row").click(function() {
+		window.location = "/system/7800/";
+	});
+});

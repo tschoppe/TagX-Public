@@ -55,6 +55,10 @@ li {
 	padding-left: 10px;
 }
 
+.sys_row:hover {
+	cursor: pointer;
+}
+
 .container {
 	padding: 10px;
 }

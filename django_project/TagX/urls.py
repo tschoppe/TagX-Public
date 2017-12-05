@@ -5,11 +5,11 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^mysystems/$', views.mysystems, name='mysystems'),
     url(r'^mysystems/(?P<search>)(&P<criteria>)/$', views.mysystems, name='mysystemsSearch'),
-    url(r'^system/$', views.system, name='system'),
+    url(r'^system/(?P<system_id>[\w\-]+)/$', views.system, name='system'),
+    url(r'^system/(?P<system_id>\d+)/$', views.system, name='system'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^mygroups/$', views.mygroups, name='mygroups'),
-    url(r'^administration/$', views.administration, name='administration'),
     url(r'^search/$', views.search, name='search'),
     # for alpha release
     url(r'^elastic/$', views.elastic, name='elastic'),

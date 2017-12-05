@@ -126,10 +126,10 @@ def mysystems(request):
     return HttpResponseRedirect('/')
 
 
-# route for rendering the System page.
-def system(request):
+def system(request, system_id):
     if request.method == 'GET' and request.user.is_authenticated():
-        return render(request, "TagX/system.html", {'url': str(request.path)})
+        url = "\"" + str(request.path) + "\""
+        return render(request, "TagX/system.html", {'url': url, 'id': system_id})
     return HttpResponseRedirect('/')
 
 
@@ -137,13 +137,6 @@ def system(request):
 def mygroups(request):
     if request.method == 'GET' and request.user.is_authenticated():
         return render(request, "TagX/mygroups.html", {'url': str(request.path), 'testData': json.dumps(testData)})
-    return HttpResponseRedirect('/')
-
-
-# route for rendering the Admin page.
-def administration(request):
-    if request.method == 'GET' and request.user.is_authenticated():
-        return render(request, "TagX/administration.html", {'url': str(request.path)})
     return HttpResponseRedirect('/')
 
 
@@ -157,7 +150,6 @@ def search(request):
             criteria = searchObj['criteria']
             return HttpResponseRedirect('/mysystems/?search=%s&criteria=%s' % (search, criteria))
     return HttpResponseRedirect('/')
-
 
 
 # route we will use for alpha release

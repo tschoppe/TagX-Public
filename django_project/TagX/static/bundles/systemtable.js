@@ -23,27 +23,27 @@ var Systemtable = createReactClass({
                 ),
                 React.createElement(
                     'td',
-                    null,
+                    { className: 'sys_row' },
                     systems[system].groups
                 ),
                 React.createElement(
                     'td',
-                    null,
+                    { className: 'sys_row' },
                     systems[system].osVersion
                 ),
                 React.createElement(
                     'td',
-                    null,
+                    { className: 'sys_row' },
                     systems[system].model
                 ),
                 React.createElement(
                     'td',
-                    null,
+                    { className: 'sys_row' },
                     systems[system].location
                 ),
                 React.createElement(
                     'td',
-                    null,
+                    { className: 'sys_row' },
                     systems[system].tags
                 )
             ));
