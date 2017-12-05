@@ -17,6 +17,33 @@ import json
 
 client = Elasticsearch()
 
+testData = {
+    "Group 1": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
+    },
+    "Group 2": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
+    },
+    "Group 3": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
+    },
+    "Group 4": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
+    },
+    "Group 5": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
+    },
+    "Group 6": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
+    }
+}
+
 # route for loading the initial homepage, which is the login page in this case.
 def index(request):
     if request.method == 'GET':
