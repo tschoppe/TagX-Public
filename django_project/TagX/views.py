@@ -96,14 +96,14 @@ def register(request):
 
 
 def logout(request):
-    if request.method == 'POST' and request.user.is_authenticated():
+    if request.method == 'POST' and request.user.is_authenticated:
         auth_logout(request)
     return HttpResponseRedirect('/')
 
 
 # route for rendering the My Systems page.
 def mysystems(request):
-    if request.method == 'GET' and request.user.is_authenticated():
+    if request.method == 'GET' and request.user.is_authenticated:
         # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
         return render(request, "TagX/my_systems.html", {'url': str(request.path), 'testData': json.dumps(testData)})
     return HttpResponseRedirect('/')
@@ -111,28 +111,28 @@ def mysystems(request):
 
 # route for rendering the System page.
 def system(request):
-    if request.method == 'GET' and request.user.is_authenticated():
+    if request.method == 'GET' and request.user.is_authenticated:
         return render(request, "TagX/system.html", {'url': str(request.path)})
     return HttpResponseRedirect('/')
 
 
 # route for rendering the Groups page.
 def mygroups(request):
-    if request.method == 'GET' and request.user.is_authenticated():
+    if request.method == 'GET' and request.user.is_authenticated:
         return render(request, "TagX/mygroups.html", {'url': str(request.path), 'testData': json.dumps(testData)})
     return HttpResponseRedirect('/')
 
 
 # route for rendering the Admin page.
 def administration(request):
-    if request.method == 'GET' and request.user.is_authenticated():
+    if request.method == 'GET' and request.user.is_authenticated:
         return render(request, "TagX/administration.html", {'url': str(request.path)})
     return HttpResponseRedirect('/')
 
 
 # post request for performing a search
 def search(request):
-    if request.method == 'POST' and request.user.is_authenticated():
+    if request.method == 'POST' and request.user.is_authenticated:
         form = SearchForm(request.POST)
         if form.is_valid():
             searchObj = form.cleaned_data
