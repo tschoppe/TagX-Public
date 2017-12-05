@@ -16,7 +16,8 @@ from elasticsearch_dsl import Search
 import json
 import certifi
 
-client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.found.io:9243'], http_auth=('elastic', '9eRZdikmjjmMWJjpaf8zoo7U'), port=443, use_ssl=True, ca_certs=certifi.where())
+#client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.found.io:9243'], http_auth=('elastic', '9eRZdikmjjmMWJjpaf8zoo7U'), port=443, use_ssl=True, ca_certs=certifi.where())
+client = Elasticsearch()
 
 
 # This is just sample test data for systems. The real data will need to be retrieved from the databse.
@@ -156,5 +157,12 @@ def elastic(self):
     return JsonResponse({"systems": Arkon_systems})
 
 # tagging function
-def addTag(self):
+def addTag(request, SN, tag):
+    if request.method == 'PUT' and request.user.is_authenticated:
+        search = Search(using=client, index="devices").query("match", serialNumber=SN)
+        response = search.execute()
+        for hit in response:
+            list = hit.tags
+        list.append(tag)
+        client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
