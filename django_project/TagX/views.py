@@ -153,17 +153,6 @@ def search(request):
     return HttpResponseRedirect('/')
 
 
-# route we will use for alpha release
-def elastic(self):
-    #For Alpha only. Need more specific queries in future
-    #Returns list of systems from companyName "Arkon"
-    search = Search(using=client, index="devices").query("match", companyName="Arkon")
-    response = search.execute()
-    Arkon_systems = []
-    for hit in response:
-        Arkon_systems.append({"systemName": hit.systemName, "serialNumber": hit.serialNumber})
-    return JsonResponse({"systems": Arkon_systems})
-
 # tagging function
 def addTag(self):
     return

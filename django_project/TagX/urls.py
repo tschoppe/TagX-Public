@@ -11,7 +11,5 @@ urlpatterns = [
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^mygroups/$', views.mygroups, name='mygroups'),
     url(r'^search/$', views.search, name='search'),
-    # for alpha release
-    url(r'^elastic/$', views.elastic, name='elastic'),
 ]
 
