@@ -92,7 +92,7 @@ def logout(request):
 
 # route for rendering the My Systems page.
 def mysystems(request):
-    if request.method == 'GET' and request.user.is_authenticated():
+    if request.method == 'GET' and request.user.is_authenticated:
         searchStr = request.GET.get('search', '')
         criteria = request.GET.get('criteria', '')
         search = Search(using=client, index="devices") \
@@ -128,7 +128,7 @@ def mysystems(request):
 
 
 def system(request, system_id):
-    if request.method == 'GET' and request.user.is_authenticated():
+    if request.method == 'GET' and request.user.is_authenticated:
         url = "\"" + str(request.path) + "\""
         return render(request, "TagX/system.html", {'url': url, 'id': system_id})
     return HttpResponseRedirect('/')
