@@ -14,8 +14,9 @@ from django.views.decorators.http import require_http_methods
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 import json
+import certifi
 
-client = Elasticsearch()
+client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.found.io:9243'], http_auth=('elastic', '9eRZdikmjjmMWJjpaf8zoo7U'), port=443, use_ssl=True, ca_certs=certifi.where())
 
 testData = {
     "Group 1": {
@@ -162,3 +163,7 @@ def elastic(self):
     for hit in response:
         Arkon_systems.append({"systemName": hit.systemName, "serialNumber": hit.serialNumber})
     return JsonResponse({"systems": Arkon_systems})
+
+# tagging function
+def addTag(self):
+    return
