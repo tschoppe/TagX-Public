@@ -160,6 +160,10 @@ div.row.header {
 	text-align: left;
 }
 
+.group-tag:hover {
+	cursor: pointer;
+}
+
 .glyphicon {
 	margin: 5px 10px;
 	float: right;
