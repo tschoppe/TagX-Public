@@ -85,7 +85,7 @@ def register(request):
 
 
 def logout(request):
-    if request.method == 'POST' and request.user.is_authenticated():
+    if request.method == 'POST' and request.user.is_authenticated:
         auth_logout(request)
     return HttpResponseRedirect('/')
 
@@ -136,14 +136,14 @@ def system(request, system_id):
 
 # route for rendering the Groups page.
 def mygroups(request):
-    if request.method == 'GET' and request.user.is_authenticated():
+    if request.method == 'GET' and request.user.is_authenticated:
         return render(request, "TagX/mygroups.html", {'url': str(request.path), 'testData': json.dumps(testData)})
     return HttpResponseRedirect('/')
 
 
 # post request for performing a search
 def search(request):
-    if request.method == 'POST' and request.user.is_authenticated():
+    if request.method == 'POST' and request.user.is_authenticated:
         form = SearchForm(request.POST)
         if form.is_valid():
             searchObj = form.cleaned_data
