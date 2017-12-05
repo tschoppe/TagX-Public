@@ -154,3 +154,6 @@ def elastic(self):
     for hit in response:
         Arkon_systems.append({"systemName": hit.systemName, "serialNumber": hit.serialNumber})
     return JsonResponse({"systems": Arkon_systems})
+
+# tagging function
+def addTag(self):
