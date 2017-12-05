@@ -157,3 +157,4 @@ def elastic(self):
 
 # tagging function
 def addTag(self):
+    return
