@@ -170,23 +170,25 @@ def removeTag(request, SN, tag):
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
         for hit in response:
-            if hit.tag != tag:
-                list = hit.tags
+            i= 0
+            if hit.tags[i] != tag:
+                list = hit.tags[i]
+            i += 1
         client.update(index='devices', doc_type='doc', id=SN, body={"doc":{"tags": list}})
     return
+
 
 #edit tag
 def editTag(request, SN, oldTag, newTag):
     if request.method == 'PUT' and request.user.is_authenticated:
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
-        tags = response.hits[0].tags
-        i = 0
-        for tag in tags:
-            if tag == oldTag:
-                tags[i] = newTag
-                break
-            i++
-
+        for hit in response:
+            i=0
+            if hit.tags[i] == oldTag:
+                list.append(newTag)
+            else:
+                list.append(hit.tags[i])
+            i +=1
         client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
