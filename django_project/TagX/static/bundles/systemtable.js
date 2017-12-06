@@ -18,7 +18,7 @@ var Systemtable = createReactClass({
                 { key: system },
                 React.createElement(
                     'th',
-                    { scope: 'row' },
+                    { scope: 'row', className: 'sys_row' },
                     systems[system].name
                 ),
                 React.createElement(

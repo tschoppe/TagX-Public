@@ -9,7 +9,7 @@ var Systemtable = createReactClass({
     	Object.keys(systems).forEach(function(system) {
     		rows.push(
                 <tr key={ system }>
-                    <th scope="row">{ systems[system].name }</th>
+                    <th scope="row" className="sys_row">{ systems[system].name }</th>
                     <td className="sys_row">{ systems[system].groups }</td>
                     <td className="sys_row">{ systems[system].osVersion }</td>
                     <td className="sys_row">{ systems[system].model }</td>
