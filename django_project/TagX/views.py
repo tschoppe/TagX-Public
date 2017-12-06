@@ -164,3 +164,27 @@ def addTag(request, SN, tag):
         list.append(tag)
         client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
+
+#remove tag
+def removeTag(request, SN, tag):
+    if request.method == 'DELETE' and request.user.is_authenticated:
+        search = Search(using=client, index="devices").query("match", serialNumber=SN)
+        response = search.execute()
+        for hit in response:
+            if hit.tag != tag:
+                list = hit.tags
+        client.update(index='devices', doc_type='doc', id=SN, body={"doc":{"tags": list}})
+    return
+
+#edit tag
+def editTag(request, SN, oldTag, newTag):
+    if request.method == 'PUT' and request.user.is_authenticated:
+        search = Search(using=client, index="devices").query("match", serialNumber=SN)
+        response = search.execute()
+        for hit in response:
+            if hit.tag == oldTag:
+                list.append(newTag)
+            else:
+                list.append(hit.tag)
+        client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
+    return
