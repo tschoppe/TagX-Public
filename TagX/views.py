@@ -108,14 +108,19 @@ def mysystems(request):
         response = search.execute()
         systems = {}
         for hit in response:
+            #deviceSN = hit.serialNumber
             systems[hit.serialNumber] = {
                     "name": hit.systemName, 
                     "groups": [],
                     "osVersion": hit.osVersion,
                     "model": hit.model,
                     "location": hit["location.country"],
-                    "tags": ["tag1", "tag2", "tag3"]
+                    #"tags": ["tag1", "tag2", "tag3"] actually remove this
                 }
+        # snSearch = Search(using=client, index="devices").query("match", serialNumber=deviceSN)
+        # snResponse = snSearch.execute()
+        # for hit in snResponse:
+        #     systems["tags"] = hit.tags
         return render(request, "TagX/my_systems.html", {
             'url': str(request.path), 
             'systems': json.dumps(systems),
