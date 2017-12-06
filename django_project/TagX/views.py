@@ -180,10 +180,13 @@ def editTag(request, SN, oldTag, newTag):
     if request.method == 'PUT' and request.user.is_authenticated:
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
-        for hit in response:
-            if hit.tag == oldTag:
-                list.append(newTag)
-            else:
-                list.append(hit.tag)
+        tags = response.hits[0].tags
+        i = 0
+        for tag in tags:
+            if tag == oldTag:
+                tags[0] = newTag
+                break
+            i++
+            
         client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
