@@ -20,7 +20,7 @@ client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.
 
 testData = {
     "Group 1": {
-        "users": ["user1", "user2", "user3"],
+        "users": ["userOne", "user2", "user3"],
         "systems": ["system1", "system2", "system3"]
     },
     "Group 2": {
