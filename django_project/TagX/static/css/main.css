@@ -10,6 +10,7 @@ h1 {
 	float: left;
 	margin-top: 10px;
 	margin-right: 20px;
+	margin-bottom: 30px;
 }
 
 
@@ -52,6 +53,10 @@ label {
 
 li {
 	padding-left: 10px;
+}
+
+.sys_row:hover {
+	cursor: pointer;
 }
 
 .container {
@@ -98,7 +103,6 @@ li {
 	border: 2px solid #c3c3c3;
 	-webkit-transition: border 500ms; /* For Safari 3.1 to 6.0 */
     transition: border 500ms;
-    border-right: 2px solid #0096d6;
 }
 
 #bar:focus {
@@ -107,7 +111,7 @@ li {
 }
 
 #button {
-	background: #0096d6;
+	background: #c3c3c3;
 	border: none;
 	border-radius: 0;
 	color: white;
@@ -118,8 +122,20 @@ li {
 	background: #0474a5;
 }
 
+.search-form {
+	margin-bottom: 25px;
+}
 
 /*this stuff is for the mygroups page*/
+
+hr {
+	width: 100%;
+}
+
+strong {
+	border-bottom: solid 1px #000000;
+	padding-bottom: 3px;
+}
 
 div.thumbnail {
 	text-align: center;
@@ -137,6 +153,22 @@ div.row.header {
 .glyphicon {
 	color: #0096d6;
 }
+
+.group-tag {
+	margin: 10px 10px;
+	height: 30px;
+	text-align: left;
+}
+
+.group-tag:hover {
+	cursor: pointer;
+}
+
+.glyphicon {
+	margin: 5px 10px;
+	float: right;
+}
+
 
 /* navbar stuff */
 .navbar.navbar-default {

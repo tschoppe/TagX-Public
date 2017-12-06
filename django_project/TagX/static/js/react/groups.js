@@ -2,14 +2,21 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var createReactClass = require('create-react-class')
 
+
 var Groups = createReactClass({
     render() {
         var groups = [];
-    	Object.keys(test).forEach(function(key) {
+        var keys = Object.keys(test);
+    	keys.forEach(function(key) {
     		groups.push(
-                <div key={ key } className="col-lg-4 col-sm-6">
-                    <div className="thumbnail">
-                        <p>This is group number one <span className="glyphicon glyphicon-chevron-down"></span></p>
+                <div key={ key } className="row">
+                    <div className="col-lg-12">
+                        <div className="thumbnail">
+                            <h4 className="group-tag">
+                                <strong>{ key }</strong>
+                                <span className="glyphicon glyphicon-chevron-down"></span>
+                            </h4>
+                        </div>
                     </div>
                 </div>
 	        )
@@ -18,10 +25,9 @@ var Groups = createReactClass({
             <div className="container">
                 <div className="row header">
                     <h1>My Groups</h1>
+                    <hr></hr>                    
                 </div>
-                <div className="row">
                     { groups }
-                </div>
             </div>
         )
     }

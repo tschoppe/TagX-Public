@@ -4,12 +4,15 @@
 
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<script type="text/javascript">
+    var url = {{ url|safe }}
+</script>
 {% endblock %}
 
 {% block content %}
 
 {% include "TagX/includes/nav.html" %}
 
-<h1>System Page</h1>
+<h1>System Page for system {{ id }}</h1>
 
 {% endblock %}

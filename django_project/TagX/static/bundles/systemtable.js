@@ -12,39 +12,39 @@ var Systemtable = createReactClass({
 
     render() {
         var rows = [];
-        Object.keys(test).forEach(function (key) {
+        Object.keys(systems).forEach(function (system) {
             rows.push(React.createElement(
                 'tr',
-                { key: key },
+                { key: system },
                 React.createElement(
                     'th',
-                    { scope: 'row' },
-                    test[key].name
+                    { scope: 'row', className: 'sys_row' },
+                    systems[system].name
                 ),
                 React.createElement(
                     'td',
-                    null,
-                    test[key].group
+                    { className: 'sys_row' },
+                    systems[system].groups
                 ),
                 React.createElement(
                     'td',
-                    null,
-                    test[key].basic1
+                    { className: 'sys_row' },
+                    systems[system].osVersion
                 ),
                 React.createElement(
                     'td',
-                    null,
-                    test[key].basic2
+                    { className: 'sys_row' },
+                    systems[system].model
                 ),
                 React.createElement(
                     'td',
-                    null,
-                    test[key].basic3
+                    { className: 'sys_row' },
+                    systems[system].location
                 ),
                 React.createElement(
                     'td',
-                    null,
-                    test[key].tags
+                    { className: 'sys_row' },
+                    systems[system].tags
                 )
             ));
         });
@@ -70,17 +70,17 @@ var Systemtable = createReactClass({
                     React.createElement(
                         'th',
                         { scope: 'col' },
-                        'Basic1'
+                        'Operating System'
                     ),
                     React.createElement(
                         'th',
                         { scope: 'col' },
-                        'Basic2'
+                        'Model'
                     ),
                     React.createElement(
                         'th',
                         { scope: 'col' },
-                        'Basic3'
+                        'Location'
                     ),
                     React.createElement(
                         'th',

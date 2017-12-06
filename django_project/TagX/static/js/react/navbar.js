@@ -22,7 +22,6 @@ var Nav = createReactClass({
                 <ul className="nav navbar-nav">
                   <li className={ url.toString() === '/mysystems/' ? 'active' : '' }><a href="/mysystems/">My Systems</a></li>
                   <li className={ url.toString() === '/mygroups/' ? 'active' : '' }><a href="/mygroups/">My Groups</a></li>
-                  <li className={ url.toString() === '/administration/' ? 'active' : '' }><a href="/administration/">Admin</a></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                   <li>

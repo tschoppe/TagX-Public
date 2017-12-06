@@ -19,43 +19,32 @@ import certifi
 #client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.found.io:9243'], http_auth=('elastic', '9eRZdikmjjmMWJjpaf8zoo7U'), port=443, use_ssl=True, ca_certs=certifi.where())
 client = Elasticsearch()
 
-
-# This is just sample test data for systems. The real data will need to be retrieved from the databse.
 testData = {
-    "system1": {
-        "name": "System 1",
-        "group": "Group 1",
-        "basic1": "Basic 1",
-        "basic2": "Basic 2",
-        "basic3": "Basic 3",
-        "tags": ["tag1", "tag2", "tag3"]
+    "Group 1": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
     },
-    "system2": {
-        "name": "System 2",
-        "group": "Group 2",
-        "basic1": "Basic 1",
-        "basic2": "Basic 2",
-        "basic3": "Basic 3",
-        "tags": ["tag1", "tag2", "tag3"]
+    "Group 2": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
     },
-    "system3": {
-        "name": "System 3",
-        "group": "Group 3",
-        "basic1": "Basic 1",
-        "basic2": "Basic 2",
-        "basic3": "Basic 3",
-        "tags": ["tag1", "tag2", "tag3"]
+    "Group 3": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
     },
-    "system4": {
-        "name": "System 4",
-        "group": "Group 4",
-        "basic1": "Basic 1",
-        "basic2": "Basic 2",
-        "basic3": "Basic 3",
-        "tags": ["tag1", "tag2", "tag3"]
+    "Group 4": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
+    },
+    "Group 5": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
+    },
+    "Group 6": {
+        "users": ["user1", "user2", "user3"],
+        "systems": ["system1", "system2", "system3"]
     }
 }
-
 
 # route for loading the initial homepage, which is the login page in this case.
 def index(request):
@@ -105,15 +94,44 @@ def logout(request):
 # route for rendering the My Systems page.
 def mysystems(request):
     if request.method == 'GET' and request.user.is_authenticated:
-        # 'testData' is just random data right now, the real data will need to be retrieved from the databse.
-        return render(request, "TagX/my_systems.html", {'url': str(request.path), 'testData': json.dumps(testData)})
+        searchStr = request.GET.get('search', '')
+        criteria = request.GET.get('criteria', '')
+        search = Search(using=client, index="devices") \
+                .query("match", companyName="Arkon")
+        if searchStr != '' and criteria == 'system_name':
+            search = search.query("match", systemName=searchStr)
+        elif searchStr != '' and criteria == 'operating_system':
+            search = search.query("match", osVersion=searchStr)
+        elif searchStr != '' and criteria == 'location':
+            search = search.query("match", location__country=searchStr)
+        elif searchStr != '' and criteria == 'tags':
+            search = search.query("match", companyName="Arkon")
+        response = search.execute()
+        systems = {}
+        for hit in response:
+            systems[hit.serialNumber] = {
+                    "name": hit.systemName, 
+                    "groups": [],
+                    "osVersion": hit.osVersion,
+                    "model": hit.model,
+                    "location": hit["location.country"],
+                    "tags": ["tag1", "tag2", "tag3"]
+                }
+        return render(request, "TagX/my_systems.html", {
+            'url': str(request.path), 
+            'systems': json.dumps(systems),
+            'search': {
+                'searchStr': searchStr,
+                'criteria': criteria
+            }
+        })
     return HttpResponseRedirect('/')
 
 
-# route for rendering the System page.
-def system(request):
+def system(request, system_id):
     if request.method == 'GET' and request.user.is_authenticated:
-        return render(request, "TagX/system.html", {'url': str(request.path)})
+        url = "\"" + str(request.path) + "\""
+        return render(request, "TagX/system.html", {'url': url, 'id': system_id})
     return HttpResponseRedirect('/')
 
 
@@ -121,13 +139,6 @@ def system(request):
 def mygroups(request):
     if request.method == 'GET' and request.user.is_authenticated:
         return render(request, "TagX/mygroups.html", {'url': str(request.path), 'testData': json.dumps(testData)})
-    return HttpResponseRedirect('/')
-
-
-# route for rendering the Admin page.
-def administration(request):
-    if request.method == 'GET' and request.user.is_authenticated:
-        return render(request, "TagX/administration.html", {'url': str(request.path)})
     return HttpResponseRedirect('/')
 
 
@@ -139,22 +150,9 @@ def search(request):
             searchObj = form.cleaned_data
             search = searchObj['search']
             criteria = searchObj['criteria']
-            # 'search' and 'criteria' variables need to be used to query elastic search
-            return HttpResponseRedirect('/mysystems/')
+            return HttpResponseRedirect('/mysystems/?search=%s&criteria=%s' % (search, criteria))
     return HttpResponseRedirect('/')
 
-
-
-# route we will use for alpha release
-def elastic(self):
-    #For Alpha only. Need more specific queries in future
-    #Returns list of systems from companyName "Arkon"
-    search = Search(using=client, index="devices").query("match", companyName="Arkon")
-    response = search.execute()
-    Arkon_systems = []
-    for hit in response:
-        Arkon_systems.append({"systemName": hit.systemName, "serialNumber": hit.serialNumber})
-    return JsonResponse({"systems": Arkon_systems})
 
 # tagging function
 def addTag(request, SN, tag):
