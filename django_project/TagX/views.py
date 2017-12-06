@@ -184,9 +184,9 @@ def editTag(request, SN, oldTag, newTag):
         i = 0
         for tag in tags:
             if tag == oldTag:
-                tags[0] = newTag
+                tags[i] = newTag
                 break
             i++
-            
+
         client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
