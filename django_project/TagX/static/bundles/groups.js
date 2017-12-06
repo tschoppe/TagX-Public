@@ -12,18 +12,27 @@ var Groups = createReactClass({
 
     render() {
         var groups = [];
-        Object.keys(test).forEach(function (key) {
+        var keys = Object.keys(test);
+        keys.forEach(function (key) {
             groups.push(React.createElement(
                 'div',
-                { key: key, className: 'col-lg-4 col-sm-6' },
+                { key: key, className: 'row' },
                 React.createElement(
                     'div',
-                    { className: 'thumbnail' },
+                    { className: 'col-lg-12' },
                     React.createElement(
-                        'p',
-                        null,
-                        'This is group number one  ',
-                        React.createElement('span', { className: 'glyphicon glyphicon-chevron-down' })
+                        'div',
+                        { className: 'thumbnail' },
+                        React.createElement(
+                            'h4',
+                            { className: 'group-tag' },
+                            React.createElement(
+                                'strong',
+                                null,
+                                key
+                            ),
+                            React.createElement('span', { className: 'glyphicon glyphicon-chevron-down' })
+                        )
                     )
                 )
             ));
@@ -38,13 +47,10 @@ var Groups = createReactClass({
                     'h1',
                     null,
                     'My Groups'
-                )
+                ),
+                React.createElement('hr', null)
             ),
-            React.createElement(
-                'div',
-                { className: 'row' },
-                groups
-            )
+            groups
         );
     }
 });

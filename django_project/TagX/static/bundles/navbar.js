@@ -5510,15 +5510,6 @@ var Nav = createReactClass({
                 { href: '/mygroups/' },
                 'My Groups'
               )
-            ),
-            React.createElement(
-              'li',
-              { className: url.toString() === '/administration/' ? 'active' : '' },
-              React.createElement(
-                'a',
-                { href: '/administration/' },
-                'Admin'
-              )
             )
           ),
           React.createElement(

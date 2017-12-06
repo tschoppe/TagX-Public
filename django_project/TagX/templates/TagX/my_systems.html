@@ -22,7 +22,7 @@
         {% csrf_token %}
         <div class="search-bar">
             <div class="search bar">
-                <input id="bar" type="text" name="search" placeholder="Search..">
+                <input id="bar" type="text" name="search" placeholder="Search.." {% if search.searchStr %} value="{{ search.searchStr }}"{% endif %}>
             </div>
             <div class="search button">
                 <input id="button" type="submit" value="Go" />
@@ -36,29 +36,29 @@
         </div>
         <div class="form-group">
             <label class="radio-inline control-label">
-                <input type="radio" name="criteria" value="operating_system"> Operating System
+                <input type="radio" name="criteria" value="operating_system" {% if search.criteria == "operating_system" %} checked="checked"{% endif %}> Operating System
             </label>
         </div>
         <div class="form-group">
             <label class="radio-inline control-label">
-                <input type="radio" name="criteria" value="location"> Location
+                <input type="radio" name="criteria" value="location" {% if search.criteria == "location" %} checked="checked"{% endif %}> Location
             </label>
         </div>
         <div class="form-group">
             <label class="radio-inline control-label">
-                <input type="radio" name="criteria" value="tags"> Tags
+                <input type="radio" name="criteria" value="tags" {% if search.criteria == "tags" %} checked="checked"{% endif %}> Tags
             </label>
         </div>
     </form>
-    <br>
+    <hr>
     <!-- systems table -->
     <div id="systemtable">
         <script type="text/javascript">
-            var test = {{ testData|safe }}
-            var url = {{ url|safe }}
+            var systems = {{ systems|safe }}
         </script>
         <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
         <script src="{% static 'bundles/systemtable.js' %}" charset="utf-8"></script>
+        <script src="{% static 'js/mySystemsPage.js' %}" charset="utf-8"></script>
     </div>
 </div>
 

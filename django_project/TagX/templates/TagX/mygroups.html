@@ -17,10 +17,10 @@
 <div id="groups">
     <script type="text/javascript">
         var test = {{ testData|safe }}
-        var url = {{ url|safe }}
     </script>
     <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
     <script src="{% static 'bundles/groups.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/groupsPage.js' %}" charset="utf-8"></script>
 </div>
 
 {% endblock %}
