@@ -1,2 +1,6 @@
 django_project/node_modules
 .idea
+venv
+*.pyc
+staticfiles
+.env
