@@ -20,7 +20,7 @@ client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.
 
 testData = {
     "Group1": {
-        "users": ["userOne", "user2", "user3", "hjds", "hjfdks"],
+        "users": ["user1", "user2", "user3", "user4", "user5"],
         "systems": ["system1", "system2", "system3"]
     },
     "Group2": {
@@ -29,14 +29,14 @@ testData = {
     },
     "Group3": {
         "users": ["user1", "user2", "user3"],
-        "systems": ["system1", "system2", "system3"]
+        "systems": ["system1", "system2", "system3", "system4", "system5", "system6", "system7"]
     },
     "Group4": {
-        "users": ["user1", "user2", "user3"],
+        "users": ["user1", "user2"],
         "systems": ["system1", "system2", "system3"]
     },
     "Group5": {
-        "users": ["user1", "user2", "user3"],
+        "users": ["user1", "user2", "user3", "user4", 'user5'],
         "systems": ["system1", "system2", "system3"]
     },
     "Group6": {
@@ -114,11 +114,11 @@ def mysystems(request):
                     "osVersion": hit.osVersion,
                     "model": hit.model,
                     "location": hit["location.country"],
-                    "tags": hit.tags
+                    "tags": [""] if (hit.tags == None) else hit.tags
                 }
         return render(request, "TagX/my_systems.html", {
             'url': str(request.path), 
-            'systems': json.dumps(systems),
+            'systems': systems,
             'search': {
                 'searchStr': searchStr,
                 'criteria': criteria

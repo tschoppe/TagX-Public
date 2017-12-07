@@ -9,10 +9,20 @@ function changeButton() {
 	}
 }
 
-$('input#bar').on('focus', function() {
-    $('input#button').addClass('focused');
+$(document).ready(function() {
+	$('input#bar').on('focus', function() {
+	    $('input#button').addClass('focused');
+	});
 });
 
-$('input#bar').focusout(function() {
-    $('input#button').removeClass('focused');
+$(document).ready(function() {
+	$('input#bar').focusout(function() {
+	    $('input#button').removeClass('focused');
+	});
+});
+
+$(document).ready(function() {
+	$("tbody tr").click(function() {
+		window.location = "/system/" + this.classList[0];
+	});
 });

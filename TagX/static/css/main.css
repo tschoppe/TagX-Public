@@ -55,7 +55,7 @@ li {
 	padding-left: 10px;
 }
 
-.sys_row:hover {
+tbody tr:hover {
 	cursor: pointer;
 }
 
@@ -139,7 +139,7 @@ hr {
 	width: 100%;
 }
 
-strong {
+h4 strong {
 	border-bottom: solid 1px #000000;
 	padding-bottom: 3px;
 }
@@ -178,6 +178,13 @@ div.row.header {
 
 .owner {
 	margin: 10px;
+}
+
+kbd {
+	border: none;
+	outline: none;
+	color: black;
+	background: #dcdcdc87;
 }
 
 
