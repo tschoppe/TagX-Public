@@ -188,4 +188,3 @@ def editTag(request, SN, oldTag, newTag):
         list[index] = newTag
         client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
-
