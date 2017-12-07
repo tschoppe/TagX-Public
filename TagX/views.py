@@ -108,19 +108,14 @@ def mysystems(request):
         response = search.execute()
         systems = {}
         for hit in response:
-            #deviceSN = hit.serialNumber
             systems[hit.serialNumber] = {
                     "name": hit.systemName, 
                     "groups": [],
                     "osVersion": hit.osVersion,
                     "model": hit.model,
                     "location": hit["location.country"],
-                    #"tags": ["tag1", "tag2", "tag3"] actually remove this
+                    "tags": hit.tags
                 }
-        # snSearch = Search(using=client, index="devices").query("match", serialNumber=deviceSN)
-        # snResponse = snSearch.execute()
-        # for hit in snResponse:
-        #     systems["tags"] = hit.tags
         return render(request, "TagX/my_systems.html", {
             'url': str(request.path), 
             'systems': json.dumps(systems),
@@ -163,6 +158,7 @@ def addTag(request, SN, tag):
     if request.method == 'PUT' and request.user.is_authenticated:
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
+        list = []
         for hit in response:
             list = hit.tags
         list.append(tag)
@@ -174,6 +170,7 @@ def removeTag(request, SN, tag):
     if request.method == 'DELETE' and request.user.is_authenticated:
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
+        list = []
         for hit in response:
             i= 0
             if hit.tags[i] != tag:
@@ -188,6 +185,7 @@ def editTag(request, SN, oldTag, newTag):
     if request.method == 'PUT' and request.user.is_authenticated:
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
+        list = []
         for hit in response:
             i=0
             if hit.tags[i] == oldTag:
