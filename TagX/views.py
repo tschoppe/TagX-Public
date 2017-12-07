@@ -161,12 +161,10 @@ def addTag(request, SN, tag):
         list = []
         if response.hits[0].tags is None:
             list.append(tag)
-            client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
         else:
-            for hit in response:
-                list = hit.tags
+            list = response.hits[0].tags
             list.append(tag)
-            client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
+        client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
 
 #remove tag
@@ -175,11 +173,7 @@ def removeTag(request, SN, tag):
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
         list = []
-        for hit in response:
-            i= 0
-            if hit.tags[i] != tag:
-                list = hit.tags[i]
-            i += 1
+        list.remove(tag)
         client.update(index='devices', doc_type='doc', id=SN, body={"doc":{"tags": list}})
     return
 
@@ -189,13 +183,8 @@ def editTag(request, SN, oldTag, newTag):
     if request.method == 'PUT' and request.user.is_authenticated:
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
-        list = []
-        for hit in response:
-            i=0
-            if hit.tags[i] == oldTag:
-                list.append(newTag)
-            else:
-                list.append(hit.tags[i])
-            i +=1
+        list = response.hits[0].tags
+        index = list.index(oldTag)
+        list[index] = newTag
         client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
