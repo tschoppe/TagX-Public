@@ -80,7 +80,7 @@ def register(request):
                 auth_login(request, user)
                 return HttpResponseRedirect('/mysystems/')
             else:
-                raise forms.ValidationError('Looks like a username already exists')
+                raise forms.ValidationError('Looks like that username already exists')
     return HttpResponseRedirect('/')
 
 
@@ -93,10 +93,11 @@ def logout(request):
 # route for rendering the My Systems page.
 def mysystems(request):
     if request.method == 'GET' and request.user.is_authenticated:
+        company = User.objects.get(username=request.user.username).tagxuser.company
         searchStr = request.GET.get('search', '')
         criteria = request.GET.get('criteria', '')
         search = Search(using=client, index="devices") \
-                .query("match", companyName="Arkon")
+                .query("match", companyName=company)
         if searchStr != '' and criteria == 'system_name':
             search = search.query("match", systemName=searchStr)
         elif searchStr != '' and criteria == 'operating_system':
@@ -105,9 +106,11 @@ def mysystems(request):
             search = search.query("match", location__country=searchStr)
         elif searchStr != '' and criteria == 'tags':
             search = search.query("match", companyName="Arkon")
+        search = search[0:9999]
         response = search.execute()
         systems = {}
         for hit in response:
+            print(hit)
             systems[hit.serialNumber] = {
                     "name": hit.systemName, 
                     "groups": [],
