@@ -15,35 +15,35 @@ var Systemtable = createReactClass({
         Object.keys(systems).forEach(function (system) {
             rows.push(React.createElement(
                 'tr',
-                { key: system },
+                { className: system, key: system },
                 React.createElement(
                     'th',
-                    { scope: 'row', className: 'sys_row' },
+                    { scope: 'row', className: 'sys-name row' },
                     systems[system].name
                 ),
                 React.createElement(
                     'td',
-                    { className: 'sys_row' },
+                    { className: 'sys-groups row' },
                     systems[system].groups
                 ),
                 React.createElement(
                     'td',
-                    { className: 'sys_row' },
+                    { className: 'sys-os row' },
                     systems[system].osVersion
                 ),
                 React.createElement(
                     'td',
-                    { className: 'sys_row' },
+                    { className: 'sys-model row' },
                     systems[system].model
                 ),
                 React.createElement(
                     'td',
-                    { className: 'sys_row' },
+                    { className: 'sys-location row' },
                     systems[system].location
                 ),
                 React.createElement(
                     'td',
-                    { className: 'sys_row' },
+                    { className: 'sys-tags row' },
                     systems[system].tags
                 )
             ));
