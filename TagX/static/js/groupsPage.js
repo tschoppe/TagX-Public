@@ -19,7 +19,11 @@ $(".thumbnail").click(function () {
     	var subStr = '<div class="' + myClass + ' sub row">' + ' \
 	    				<div class="col-xs-6">';
 	    systems.forEach(function(system) {
-	    	subStr += '<p>System Name: <kbd>' + system + '</kbd></p>'
+	    	subStr +=  '<p>System Name: \
+                            <a href="/system/' + system + '"> \
+                                <kbd class="system ' + system + '">' + system + '</kbd> \
+                            </a> \
+                        </p>'
 	    });
 	    subStr += '</div><div class="col-xs-6">';
 	    users.forEach(function(user) {
@@ -28,4 +32,4 @@ $(".thumbnail").click(function () {
 	    subStr += '</div></div>';
     	$("." + myClass + ".thumbnail").append(subStr);
     }
-});
+}); 

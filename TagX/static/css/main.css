@@ -144,6 +144,23 @@ h4 strong {
 	padding-bottom: 3px;
 }
 
+kbd {
+	padding: 3px 4px;
+	border: none;
+	outline: none;
+	color: black;
+	background: #dcdcdc87;
+}
+
+kbd.system:hover {
+	color: white;
+	background: #0096d6;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 div.thumbnail {
 	text-align: center;
 }
@@ -178,13 +195,6 @@ div.row.header {
 
 .owner {
 	margin: 10px;
-}
-
-kbd {
-	border: none;
-	outline: none;
-	color: black;
-	background: #dcdcdc87;
 }
 
 
