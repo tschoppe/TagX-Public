@@ -115,15 +115,22 @@ li {
 	border: none;
 	border-radius: 0;
 	color: white;
+	-webkit-transition: border 500ms; /* For Safari 3.1 to 6.0 */
+    transition: background 500ms;
 }
 
 #button:focus {
 	outline: none;
-	background: #0474a5;
+	background: #0096d6;
 }
 
 .search-form {
 	margin-bottom: 25px;
+}
+
+input#button.focused {
+	outline: none;
+	background: #0096d6;
 }
 
 /*this stuff is for the mygroups page*/
@@ -142,6 +149,9 @@ div.thumbnail {
 }
 
 .thumbnail {
+	width: 75%;
+	margin: auto;
+	margin-bottom: 30px;
 	border: 2px solid #0096d6;
 }
 
@@ -152,21 +162,22 @@ div.row.header {
 
 .glyphicon {
 	color: #0096d6;
+	float: right;
+	margin: 10px;
 }
 
-.group-tag {
+.group-name {
 	margin: 10px 10px;
 	height: 30px;
 	text-align: left;
 }
 
-.group-tag:hover {
+.thumbnail:hover {
 	cursor: pointer;
 }
 
-.glyphicon {
-	margin: 5px 10px;
-	float: right;
+.owner {
+	margin: 10px;
 }
 
 

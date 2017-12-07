@@ -22,16 +22,37 @@ var Groups = createReactClass({
                     { className: 'col-lg-12' },
                     React.createElement(
                         'div',
-                        { className: 'thumbnail' },
+                        { className: key + " thumbnail" },
                         React.createElement(
-                            'h4',
-                            { className: 'group-tag' },
+                            'div',
+                            { className: key + " row group" },
                             React.createElement(
-                                'strong',
-                                null,
-                                key
+                                'div',
+                                { className: 'col-xs-4' },
+                                React.createElement(
+                                    'h4',
+                                    { className: 'group-name' },
+                                    React.createElement(
+                                        'strong',
+                                        null,
+                                        key
+                                    )
+                                )
                             ),
-                            React.createElement('span', { className: 'glyphicon glyphicon-chevron-down' })
+                            React.createElement(
+                                'div',
+                                { className: 'col-xs-4' },
+                                React.createElement(
+                                    'p',
+                                    { className: 'owner' },
+                                    'Owner: Nick Rose'
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col-xs-4' },
+                                React.createElement('span', { className: 'glyphicon glyphicon-chevron-down' })
+                            )
                         )
                     )
                 )

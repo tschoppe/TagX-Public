@@ -19,27 +19,27 @@ import certifi
 client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.found.io:9243'], http_auth=('elastic', '9eRZdikmjjmMWJjpaf8zoo7U'), port=443, use_ssl=True, ca_certs=certifi.where())
 
 testData = {
-    "Group 1": {
-        "users": ["userOne", "user2", "user3"],
+    "Group1": {
+        "users": ["userOne", "user2", "user3", "hjds", "hjfdks"],
         "systems": ["system1", "system2", "system3"]
     },
-    "Group 2": {
+    "Group2": {
         "users": ["user1", "user2", "user3"],
         "systems": ["system1", "system2", "system3"]
     },
-    "Group 3": {
+    "Group3": {
         "users": ["user1", "user2", "user3"],
         "systems": ["system1", "system2", "system3"]
     },
-    "Group 4": {
+    "Group4": {
         "users": ["user1", "user2", "user3"],
         "systems": ["system1", "system2", "system3"]
     },
-    "Group 5": {
+    "Group5": {
         "users": ["user1", "user2", "user3"],
         "systems": ["system1", "system2", "system3"]
     },
-    "Group 6": {
+    "Group6": {
         "users": ["user1", "user2", "user3"],
         "systems": ["system1", "system2", "system3"]
     }
@@ -155,6 +155,7 @@ def search(request):
             search = searchObj['search']
             criteria = searchObj['criteria']
             return HttpResponseRedirect('/mysystems/?search=%s&criteria=%s' % (search, criteria))
+        return HttpResponseRedirect('/mysystems/')
     return HttpResponseRedirect('/')
 
 
