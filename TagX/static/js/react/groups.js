@@ -11,11 +11,20 @@ var Groups = createReactClass({
     		groups.push(
                 <div key={ key } className="row">
                     <div className="col-lg-12">
-                        <div className="thumbnail">
-                            <h4 className="group-tag">
-                                <strong>{ key }</strong>
-                                <span className="glyphicon glyphicon-chevron-down"></span>
-                            </h4>
+                        <div className={ key + " thumbnail" }>
+                            <div className={ key + " row group" }>
+                                <div className="col-xs-4">
+                                    <h4 className="group-name">
+                                        <strong>{ key }</strong>
+                                    </h4>
+                                </div>
+                                <div className="col-xs-4">
+                                    <p className="owner">Owner: Nick Rose</p>
+                                </div>
+                                <div className="col-xs-4">
+                                    <span className="glyphicon glyphicon-chevron-down"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -10,18 +10,19 @@ function changeButton() {
 }
 
 $(document).ready(function() {
-	changeButton();
-});
-
-$(document).ready(function() {
-	$("input#bar").keyup(function() {
-		changeButton();
+	$('input#bar').on('focus', function() {
+	    $('input#button').addClass('focused');
 	});
 });
 
+$(document).ready(function() {
+	$('input#bar').focusout(function() {
+	    $('input#button').removeClass('focused');
+	});
+});
 
 $(document).ready(function() {
-	$(".sys_row").click(function() {
-		window.location = "/system/7800/";
+	$("tbody tr").click(function() {
+		window.location = "/system/" + this.classList[0];
 	});
 });

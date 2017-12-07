@@ -8,13 +8,13 @@ var Systemtable = createReactClass({
         var rows = [];
     	Object.keys(systems).forEach(function(system) {
     		rows.push(
-                <tr key={ system }>
-                    <th scope="row" className="sys_row">{ systems[system].name }</th>
-                    <td className="sys_row">{ systems[system].groups }</td>
-                    <td className="sys_row">{ systems[system].osVersion }</td>
-                    <td className="sys_row">{ systems[system].model }</td>
-                    <td className="sys_row">{ systems[system].location }</td>
-                    <td className="sys_row">{ systems[system].tags }</td>
+                <tr className={ system } key={ system }>
+                    <th scope="row" className="sys-name row">{ systems[system].name }</th>
+                    <td className="sys-groups row">{ systems[system].groups }</td>
+                    <td className="sys-os row">{ systems[system].osVersion }</td>
+                    <td className="sys-model row">{ systems[system].model }</td>
+                    <td className="sys-location row">{ systems[system].location }</td>
+                    <td className="sys-tags row">{ systems[system].tags }</td>
                 </tr>
 	        )
     	});
