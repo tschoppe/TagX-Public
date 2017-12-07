@@ -16,7 +16,8 @@
 <!-- groups table -->
 <div id="groups">
     <script type="text/javascript">
-        var test = {{ testData|safe }}
+        var groups = {{ groups|safe }}
+        var systems = {{ systems|safe }}
     </script>
     <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
     <script src="{% static 'bundles/groups.js' %}" charset="utf-8"></script>

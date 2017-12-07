@@ -18,32 +18,6 @@ import certifi
 
 client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.found.io:9243'], http_auth=('elastic', '9eRZdikmjjmMWJjpaf8zoo7U'), port=443, use_ssl=True, ca_certs=certifi.where())
 
-testData = {
-    "Group1": {
-        "users": ["user1", "user2", "user3", "user4", "user5"],
-        "systems": ["system1", "system2", "system3"]
-    },
-    "Group2": {
-        "users": ["user1", "user2", "user3"],
-        "systems": ["system1", "system2", "system3"]
-    },
-    "Group3": {
-        "users": ["user1", "user2", "user3"],
-        "systems": ["system1", "system2", "system3", "system4", "system5", "system6", "system7"]
-    },
-    "Group4": {
-        "users": ["user1", "user2"],
-        "systems": ["system1", "system2", "system3"]
-    },
-    "Group5": {
-        "users": ["user1", "user2", "user3", "user4", 'user5'],
-        "systems": ["system1", "system2", "system3"]
-    },
-    "Group6": {
-        "users": ["user1", "user2", "user3"],
-        "systems": ["system1", "system2", "system3"]
-    }
-}
 
 # route for loading the initial homepage, which is the login page in this case.
 def index(request):
@@ -93,35 +67,11 @@ def logout(request):
 # route for rendering the My Systems page.
 def mysystems(request):
     if request.method == 'GET' and request.user.is_authenticated:
-        company = User.objects.get(username=request.user.username).tagxuser.company
         searchStr = request.GET.get('search', '')
         criteria = request.GET.get('criteria', '')
-        search = Search(using=client, index="devices") \
-                .query("match", companyName=company)
-        if searchStr != '' and criteria == 'system_name':
-            search = search.query("match", systemName=searchStr)
-        elif searchStr != '' and criteria == 'operating_system':
-            search = search.query("match", osVersion=searchStr)
-        elif searchStr != '' and criteria == 'location':
-            search = search.query("match", location__country=searchStr)
-        elif searchStr != '' and criteria == 'tags':
-            search = search.query("match", companyName="Arkon")
-        search = search[0:9999]
-        response = search.execute()
-        systems = {}
-        for hit in response:
-            print(hit)
-            systems[hit.serialNumber] = {
-                    "name": hit.systemName, 
-                    "groups": [],
-                    "osVersion": hit.osVersion,
-                    "model": hit.model,
-                    "location": hit["location.country"],
-                    "tags": [""] if (hit.tags == None) else hit.tags
-                }
         return render(request, "TagX/my_systems.html", {
             'url': str(request.path), 
-            'systems': systems,
+            'systems': systemQuery(request),
             'search': {
                 'searchStr': searchStr,
                 'criteria': criteria
@@ -140,7 +90,25 @@ def system(request, system_id):
 # route for rendering the Groups page.
 def mygroups(request):
     if request.method == 'GET' and request.user.is_authenticated:
-        return render(request, "TagX/mygroups.html", {'url': str(request.path), 'testData': json.dumps(testData)})
+        groupSearch = Search(using=client, index="groups") \
+                    .query("match", users=str(request.user))
+        groupSearch = groupSearch[0:9999]
+        groupResponse = [] if (len(groupSearch.execute()) == 0) else groupSearch.execute()
+        groups = {}
+        for group in groupResponse:
+            print(group.id)
+            groups[str(group.id)] = {
+                "name": group.name,
+                "owner": group.owner,
+                "systems": group.systems,
+                "users": group.users
+            }
+            print(len(groupResponse))
+        return render(request, "TagX/mygroups.html", {
+            'url': str(request.path), 
+            'groups': groups,
+            'systems': systemQuery(request)
+            })
     return HttpResponseRedirect('/')
 
 
@@ -192,3 +160,40 @@ def editTag(request, SN, oldTag, newTag):
         list[index] = newTag
         client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
+
+
+# function to search for systems given a request. returns a dictionary 
+def systemQuery(request):
+    company = User.objects.get(username=request.user.username).tagxuser.company
+    searchStr = request.GET.get('search', '')
+    criteria = request.GET.get('criteria', '')
+    search = Search(using=client, index="devices") \
+            .query("match", companyName=company)
+    if searchStr != '' and criteria == 'system_name':
+        search = search.query("match", systemName=searchStr)
+    elif searchStr != '' and criteria == 'operating_system':
+        search = search.query("match", osVersion=searchStr)
+    elif searchStr != '' and criteria == 'location':
+        search = search.query("match", location__country=searchStr)
+    elif searchStr != '' and criteria == 'tags':
+        search = search.query("match", companyName="Arkon")
+    search = search[0:9999]
+    response = search.execute()
+    systems = {}
+    for hit in response:
+        groupSearch = Search(using=client, index="groups") \
+                    .query("match", systems=hit.serialNumber)
+        groupSearch = groupSearch[0:9999]
+        groupResponse = [] if (len(groupSearch.execute()) == 0) else groupSearch.execute()
+        groups = []
+        for group in groupResponse:
+            groups.append(group.name)
+        systems[hit.serialNumber] = {
+                "name": hit.systemName, 
+                "groups": groups,
+                "osVersion": hit.osVersion,
+                "model": hit.model,
+                "location": hit["location.country"],
+                "tags": [""] if (hit.tags == None) else hit.tags
+            }
+    return systems

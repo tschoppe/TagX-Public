@@ -11,10 +11,10 @@ var Groups = createReactClass({
     displayName: 'Groups',
 
     render() {
-        var groups = [];
-        var keys = Object.keys(test);
+        var groupList = [];
+        var keys = Object.keys(groups);
         keys.forEach(function (key) {
-            groups.push(React.createElement(
+            groupList.push(React.createElement(
                 'div',
                 { key: key, className: 'row' },
                 React.createElement(
@@ -35,7 +35,7 @@ var Groups = createReactClass({
                                     React.createElement(
                                         'strong',
                                         null,
-                                        key
+                                        groups[key].name
                                     )
                                 )
                             ),
@@ -45,7 +45,8 @@ var Groups = createReactClass({
                                 React.createElement(
                                     'p',
                                     { className: 'owner' },
-                                    'Owner: Nick Rose'
+                                    'Owner: ',
+                                    groups[key].owner
                                 )
                             ),
                             React.createElement(
@@ -71,7 +72,7 @@ var Groups = createReactClass({
                 ),
                 React.createElement('hr', null)
             ),
-            groups
+            groupList
         );
     }
 });

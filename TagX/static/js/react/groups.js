@@ -5,21 +5,21 @@ var createReactClass = require('create-react-class')
 
 var Groups = createReactClass({
     render() {
-        var groups = [];
-        var keys = Object.keys(test);
+        var groupList = [];
+        var keys = Object.keys(groups);
     	keys.forEach(function(key) {
-    		groups.push(
+    		groupList.push(
                 <div key={ key } className="row">
                     <div className="col-lg-12">
                         <div className={ key + " thumbnail" }>
                             <div className={ key + " row group" }>
                                 <div className="col-xs-4">
                                     <h4 className="group-name">
-                                        <strong>{ key }</strong>
+                                        <strong>{ groups[key].name }</strong>
                                     </h4>
                                 </div>
                                 <div className="col-xs-4">
-                                    <p className="owner">Owner: Nick Rose</p>
+                                    <p className="owner">Owner: { groups[key].owner }</p>
                                 </div>
                                 <div className="col-xs-4">
                                     <span className="glyphicon glyphicon-chevron-down"></span>
@@ -36,7 +36,7 @@ var Groups = createReactClass({
                     <h1>My Groups</h1>
                     <hr></hr>                    
                 </div>
-                    { groups }
+                    { groupList }
             </div>
         )
     }

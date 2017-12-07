@@ -24,7 +24,7 @@ var Systemtable = createReactClass({
                 React.createElement(
                     'td',
                     { className: 'sys-groups row' },
-                    systems[system].groups
+                    systems[system].groups.join(', ')
                 ),
                 React.createElement(
                     'td',
@@ -44,7 +44,7 @@ var Systemtable = createReactClass({
                 React.createElement(
                     'td',
                     { className: 'sys-tags row' },
-                    systems[system].tags
+                    systems[system].tags.join(', ')
                 )
             ));
         });
