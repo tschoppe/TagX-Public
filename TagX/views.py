@@ -159,10 +159,14 @@ def addTag(request, SN, tag):
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
         list = []
-        for hit in response:
-            list = hit.tags
-        list.append(tag)
-        client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
+        if response.hits[0].tags is None:
+            list.append(tag)
+            client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
+        else:
+            for hit in response:
+                list = hit.tags
+            list.append(tag)
+            client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
     return
 
 #remove tag
