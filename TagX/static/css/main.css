@@ -4,6 +4,19 @@ html, body {
     padding: 0;
     margin: 0;
     font-family: 'Encode Sans Expanded', sans-serif;
+    overflow: auto;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
 }
 
 h1 {
@@ -13,6 +26,38 @@ h1 {
 	margin-bottom: 30px;
 }
 
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.container {
+	height: 100%;
+}
+
+.your-company {
+	float: left;
+	margin-top: 8px;
+}
+
+.BBB {
+	float: right;
+	margin-top: 8px;
+}
+
+span.glyphicon-registration-mark:before {
+	color: black;
+}
+
+#footer {
+	margin: 0 auto;
+	padding: 0;
+}
 
 /*this stuff is for the mysystems page*/
 
@@ -144,6 +189,23 @@ h4 strong {
 	padding-bottom: 3px;
 }
 
+kbd {
+	padding: 3px 4px;
+	border: none;
+	outline: none;
+	color: black;
+	background: #dcdcdc87;
+}
+
+kbd.system:hover {
+	color: white;
+	background: #0096d6;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 div.thumbnail {
 	text-align: center;
 }
@@ -178,13 +240,6 @@ div.row.header {
 
 .owner {
 	margin: 10px;
-}
-
-kbd {
-	border: none;
-	outline: none;
-	color: black;
-	background: #dcdcdc87;
 }
 
 
