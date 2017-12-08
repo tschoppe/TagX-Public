@@ -20,7 +20,6 @@
 	    <a type="button" class="create-group" data-toggle="modal" data-target="#createGroupModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Group</a>
 	    <hr></hr>                    
 	</div>
-
 	<!-- Modal -->
 	<div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="newGroupModal">
 	  	<div class="modal-dialog" role="document">
@@ -33,25 +32,43 @@
 				    {% csrf_token %}
 				    <div class="modal-body">
 				    	<div class="row">
-                    		<div class="col-sm-6">
-				    			<label>Systems: </label>
-							    <select name="systems">
-									<option value="none" selected="selected"></option>
-									<option value="sys1">system1</option>
-									<option value="sys2">system2</option>
-									<option value="sys3">system3</option>
-									<option value="sys4">system4</option>
-								</select>
+                    		<div class="col-xs-6 sysRow">
+                    			<div class="row">
+                    				<div class="col-xs-12">
+						    			<label>Systems: </label>
+									    <select name="systems">
+											<option value="none" selected="selected"></option>
+											<option value="sys1">system1</option>
+											<option value="sys2">system2</option>
+											<option value="sys3">system3</option>
+											<option value="sys4">system4</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+                    				<div class="col-xs-12">
+                    					<hr class="systems modal-divider">
+                    				</div>
+                    			</div>
 							</div>
-							<div class="col-sm-6">
-								<label>Users: </label>
-							    <select name="users">
-							    	<option value="none" selected="selected"></option>
-									<option value="user1">user1</option>
-									<option value="user2">user2</option>
-									<option value="user3">user3</option>
-									<option value="user4">user4</option>
-								</select>
+							<div class="col-xs-6 usersRow">
+                    			<div class="row">
+                    				<div class="col-xs-12">
+						    			<label>Users: </label>
+									    <select name="users">
+											<option value="none" selected="selected"></option>
+											<option value="user1">user1</option>
+											<option value="user2">user2</option>
+											<option value="user3">user3</option>
+											<option value="user4">user4</option>
+										</select>
+									</div>
+									<div class="row">
+	                    				<div class="col-xs-12">
+	                    					<hr class="users modal-divider">
+	                    				</div>
+	                    			</div>
+								</div>
 							</div>
 						</div>
 		      		</div>

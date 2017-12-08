@@ -103,3 +103,12 @@ div.row.header {
 .modal-content {
 	border-radius: 0;
 }
+
+.col-xs-6 {
+	text-align: center;
+}
+
+.modal-divider {
+	display: none;
+	width: 50%;
+}

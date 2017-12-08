@@ -36,17 +36,37 @@ $(".thumbnail").click(function () {
     }
 });
 
-$("select").change(function () {
-    var str = "";
-    $("select option:selected").each(function() {
-        str += $(this).text() + " ";
-    });
-    $(".modal-body").append('<div class="row"> \
-                                <div class="col-sm-6"> \
-                                    <p>' + $("select option:selected").val() + '</p> \
-                                </div> \
-                                <div class="col-sm-6"> \
-                                    <p>' + $("select option:selected").val() + '</p> \
-                                </div> \
-                            </div>') 
+$("select[name='systems']").change(function() {
+    var str = $("select[name='systems'] option:selected").val();
+    if(str != "none") {
+        $(".systems.modal-divider").show();
+        $(".added-system:contains('" + str + "')").remove();
+        $(".col-xs-6.sysRow").append('<div class="row"> \
+                                        <div class="col-xs-12"> \
+                                            <p class="added-system">' + str + '</p> \
+                                        </div> \
+                                    </div>')
+    }
+});
+
+$("select[name='users']").change(function() {
+    var str = $("select[name='users'] option:selected").val();
+    if(str != "none") {
+        $(".users.modal-divider").show();
+        $(".added-user:contains('" + str + "')").remove();
+        $(".col-xs-6.usersRow").append('<div class="row"> \
+                                        <div class="col-xs-12"> \
+                                            <p class="added-user">' + str + '</p> \
+                                        </div> \
+                                    </div>')
+    }
+});
+
+$(".cancel-create-group").click(function() {
+    $(".added-user").parent().parent().remove();
+    $(".added-system").parent().parent().remove();
+    $(".users.modal-divider").hide();
+    $(".systems.modal-divider").hide();
+    $("select[name='users']").val("");
+    $("select[name='systems']").val("");
 });
