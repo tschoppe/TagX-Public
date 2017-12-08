@@ -1,0 +1,47 @@
+.navbar.navbar-default {
+	background: #0096d6;
+	width: 100%;
+	border-style: none;
+	color: white;
+	border-radius: 0px;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white;
+	height: 4em;
+}
+
+.navbar-default .navbar-toggle {
+	background: white;
+}
+
+.navbar-brand {
+	font-size: 2em;
+}
+
+.logout-button {
+	color: white;
+	background: none;
+	outline: none;
+	border: none;
+    padding: 15px 0 15px 15px;
+}
+
+.logout-button:hover {
+	color: black;
+}
+
+div.container.navbar {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.navbar {
+	border: none;
+}

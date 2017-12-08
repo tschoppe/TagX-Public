@@ -4,6 +4,7 @@
 
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/groups.css' %}">
 <script type="text/javascript">
     var url = {{ url|safe }}
 </script>
@@ -12,6 +13,56 @@
 {% block content %}
 
 {% include "TagX/includes/nav.html" %}
+
+<div class="container">
+	<div className="row header">
+	    <h1>My Groups</h1>
+	    <a type="button" class="create-group" data-toggle="modal" data-target="#createGroupModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Group</a>
+	    <hr></hr>                    
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="newGroupModal">
+	  	<div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+	        		<h4 class="modal-title" id="newGroupModal">Create New Group</h4>
+	      		</div>
+	      		<form>
+				    {% csrf_token %}
+				    <div class="modal-body">
+				    	<div class="row">
+                    		<div class="col-lg-6">
+				    			<label>Systems: </label>
+							    <select name="systems">
+									<option value="sys1">system1</option>
+									<option value="sys2">system2</option>
+									<option value="sys3">system3</option>
+									<option value="sys4">system4</option>
+								</select>
+							</div>
+							<div class="col-lg-6">
+								<label>Users: </label>
+							    <select name="users">
+									<option value="user1">user1</option>
+									<option value="user2">user2</option>
+									<option value="user3">user3</option>
+									<option value="user4">user4</option>
+								</select>
+							</div>
+						</div>
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default cancel-create-group" data-dismiss="modal">Cancel</button>
+		        		<input type="submit" class="btn btn-primary confirm-create-group" value="Create Group" />
+		      		</div>
+		      	</form>
+	    	</div>
+	  	</div>
+	</div>
+
+</div>
 
 <!-- groups table -->
 <div id="groups">

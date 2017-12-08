@@ -62,16 +62,6 @@ var Groups = createReactClass({
         return React.createElement(
             'div',
             { className: 'container' },
-            React.createElement(
-                'div',
-                { className: 'row header' },
-                React.createElement(
-                    'h1',
-                    null,
-                    'My Groups'
-                ),
-                React.createElement('hr', null)
-            ),
             groupList
         );
     }

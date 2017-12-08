@@ -32,10 +32,6 @@ var Groups = createReactClass({
     	});
     	return (
             <div className="container">
-                <div className="row header">
-                    <h1>My Groups</h1>
-                    <hr></hr>                    
-                </div>
                     { groupList }
             </div>
         )

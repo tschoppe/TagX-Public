@@ -1,0 +1,105 @@
+hr {
+	width: 100%;
+}
+
+h4 strong {
+	border-bottom: solid 1px #000000;
+	padding-bottom: 3px;
+}
+
+kbd {
+	padding: 3px 4px;
+	border: none;
+	outline: none;
+	color: black;
+	background: #dcdcdc87;
+}
+
+kbd.system:hover {
+	color: white;
+	background: #0096d6;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+div.thumbnail {
+	text-align: center;
+}
+
+.thumbnail {
+	width: 75%;
+	margin: auto;
+	margin-bottom: 30px;
+	border: 2px solid #0096d6;
+}
+
+div.row.header {
+	padding-left: 10px;
+	margin-bottom: 35px;
+}
+
+.glyphicon {
+	color: #0096d6;
+	float: right;
+	margin: 10px;
+}
+
+.group-name {
+	margin: 10px 10px;
+	height: 30px;
+	text-align: left;
+}
+
+.thumbnail:hover {
+	cursor: pointer;
+}
+
+.owner {
+	margin: 10px;
+}
+
+.create-group {
+	float: right;
+	margin: 20px 10px 0 0;
+	color: #0096d6;
+}
+
+.create-group:hover {
+	text-decoration: none;
+	color: #0274a5;
+	cursor: pointer;
+}
+
+.btn.btn-primary.confirm-create-group {
+	background: #0096d6;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-primary.confirm-create-group:hover {
+	background: #0274a5;
+}
+
+.btn.btn-primary.confirm-create-group:focus {
+	outline: none;
+}
+
+.btn.btn-default.cancel-create-group {
+	background: #efefef;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-default.cancel-create-group:hover {
+	background: #d2d1d1d1;
+}
+
+.btn.btn-default.cancel-create-group:focus {
+	outline: none;
+}
+
+.modal-content {
+	border-radius: 0;
+}

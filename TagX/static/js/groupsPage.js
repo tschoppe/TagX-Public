@@ -35,3 +35,7 @@ $(".thumbnail").click(function () {
     	$("." + myClass + ".thumbnail").append(subStr);
     }
 }); 
+
+$(".chosen-select").chosen({
+  no_results_text: "Oops, nothing found!"
+})
