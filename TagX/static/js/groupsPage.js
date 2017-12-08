@@ -34,8 +34,19 @@ $(".thumbnail").click(function () {
 	    subStr += '</div></div>';
     	$("." + myClass + ".thumbnail").append(subStr);
     }
-}); 
+});
 
-$(".chosen-select").chosen({
-  no_results_text: "Oops, nothing found!"
-})
+$("select").change(function () {
+    var str = "";
+    $("select option:selected").each(function() {
+        str += $(this).text() + " ";
+    });
+    $(".modal-body").append('<div class="row"> \
+                                <div class="col-sm-6"> \
+                                    <p>' + $("select option:selected").val() + '</p> \
+                                </div> \
+                                <div class="col-sm-6"> \
+                                    <p>' + $("select option:selected").val() + '</p> \
+                                </div> \
+                            </div>') 
+});
