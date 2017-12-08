@@ -37,7 +37,7 @@ $(".thumbnail").click(function () {
 });
 
 $("select[name='systems']").change(function() {
-    var str = $("select[name='systems'] option:selected").val();
+    var str = $("select[name='systems'] option:selected").text();
     if(str != "none") {
         $(".systems.modal-divider").show();
         $(".added-system:contains('" + str + "')").remove();
@@ -50,7 +50,7 @@ $("select[name='systems']").change(function() {
 });
 
 $("select[name='users']").change(function() {
-    var str = $("select[name='users'] option:selected").val();
+    var str = $("select[name='users'] option:selected").text();
     if(str != "none") {
         $(".users.modal-divider").show();
         $(".added-user:contains('" + str + "')").remove();
@@ -69,4 +69,11 @@ $(".cancel-create-group").click(function() {
     $(".systems.modal-divider").hide();
     $("select[name='users']").val("");
     $("select[name='systems']").val("");
+});
+
+$(".btn.btn-primary.confirm-create-group").mousedown(function() {
+    var systems = $(".added-system").text();
+    var users = $(".added-user").text();
+    var name = $("input.new-group-input").val();
+    window.location = "/groups/new/" + name + "/" + systems + "/" + users;
 });

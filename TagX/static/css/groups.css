@@ -112,3 +112,16 @@ div.row.header {
 	display: none;
 	width: 50%;
 }
+
+input.new-group-input {
+	width: 70%;
+}
+
+input.new-group-input:focus {
+	outline: none;
+	border: 2px solid #0096d6;
+}
+
+.new-group-input {
+	margin-left: 15px;
+}

@@ -32,16 +32,21 @@
 				    {% csrf_token %}
 				    <div class="modal-body">
 				    	<div class="row">
+                    		<div class="col-xs-12">
+                    			<label class="new-group-input">Group Name: </label>
+                    			<input class="new-group-input" type="text" />
+                    		</div>
+                    	</div>
+                    	<br>
+				    	<div class="row">
                     		<div class="col-xs-6 sysRow">
                     			<div class="row">
                     				<div class="col-xs-12">
 						    			<label>Systems: </label>
 									    <select name="systems">
 											<option value="none" selected="selected"></option>
-											<option value="sys1">system1</option>
-											<option value="sys2">system2</option>
-											<option value="sys3">system3</option>
-											<option value="sys4">system4</option>
+											{% for key, values in systems.items %}													<option value={{ key }}>{{ values.name }}</option>
+											{% endfor %}
 										</select>
 									</div>
 								</div>
@@ -57,10 +62,10 @@
 						    			<label>Users: </label>
 									    <select name="users">
 											<option value="none" selected="selected"></option>
-											<option value="user1">user1</option>
-											<option value="user2">user2</option>
-											<option value="user3">user3</option>
-											<option value="user4">user4</option>
+											<option value="adam">adam</option>
+											<option value="nickrose">nickrose</option>
+											<option value="shorr">shorr</option>
+											<option value="tyler">tyler</option>
 										</select>
 									</div>
 									<div class="row">
@@ -74,7 +79,7 @@
 		      		</div>
 		      		<div class="modal-footer">
 		        		<button type="button" class="btn btn-default cancel-create-group" data-dismiss="modal">Cancel</button>
-		        		<input type="submit" class="btn btn-primary confirm-create-group" value="Create Group" />
+		        		<a href="#" class="btn btn-primary confirm-create-group">Create Group</a>
 		      		</div>
 		      	</form>
 	    	</div>

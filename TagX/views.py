@@ -162,6 +162,9 @@ def editTag(request, SN, oldTag, newTag):
     return
 
 
+def newGroup(request, name, systems, users):
+    return JsonResponse({"foo": "bar"})
+
 # function to search for systems given a request. returns a dictionary 
 def systemQuery(request):
     company = User.objects.get(username=request.user.username).tagxuser.company
