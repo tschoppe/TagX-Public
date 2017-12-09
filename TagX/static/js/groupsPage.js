@@ -1,3 +1,5 @@
+var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+
 $(".thumbnail").click(function () {
 	var INITIALHEIGHT = 60;
 	var LISTINGHEIGHT = 30;
@@ -38,12 +40,13 @@ $(".thumbnail").click(function () {
 
 $("select[name='systems']").change(function() {
     var str = $("select[name='systems'] option:selected").text();
+    var val = $("select[name='systems'] option:selected").val();
     if(str != "none") {
         $(".systems.modal-divider").show();
         $(".added-system:contains('" + str + "')").remove();
         $(".col-xs-6.sysRow").append('<div class="row"> \
                                         <div class="col-xs-12"> \
-                                            <p class="added-system">' + str + '</p> \
+                                            <p value="' + val + '" class="added-system">' + str + '</p> \
                                         </div> \
                                     </div>')
     }
@@ -51,12 +54,13 @@ $("select[name='systems']").change(function() {
 
 $("select[name='users']").change(function() {
     var str = $("select[name='users'] option:selected").text();
+    var val = $("select[name='users'] option:selected").val();
     if(str != "none") {
         $(".users.modal-divider").show();
         $(".added-user:contains('" + str + "')").remove();
         $(".col-xs-6.usersRow").append('<div class="row"> \
                                         <div class="col-xs-12"> \
-                                            <p class="added-user">' + str + '</p> \
+                                            <p value="' + val + '" class="added-user">' + str + '</p> \
                                         </div> \
                                     </div>')
     }
@@ -69,11 +73,23 @@ $(".cancel-create-group").click(function() {
     $(".systems.modal-divider").hide();
     $("select[name='users']").val("");
     $("select[name='systems']").val("");
+    $("input.new-group-input").val("");
 });
 
-$(".btn.btn-primary.confirm-create-group").mousedown(function() {
-    var systems = $(".added-system").text();
-    var users = $(".added-user").text();
+$(".btn.btn-primary.confirm-create-group").click(function() {
+    var systems = $(".added-system").map(function() {
+                        return $.trim($(this).attr('value'));
+                    }).get();
+    var users = $(".added-user").map(function(){
+                       return $.trim($(this).text());
+                    }).get();
     var name = $("input.new-group-input").val();
-    window.location = "/groups/new/" + name + "/" + systems + "/" + users;
+    $.post("/groups/new/",
+    {
+        "name": name,
+        "systems": JSON.stringify(systems),
+        "users": JSON.stringify(users),
+        csrfmiddlewaretoken: csrftoken,
+        contentType: "application/json"
+    });
 });

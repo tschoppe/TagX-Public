@@ -162,8 +162,19 @@ def editTag(request, SN, oldTag, newTag):
     return
 
 
-def newGroup(request, name, systems, users):
-    return JsonResponse({"foo": "bar"})
+def newGroup(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        systems = systemQuery(request)
+        print(json.loads(request.POST['systems']))
+        client.index(index='groups', doc_type='doc', id=5, body={
+                "name": request.POST['name'],
+                "owner": str(request.user),
+                "systems": json.loads(request.POST['systems']),
+                "users": json.loads(request.POST['users']),
+                "id": 8888
+        });
+        return HttpResponseRedirect('/mygroups/')
+    return HttpResponseRedirect('/')
 
 # function to search for systems given a request. returns a dictionary 
 def systemQuery(request):
