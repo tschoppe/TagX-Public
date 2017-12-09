@@ -16,7 +16,7 @@ var Groups = createReactClass({
         keys.forEach(function (key) {
             groupList.push(React.createElement(
                 'div',
-                { key: key, className: 'row' },
+                { key: key, className: 'row groupEntry' },
                 React.createElement(
                     'div',
                     { className: 'col-lg-12' },

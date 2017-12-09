@@ -9,7 +9,7 @@ var Groups = createReactClass({
         var keys = Object.keys(groups);
     	keys.forEach(function(key) {
     		groupList.push(
-                <div key={ key } className="row">
+                <div key={ key } className="row groupEntry">
                     <div className="col-lg-12">
                         <div className={ key + " thumbnail" }>
                             <div className={ key + " row group" }>
@@ -23,7 +23,7 @@ var Groups = createReactClass({
                                 </div>
                                 <div className="col-xs-4">
                                     <span className="glyphicon glyphicon-chevron-down"></span>
-                                </div>
+                                </div>    
                             </div>
                         </div>
                     </div>

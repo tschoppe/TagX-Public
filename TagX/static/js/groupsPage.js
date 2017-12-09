@@ -9,11 +9,14 @@ $(".thumbnail").click(function () {
     var myClass = this.classList[0];
     var users = groups[myClass].users;
     var mySystems = groups[myClass].systems;
-    var newHeight = ((users.length > mySystems.length) ? users.length : mySystems.length) * LISTINGHEIGHT + INITIALHEIGHT;
+    var newHeight = (((users.length > mySystems.length) ? users.length : mySystems.length) * LISTINGHEIGHT) + INITIALHEIGHT + LISTINGHEIGHT;
     if(($(this).height() > INITIALHEIGHT)) {
     	$("." + myClass + ".sub").fadeOut('fast', function() {
     		$("." + myClass + ".sub").remove();
     	});
+        $("." + myClass + ".edit-group-footer").fadeOut('fast', function() {
+            $("." + myClass + ".edit-group-footer").remove();
+        });
     	$(this).animate({
         	height: INITIALHEIGHT
     	}, 200)
@@ -37,6 +40,11 @@ $(".thumbnail").click(function () {
 	    	subStr += '<p>Username: <kbd>' + user + '</kbd></p>'
 	    });
 	    subStr += '</div></div>';
+        subStr += '<div class="edit-group-footer ' + myClass + '"> \
+                        <div id="footer"> \
+                            <p class="edit-group"><i class="fa fa-pencil-square" aria-hidden="true"></i><a type="button" class="edit-group" data-toggle="modal" data-target="#editGroupModal"' + myClass + '">Edit Group</a></p> \
+                        </div> \
+                    </div>'
     	$("." + myClass + ".thumbnail").append(subStr);
     }
 });

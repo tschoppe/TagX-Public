@@ -24,6 +24,16 @@ h1 {
 	margin-bottom: 30px;
 }
 
+i {
+  padding: 5px;
+  color: #0096d6;
+}
+
+i:hover {
+  color: #0274a5;
+  cursor: pointer;
+}
+
 .footer {
   position: absolute;
   right: 0;

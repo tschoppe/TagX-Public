@@ -183,6 +183,12 @@ def newGroup(request):
     return HttpResponseRedirect('/')
 
 
+def editGroup(request, group_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        return HttpResponseRedirect('/mygroups/')
+    return HttpResponseRedirect('/')
+
+
 # function to search for systems given a request. returns a dictionary 
 def systemQuery(request):
     company = User.objects.get(username=request.user.username).tagxuser.company

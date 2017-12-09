@@ -28,8 +28,13 @@ div.thumbnail {
 	text-align: center;
 }
 
-.thumbnail {
+div.groupEntry {
 	width: 75%;
+	margin: auto;
+}
+
+.thumbnail {
+	width: 100%;
 	margin: auto;
 	margin-bottom: 30px;
 	border: 2px solid #0096d6;
@@ -126,16 +131,6 @@ input.new-group-input:focus {
 	margin-left: 15px;
 }
 
-.fa.fa-times-circle {
-	padding: 5px;
-	color: #0096d6;
-}
-
-.fa.fa-times-circle:hover {
-	color: #0274a5;
-	cursor: pointer;
-}
-
 .loader {
   border: 8px solid #f3f3f3;
   border-radius: 50%;
@@ -153,7 +148,7 @@ input.new-group-input:focus {
   	-webkit-transform: rotate(0deg); 
   }
   100% { 
-  	-webkit-transform: rotate(360deg); 
+  	-webkit-transform: rotate(360deg);
   }
 }
 
