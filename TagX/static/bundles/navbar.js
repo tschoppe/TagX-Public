@@ -5495,7 +5495,7 @@ var Nav = createReactClass({
             { className: 'nav navbar-nav' },
             React.createElement(
               'li',
-              { className: url.toString() === '/mysystems/' ? 'active' : '' },
+              { className: url.toString() === '/mysystems/' ? 'mysystems active' : 'mysystems' },
               React.createElement(
                 'a',
                 { href: '/mysystems/' },
@@ -5504,7 +5504,7 @@ var Nav = createReactClass({
             ),
             React.createElement(
               'li',
-              { className: url.toString() === '/mygroups/' ? 'active' : '' },
+              { className: url.toString() === '/mygroups/' ? 'mygroups active' : 'mygroups' },
               React.createElement(
                 'a',
                 { href: '/mygroups/' },

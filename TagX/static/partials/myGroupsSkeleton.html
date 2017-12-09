@@ -1,18 +1,32 @@
-{% extends "TagX/header.html" %}
 
-{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TagX</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded" rel="stylesheet">
+	<script src="https://use.fontawesome.com/63a6a52883.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script src="//cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script>
+	<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+	<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<link rel="stylesheet" type="text/css" href="/static/css/groups.css">
+</head>
+<body>
 
-{% block styles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/groups.css' %}">
-<script type="text/javascript">
-    var url = {{ url|safe }}
-</script>
-{% endblock %}
+	<div>
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<link rel="stylesheet" type="text/css" href="/static/css/nav.css">
 
-{% block content %}
+<!-- navbar -->
+<div id="nav">
+    <script src="/static/bundles/commons.js" charset="utf-8"></script>
+    <script src="/static/bundles/navbar.js" charset="utf-8"></script>
+    <script src="/static/js/nav.js" charset="utf-8"></script>
+</div>
 
-{% include "TagX/includes/nav.html" %}
 
 <div class="container">
 	<div className="row header">
@@ -29,7 +43,7 @@
 	        		<h4 class="modal-title" id="newGroupModal">Create New Group</h4>
 	      		</div>
 	      		<form>
-				    {% csrf_token %}
+				    <input type='hidden' name='csrfmiddlewaretoken' value='7leqvwYqxxFt7asGIy0Wbi3KtiVzG2whnrTkHpmwlSAFsJGCK9wOG3xre3wFsVBC' />
 				    <div class="modal-body">
 				    	<div class="row">
                     		<div class="col-xs-12">
@@ -45,8 +59,6 @@
 						    			<label class="system-user-label">Systems: </label>
 									    <select name="systems">
 											<option value="none" selected="selected"></option>
-											{% for key, values in systems.items %}													<option value={{ key }}>{{ values.name }}</option>
-											{% endfor %}
 										</select>
 									</div>
 								</div>
@@ -62,9 +74,6 @@
 						    			<label class="system-user-label">Users: </label>
 									    <select name="users">
 											<option value="none" selected="selected"></option>
-											{% for user in users %}
-												<option value={{ user }}>{{ user }}</option>
-											{% endfor %}
 										</select>
 									</div>
 									<div class="row">
@@ -86,15 +95,19 @@
 	</div>
 </div>
 
-<!-- groups table -->
-<div id="groups">
-    <script type="text/javascript">
-        var groups = {{ groups|safe }}
-        var systems = {{ systems|safe }}
-    </script>
-    <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
-    <script src="{% static 'bundles/groups.js' %}" charset="utf-8"></script>
-    <script src="{% static 'js/groupsPage.js' %}" charset="utf-8"></script>
-</div>
+<div class="loader"></div>
 
-{% endblock %}
+	</div>
+		<div class="footer">
+			<div id="footer" class="container">
+				<p class="your-company"><strong>Your Company: Ravage 2099</strong></p>
+				<div>
+					<p class="BBB"><strong>A Product of the Big Binary Brand</strong></p>
+	 			</div>
+			</div>
+		</div>
+	<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

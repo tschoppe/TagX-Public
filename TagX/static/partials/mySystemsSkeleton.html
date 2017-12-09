@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TagX</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded" rel="stylesheet">
+	<script src="https://use.fontawesome.com/63a6a52883.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script src="//cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script>
+	<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+	<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<link rel="stylesheet" type="text/css" href="/static/css/mysystems.css">
+<script type="text/javascript">
+    var url = /mysystems/
+</script>
+
+</head>
+<body>
+
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<link rel="stylesheet" type="text/css" href="/static/css/nav.css">
+
+<!-- navbar -->
+<div id="nav">
+    <script src="/static/bundles/commons.js" charset="utf-8"></script>
+    <script src="/static/bundles/navbar.js" charset="utf-8"></script>
+    <script src="/static/js/nav.js" charset="utf-8"></script>
+</div>
+
+
+<!-- search bar -->
+<div class="container">
+    <h1>My Systems</h1>
+    <form action="/search/" method="POST" class="search-form">
+        <input type='hidden' name='csrfmiddlewaretoken' value='O60RNThDmvZcrPPvm4YctmkZQOwuoRn5yI22kMpU5QHp53yqJTZKcr0jrXzxcJFK' />
+        <div class="search-bar">
+            <div class="search bar">
+                <input id="bar" type="text" name="search" placeholder="Search.." >
+            </div>
+            <div class="search button">
+                <input id="button" type="submit" value="Go" />
+            </div>
+        </div>
+        <p class="search-by">Search By: </p>
+        <div class="form-group">
+            <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="system_name" checked="checked"> System Name
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="operating_system" > Operating System
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="location" > Location
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="tags" > Tags
+            </label>
+        </div>
+    </form>
+    <hr>
+</div>
+
+<div class="loader"></div>
+
+<div class="footer">
+	<div id="footer" class="container">
+		<p class="your-company"><strong>Your Company: Ravage 2099</strong></p>
+		<div>
+			<p class="BBB"><strong>A Product of the Big Binary Brand</strong></p>
+			</div>
+	</div>
+</div>
+	
+	<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

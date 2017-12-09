@@ -20,8 +20,8 @@ var Nav = createReactClass({
               </div>
               <div id="navbar" className="collapse navbar-collapse">
                 <ul className="nav navbar-nav">
-                  <li className={ url.toString() === '/mysystems/' ? 'active' : '' }><a href="/mysystems/">My Systems</a></li>
-                  <li className={ url.toString() === '/mygroups/' ? 'active' : '' }><a href="/mygroups/">My Groups</a></li>
+                  <li className={ url.toString() === '/mysystems/' ? 'mysystems active' : 'mysystems' }><a href="/mysystems/">My Systems</a></li>
+                  <li className={ url.toString() === '/mygroups/' ? 'mygroups active' : 'mygroups' }><a href="/mygroups/">My Groups</a></li>
                 </ul>
                 <ul className="nav navbar-nav navbar-right">
                   <li>
