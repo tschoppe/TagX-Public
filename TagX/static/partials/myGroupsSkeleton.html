@@ -13,21 +13,10 @@
     
 <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 <link rel="stylesheet" type="text/css" href="/static/css/groups.css">
-<script type="text/javascript">
-    var url = /mygroups/
-</script>
-
 </head>
 <body>
 
 	<div>
-		
-
-
-
-
-
-
 <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 <link rel="stylesheet" type="text/css" href="/static/css/nav.css">
 
@@ -45,6 +34,66 @@
 	    <a type="button" class="create-group" data-toggle="modal" data-target="#createGroupModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Group</a>
 	    <hr></hr>                    
 	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="newGroupModal">
+	  	<div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+	        		<h4 class="modal-title" id="newGroupModal">Create New Group</h4>
+	      		</div>
+	      		<form>
+				    <input type='hidden' name='csrfmiddlewaretoken' value='7leqvwYqxxFt7asGIy0Wbi3KtiVzG2whnrTkHpmwlSAFsJGCK9wOG3xre3wFsVBC' />
+				    <div class="modal-body">
+				    	<div class="row">
+                    		<div class="col-xs-12">
+                    			<label class="new-group-input">Group Name: </label>
+                    			<input class="new-group-input" type="text" placeholder="Enter Group Name.."/>
+                    		</div>
+                    	</div>
+                    	<br>
+				    	<div class="row">
+                    		<div class="col-xs-6 sysRow">
+                    			<div class="row">
+                    				<div class="col-xs-12">
+						    			<label class="system-user-label">Systems: </label>
+									    <select name="systems">
+											<option value="none" selected="selected"></option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+                    				<div class="col-xs-12">
+                    					<hr class="systems modal-divider">
+                    				</div>
+                    			</div>
+							</div>
+							<div class="col-xs-6 usersRow">
+                    			<div class="row">
+                    				<div class="col-xs-12">
+						    			<label class="system-user-label">Users: </label>
+									    <select name="users">
+											<option value="none" selected="selected"></option>
+										</select>
+									</div>
+									<div class="row">
+	                    				<div class="col-xs-12">
+	                    					<hr class="users modal-divider">
+	                    				</div>
+	                    			</div>
+								</div>
+							</div>
+						</div>
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default cancel-create-group" data-dismiss="modal">Cancel</button>
+		        		<a href="#" class="btn btn-primary confirm-create-group">Create Group</a>
+		      		</div>
+		      	</form>
+	    	</div>
+	  	</div>
+	</div>
+</div>
 
 	</div>
 	
