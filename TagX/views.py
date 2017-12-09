@@ -163,8 +163,10 @@ def editTag(request, SN, oldTag, newTag):
 def newGroup(request):
     if request.method == 'POST' and request.user.is_authenticated:
         systems = systemQuery(request)
-        size = client.search(index = "groups", doc_type="doc", body = {}, size=9999)
-        id = size['_shards']['total'] + 1
+        groupSearch = Search(using=client, index="groups") \
+                    .query("match", users=str(request.user))
+        groupSearch = groupSearch[0:9999]
+        id = len(groupSearch.execute()) + 2
         client.index(index='groups', doc_type='doc', id=id, body={
                 "name": request.POST['name'],
                 "owner": str(request.user),
@@ -174,6 +176,7 @@ def newGroup(request):
         });
         return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')
+
 
 # function to search for systems given a request. returns a dictionary 
 def systemQuery(request):

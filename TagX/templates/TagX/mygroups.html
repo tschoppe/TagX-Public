@@ -34,7 +34,7 @@
 				    	<div class="row">
                     		<div class="col-xs-12">
                     			<label class="new-group-input">Group Name: </label>
-                    			<input class="new-group-input" type="text" />
+                    			<input class="new-group-input" type="text" placeholder="Enter Group Name.."/>
                     		</div>
                     	</div>
                     	<br>
@@ -42,7 +42,7 @@
                     		<div class="col-xs-6 sysRow">
                     			<div class="row">
                     				<div class="col-xs-12">
-						    			<label>Systems: </label>
+						    			<label class="system-user-label">Systems: </label>
 									    <select name="systems">
 											<option value="none" selected="selected"></option>
 											{% for key, values in systems.items %}													<option value={{ key }}>{{ values.name }}</option>
@@ -59,7 +59,7 @@
 							<div class="col-xs-6 usersRow">
                     			<div class="row">
                     				<div class="col-xs-12">
-						    			<label>Users: </label>
+						    			<label class="system-user-label">Users: </label>
 									    <select name="users">
 											<option value="none" selected="selected"></option>
 											<option value="adam">adam</option>
@@ -79,7 +79,7 @@
 		      		</div>
 		      		<div class="modal-footer">
 		        		<button type="button" class="btn btn-default cancel-create-group" data-dismiss="modal">Cancel</button>
-		        		<a href="/mygroups/" class="btn btn-primary confirm-create-group">Create Group</a>
+		        		<a href="#" class="btn btn-primary confirm-create-group">Create Group</a>
 		      		</div>
 		      	</form>
 	    	</div>

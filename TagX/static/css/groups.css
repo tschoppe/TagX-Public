@@ -115,13 +115,23 @@ div.row.header {
 
 input.new-group-input {
 	width: 70%;
+	border: 2px solid #c3c3c3;
 }
 
 input.new-group-input:focus {
 	outline: none;
-	border: 2px solid #0096d6;
 }
 
 .new-group-input {
 	margin-left: 15px;
+}
+
+.fa.fa-times-circle {
+	padding: 5px;
+	color: #0096d6;
+}
+
+.fa.fa-times-circle:hover {
+	color: #0274a5;
+	cursor: pointer;
 }

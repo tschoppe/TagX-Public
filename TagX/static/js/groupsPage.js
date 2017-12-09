@@ -1,3 +1,6 @@
+var newGroupInput = $("input.new-group-input");
+var usersModalDivider = $(".users.modal-divider");
+var systemsModalDivider = $(".systems.modal-divider");
 var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
 
 $(".thumbnail").click(function () {
@@ -41,39 +44,39 @@ $(".thumbnail").click(function () {
 $("select[name='systems']").change(function() {
     var str = $("select[name='systems'] option:selected").text();
     var val = $("select[name='systems'] option:selected").val();
-    if(str != "none") {
-        $(".systems.modal-divider").show();
-        $(".added-system:contains('" + str + "')").remove();
+    if(str != "none" && str != "" && $(".added-system:contains('" + str + "')").length == 0) {
+        systemsModalDivider.show();
         $(".col-xs-6.sysRow").append('<div class="row"> \
                                         <div class="col-xs-12"> \
-                                            <p value="' + val + '" class="added-system">' + str + '</p> \
+                                            <p value="' + val + '" class="added-system">' + str + '<i onclick=deleteFunc(this) class="fa fa-times-circle" aria-hidden="true"></i></p> \
                                         </div> \
                                     </div>')
     }
+    $("select[name='systems']").val("");
 });
 
 $("select[name='users']").change(function() {
     var str = $("select[name='users'] option:selected").text();
     var val = $("select[name='users'] option:selected").val();
-    if(str != "none") {
-        $(".users.modal-divider").show();
-        $(".added-user:contains('" + str + "')").remove();
+    if(str != "none" && str != "" && $(".added-user:contains('" + str + "')").length == 0) {
+        usersModalDivider.show();
         $(".col-xs-6.usersRow").append('<div class="row"> \
                                         <div class="col-xs-12"> \
-                                            <p value="' + val + '" class="added-user">' + str + '</p> \
+                                            <p value="' + val + '" class="added-user">' + str + '<i onclick=deleteFunc(this) class="fa fa-times-circle" aria-hidden="true"></i></p> \
                                         </div> \
                                     </div>')
     }
+    $("select[name='users']").val("");
 });
 
 $(".cancel-create-group").click(function() {
     $(".added-user").parent().parent().remove();
     $(".added-system").parent().parent().remove();
-    $(".users.modal-divider").hide();
-    $(".systems.modal-divider").hide();
+    usersModalDivider.hide();
+    systemsModalDivider.hide();
     $("select[name='users']").val("");
     $("select[name='systems']").val("");
-    $("input.new-group-input").val("");
+    newGroupInput.val("");
 });
 
 $(".btn.btn-primary.confirm-create-group").click(function() {
@@ -83,7 +86,21 @@ $(".btn.btn-primary.confirm-create-group").click(function() {
     var users = $(".added-user").map(function(){
                        return $.trim($(this).text());
                     }).get();
-    var name = $("input.new-group-input").val();
+    var name = newGroupInput.val();
+    var border = newGroupInput.css("border");
+    if(name === "") {
+        var original_color = newGroupInput.css('border-color');
+        newGroupInput.css("border", "2px solid red").animate({borderColor: original_color}, 800);
+        return;
+    }
+    if(jQuery.isEmptyObject(systems) && jQuery.isEmptyObject(users)) {
+        $("label.system-user-label")
+        .css("color", "red")
+        .animate({color: "black"}, 1000, function() {
+            $("label.system-user-label").removeAttr('style');
+        });
+        return;
+    }
     $.post("/groups/new/",
     {
         "name": name,
@@ -92,4 +109,29 @@ $(".btn.btn-primary.confirm-create-group").click(function() {
         csrfmiddlewaretoken: csrftoken,
         contentType: "application/json"
     });
+    window.location = "/mygroups/";
 });
+
+newGroupInput.focusin(function() {
+    $(this).css("border", "2px solid #0096d6");
+});
+
+newGroupInput.focusout(function() {
+    $(this).css("border", "2px solid #c3c3c3");
+});
+
+function deleteFunc(elem) {
+    $(elem).parent().parent().parent().remove();
+    var systems = $(".added-system").map(function() {
+                        return $.trim($(this).attr('value'));
+                    }).get();
+    var users = $(".added-user").map(function(){
+                       return $.trim($(this).text());
+                    }).get();
+    if(jQuery.isEmptyObject(systems)) {
+        systemsModalDivider.hide();
+    }
+    if(jQuery.isEmptyObject(users)) {
+        usersModalDivider.hide();
+    }
+}
