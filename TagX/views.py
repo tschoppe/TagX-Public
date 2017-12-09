@@ -96,14 +96,12 @@ def mygroups(request):
         groupResponse = [] if (len(groupSearch.execute()) == 0) else groupSearch.execute()
         groups = {}
         for group in groupResponse:
-            print(group.id)
             groups[str(group.id)] = {
                 "name": group.name,
                 "owner": group.owner,
                 "systems": group.systems,
                 "users": group.users
             }
-            print(len(groupResponse))
         return render(request, "TagX/mygroups.html", {
             'url': str(request.path), 
             'groups': groups,
@@ -165,13 +163,14 @@ def editTag(request, SN, oldTag, newTag):
 def newGroup(request):
     if request.method == 'POST' and request.user.is_authenticated:
         systems = systemQuery(request)
-        print(json.loads(request.POST['systems']))
-        client.index(index='groups', doc_type='doc', id=5, body={
+        size = client.search(index = "groups", doc_type="doc", body = {}, size=9999)
+        id = size['_shards']['total'] + 1
+        client.index(index='groups', doc_type='doc', id=id, body={
                 "name": request.POST['name'],
                 "owner": str(request.user),
                 "systems": json.loads(request.POST['systems']),
                 "users": json.loads(request.POST['users']),
-                "id": 8888
+                "id": id
         });
         return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')
