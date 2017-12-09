@@ -91,9 +91,15 @@ def system(request, system_id):
 def mygroups(request):
     if request.method == 'GET' and request.user.is_authenticated:
         groupSearch = Search(using=client, index="groups") \
-                    .query("match", users=str(request.user))
+                    .query("multi_match", query=str(request.user), fields=["owner", "users"])
         groupSearch = groupSearch[0:9999]
         groupResponse = [] if (len(groupSearch.execute()) == 0) else groupSearch.execute()
+        company = User.objects.get(username=request.user.username).tagxuser.company
+        allUsers = User.objects.all()
+        users = []
+        for user in allUsers:
+            if(User.objects.get(username=user).tagxuser.company == company and user.username != request.user.username):
+                users.append(user.username)
         groups = {}
         for group in groupResponse:
             groups[str(group.id)] = {
@@ -105,7 +111,8 @@ def mygroups(request):
         return render(request, "TagX/mygroups.html", {
             'url': str(request.path), 
             'groups': groups,
-            'systems': systemQuery(request)
+            'systems': systemQuery(request),
+            'users': users
             })
     return HttpResponseRedirect('/')
 
@@ -163,16 +170,14 @@ def editTag(request, SN, oldTag, newTag):
 def newGroup(request):
     if request.method == 'POST' and request.user.is_authenticated:
         systems = systemQuery(request)
-        groupSearch = Search(using=client, index="groups") \
-                    .query("match", users=str(request.user))
-        groupSearch = groupSearch[0:9999]
-        id = len(groupSearch.execute()) + 2
-        client.index(index='groups', doc_type='doc', id=id, body={
+        count = client.count(index="groups", doc_type="doc", body={ "query": {"match_all" : { }}})
+        groupId = count['count'] + 1
+        client.index(index='groups', doc_type='doc', id=groupId, body={
                 "name": request.POST['name'],
                 "owner": str(request.user),
                 "systems": json.loads(request.POST['systems']),
                 "users": json.loads(request.POST['users']),
-                "id": id
+                "id": groupId
         });
         return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')

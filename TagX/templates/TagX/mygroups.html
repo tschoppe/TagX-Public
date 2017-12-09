@@ -62,10 +62,9 @@
 						    			<label class="system-user-label">Users: </label>
 									    <select name="users">
 											<option value="none" selected="selected"></option>
-											<option value="adam">adam</option>
-											<option value="nickrose">nickrose</option>
-											<option value="shorr">shorr</option>
-											<option value="tyler">tyler</option>
+											{% for user in users %}
+												<option value={{ user }}>{{ user }}</option>
+											{% endfor %}
 										</select>
 									</div>
 									<div class="row">
