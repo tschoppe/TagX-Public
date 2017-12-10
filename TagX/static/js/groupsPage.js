@@ -45,8 +45,8 @@ $(".thumbnail").click(function () {
         subStr += '<div class="edit-group-footer ' + myClass + '"> \
                         <div id="footer"> \
                             <p class="edit-group"> \
-                                <i class="fa fa-pencil-square" aria-hidden="true" onclick=changeText("edit") type="button" data-toggle="modal" data-target="#createGroupModal"' + myClass + '"></i> \
-                                <a onclick=changeText("edit") type="button" class="edit-group" data-toggle="modal" data-target="#createGroupModal"' + myClass + '">Edit Group</a> \
+                                <i class="fa fa-pencil-square" aria-hidden="true" onclick=changeText("edit",' + myClass + ') type="button" data-toggle="modal" data-target="#createGroupModal"' + myClass + '"></i> \
+                                <a onclick=changeText("edit",' + myClass + ') type="button" class="edit-group" data-toggle="modal" data-target="#createGroupModal"' + myClass + '">Edit Group</a> \
                                  | <i onclick=setHref(' + myClass + ') class="fa fa-times-circle remove-group" aria-hidden="true" type="button" data-toggle="modal" data-target="#removeGroupModal"></i> \
                                  <a onclick=setHref(' + myClass + ') class="remove-group-modal-button" type="button" data-toggle="modal" data-target="#removeGroupModal">Remove</a> \
                             </p> \
@@ -167,14 +167,36 @@ function deleteFunc(elem) {
 
 // this function handles what to display in the create/edit group modal, since 
 // the same modal is used for creating a group and editing one
-function changeText(button) {
+function changeText(button, groupId) {
     if(button == "edit"){
         $("h4#newGroupModal.modal-title").text("Edit Group");
         $("a.btn.btn-primary.confirm-create-group").text("Edit Group");
-    }
-    if(button == "create"){
+        $("a.btn.btn-primary.confirm-create-group").attr('href', "/groups/edit/" + groupId)
+        newGroupInput.val(groups[groupId].name);
+        if(groups[groupId].systems.length > 0) {
+            systemsModalDivider.show();
+            groups[groupId].systems.forEach(function(system) {
+                $(".col-xs-6.sysRow").append('<div class="row"> \
+                                            <div class="col-xs-12"> \
+                                                <p value="' + system + '" class="added-system">' + systems[system].name + '<i onclick=deleteFunc(this) class="fa fa-times-circle" aria-hidden="true"></i></p> \
+                                            </div> \
+                                        </div>')
+            })
+        }
+        if(groups[groupId].users.length > 0) {
+            usersModalDivider.show();
+            groups[groupId].users.forEach(function(user) {
+                $(".col-xs-6.usersRow").append('<div class="row"> \
+                                        <div class="col-xs-12"> \
+                                            <p value="' + user + '" class="added-user">' + user + '<i onclick=deleteFunc(this) class="fa fa-times-circle" aria-hidden="true"></i></p> \
+                                        </div> \
+                                    </div>')
+            })
+        }
+    } else if(button == "create"){
         $("h4#newGroupModal.modal-title").text("Create New Group");
         $("a.btn.btn-primary.confirm-create-group").text("Create Group");
+        $("a.btn.btn-primary.confirm-create-group").attr('href', "#");
     } 
 }
 

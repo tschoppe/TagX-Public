@@ -15,6 +15,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 import json
 import certifi
+from time import sleep
 
 client = Elasticsearch(['https://52619ac88756f0b041fbc28723b9f81d.us-east-1.aws.found.io:9243'], http_auth=('elastic', '9eRZdikmjjmMWJjpaf8zoo7U'), port=443, use_ssl=True, ca_certs=certifi.where())
 
@@ -169,7 +170,6 @@ def editTag(request, SN, oldTag, newTag):
 
 def newGroup(request):
     if request.method == 'POST' and request.user.is_authenticated:
-        systems = systemQuery(request)
         count = client.count(index="groups", doc_type="doc", body={ "query": {"match_all" : { }}})
         groupId = count['count'] + 1
         client.index(index='groups', doc_type='doc', id=groupId, body={
@@ -178,20 +178,28 @@ def newGroup(request):
                 "systems": json.loads(request.POST['systems']),
                 "users": json.loads(request.POST['users']),
                 "id": groupId
-        });
+        })
         return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')
 
 
 def editGroup(request, group_id):
-    if request.method == 'POST' and request.user.is_authenticated:
-        return HttpResponseRedirect('/mygroups/')
+    if request.method == 'GET' and request.user.is_authenticated:
+        client.index(index='groups', doc_type='doc', id=group_id, body={
+                "name": request.POST['name'],
+                "owner": str(request.user),
+                "systems": json.loads(request.POST['systems']),
+                "users": json.loads(request.POST['users']),
+                "id": group_id
+        })
+        return JsonResponse({"foo": "bar"})
     return HttpResponseRedirect('/')
 
 
 def deleteGroup(request, group_id):
     if request.method == 'GET' and request.user.is_authenticated:
         client.delete(index='groups', doc_type='doc', id=group_id)
+        sleep(1)
         return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')
 
