@@ -42,7 +42,7 @@ $(".thumbnail").click(function () {
 	    subStr += '</div></div>';
         subStr += '<div class="edit-group-footer ' + myClass + '"> \
                         <div id="footer"> \
-                            <p class="edit-group"><i class="fa fa-pencil-square" aria-hidden="true"></i><a type="button" class="edit-group" data-toggle="modal" data-target="#editGroupModal"' + myClass + '">Edit Group</a></p> \
+                            <p class="edit-group"><i class="fa fa-pencil-square" aria-hidden="true"></i><a onclick=changeText("edit") type="button" class="edit-group" data-toggle="modal" data-target="#createGroupModal"' + myClass + '">Edit Group</a></p> \
                         </div> \
                     </div>'
     	$("." + myClass + ".thumbnail").append(subStr);
@@ -142,4 +142,15 @@ function deleteFunc(elem) {
     if(jQuery.isEmptyObject(users)) {
         usersModalDivider.hide();
     }
+}
+
+function changeText(button) {
+    if(button == "edit"){
+        $("h4#newGroupModal.modal-title").text("Edit Group");
+        $("a.btn.btn-primary.confirm-create-group").text("Edit Group");
+    }
+    if(button == "create"){
+        $("h4#newGroupModal.modal-title").text("Create New Group");
+        $("a.btn.btn-primary.confirm-create-group").text("Create Group");
+    } 
 }

@@ -17,7 +17,7 @@
 <div class="container">
 	<div className="row header">
 	    <h1>My Groups</h1>
-	    <a type="button" class="create-group" data-toggle="modal" data-target="#createGroupModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Group</a>
+	    <a onclick=changeText("create") type="button" class="create-group" data-toggle="modal" data-target="#createGroupModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Group</a>
 	    <hr></hr>                    
 	</div>
 	<!-- Modal -->
@@ -45,7 +45,7 @@
 						    			<label class="system-user-label">Systems: </label>
 									    <select name="systems">
 											<option value="none" selected="selected"></option>
-											{% for key, values in systems.items %}													<option value={{ key }}>{{ values.name }}</option>
+											{% for key, values in systems.items %}												<option value={{ key }}>{{ values.name }}</option>
 											{% endfor %}
 										</select>
 									</div>
