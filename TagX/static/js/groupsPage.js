@@ -213,3 +213,8 @@ function changeText(button, groupId) {
 function setHref(groupId) {
     $("a.btn.btn-primary.confirm-remove-group").attr('href', "/groups/delete/" + groupId);
 }
+
+// this function shows the loading spinner when deleting a group
+$("a.btn.btn-primary.confirm-remove-group").click(function() {
+    $('.loader').show();
+});
