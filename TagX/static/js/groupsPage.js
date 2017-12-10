@@ -111,7 +111,6 @@ function createGroup(url) {
                     }).get();
     var name = newGroupInput.val();
     var border = newGroupInput.css("border");
-    $('.loader').show();
     if(name === "") {
         var original_color = newGroupInput.css('border-color');
         newGroupInput.css("border", "2px solid red").animate({borderColor: original_color}, 800);
@@ -125,6 +124,7 @@ function createGroup(url) {
         });
         return;
     }
+    $('.loader').show();
     $.post(url,
     {
         "name": name,
@@ -135,7 +135,7 @@ function createGroup(url) {
     });
     setTimeout(function() {
         window.location = "/mygroups/";
-    }, 500);
+    }, 1000);
 }
 
 
