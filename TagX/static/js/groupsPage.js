@@ -3,6 +3,8 @@ var usersModalDivider = $(".users.modal-divider");
 var systemsModalDivider = $(".systems.modal-divider");
 var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
 
+
+// this funtion adds or removes all the elements that are seen when expanding a group
 $(".thumbnail").click(function () {
 	var INITIALHEIGHT = 60;
 	var LISTINGHEIGHT = 30;
@@ -45,8 +47,8 @@ $(".thumbnail").click(function () {
                             <p class="edit-group"> \
                                 <i class="fa fa-pencil-square" aria-hidden="true" onclick=changeText("edit") type="button" data-toggle="modal" data-target="#createGroupModal"' + myClass + '"></i> \
                                 <a onclick=changeText("edit") type="button" class="edit-group" data-toggle="modal" data-target="#createGroupModal"' + myClass + '">Edit Group</a> \
-                                 | <i class="fa fa-times-circle remove-group" aria-hidden="true" type="button" data-toggle="modal" data-target="#removeGroupModal"></i> \
-                                 <a class="remove-group-modal-button" type="button" data-toggle="modal" data-target="#removeGroupModal">Remove</a> \
+                                 | <i onclick=setHref(' + myClass + ') class="fa fa-times-circle remove-group" aria-hidden="true" type="button" data-toggle="modal" data-target="#removeGroupModal"></i> \
+                                 <a onclick=setHref(' + myClass + ') class="remove-group-modal-button" type="button" data-toggle="modal" data-target="#removeGroupModal">Remove</a> \
                             </p> \
                         </div> \
                     </div>'
@@ -54,6 +56,8 @@ $(".thumbnail").click(function () {
     }
 });
 
+
+// this function displays tthe system name just selected in the group modal
 $("select[name='systems']").change(function() {
     var str = $("select[name='systems'] option:selected").text();
     var val = $("select[name='systems'] option:selected").val();
@@ -68,6 +72,8 @@ $("select[name='systems']").change(function() {
     $("select[name='systems']").val("");
 });
 
+
+// this function displays tthe user name just selected in the group modal
 $("select[name='users']").change(function() {
     var str = $("select[name='users'] option:selected").text();
     var val = $("select[name='users'] option:selected").val();
@@ -82,6 +88,8 @@ $("select[name='users']").change(function() {
     $("select[name='users']").val("");
 });
 
+
+// this function handles deleting everything from the groups modal when the cancel button is clicked
 $(".cancel-create-group").click(function() {
     $(".added-user").parent().parent().remove();
     $(".added-system").parent().parent().remove();
@@ -92,6 +100,8 @@ $(".cancel-create-group").click(function() {
     newGroupInput.val("");
 });
 
+
+// this function handles what happens when the "Create Group" button in the modal is clicked
 $(".btn.btn-primary.confirm-create-group").click(function() {
     var systems = $(".added-system").map(function() {
                         return $.trim($(this).attr('value'));
@@ -125,6 +135,8 @@ $(".btn.btn-primary.confirm-create-group").click(function() {
     window.location = "/mygroups/";
 });
 
+
+// the next two functions simply handle the border color of the group name input in the group modal
 newGroupInput.focusin(function() {
     $(this).css("border", "2px solid #0096d6");
 });
@@ -133,6 +145,9 @@ newGroupInput.focusout(function() {
     $(this).css("border", "2px solid #c3c3c3");
 });
 
+
+// this function handles what happens when the "X" next to a system or user in the 
+// group modal is clicked 
 function deleteFunc(elem) {
     $(elem).parent().parent().parent().remove();
     var systems = $(".added-system").map(function() {
@@ -149,6 +164,9 @@ function deleteFunc(elem) {
     }
 }
 
+
+// this function handles what to display in the create/edit group modal, since 
+// the same modal is used for creating a group and editing one
 function changeText(button) {
     if(button == "edit"){
         $("h4#newGroupModal.modal-title").text("Edit Group");
@@ -158,4 +176,9 @@ function changeText(button) {
         $("h4#newGroupModal.modal-title").text("Create New Group");
         $("a.btn.btn-primary.confirm-create-group").text("Create Group");
     } 
+}
+
+// this function handles setting the href for the confirm-remove-group button
+function setHref(groupId) {
+    $("a.btn.btn-primary.confirm-remove-group").attr('href', "/groups/delete/" + groupId);
 }

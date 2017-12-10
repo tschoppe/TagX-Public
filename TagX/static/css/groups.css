@@ -177,4 +177,31 @@ input.new-group-input:focus {
 	color: #ca0e0e;
 }
 
+.btn.btn-primary.confirm-remove-group {
+	background: #0096d6;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-primary.confirm-remove-group:hover {
+	background: #0274a5;
+}
+
+.btn.btn-primary.confirm-remove-group:focus {
+	outline: none;
+}
+
+.btn.btn-secondary.cancel-remove-group {
+	background: #efefef;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-secondary.cancel-remove-group:hover {
+	background: #d2d1d1d1;
+}
+
+.btn.btn-secondary.cancel-remove-group:focus {
+	outline: none;
+}
 

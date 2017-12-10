@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^groups/new/$', views.newGroup, name='newGroup'),
     url(r'^groups/edit/(?P<group_id>[\w\-]+)/$', views.editGroup, name='editGroup'),
+    url(r'^groups/delete/(?P<group_id>[\w\-]+)/$', views.deleteGroup, name='deleteGroup'),
 ]
 
