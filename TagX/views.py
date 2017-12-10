@@ -184,7 +184,7 @@ def newGroup(request):
 
 
 def editGroup(request, group_id):
-    if request.method == 'GET' and request.user.is_authenticated:
+    if request.method == 'POST' and request.user.is_authenticated:
         client.index(index='groups', doc_type='doc', id=group_id, body={
                 "name": request.POST['name'],
                 "owner": str(request.user),
@@ -192,7 +192,7 @@ def editGroup(request, group_id):
                 "users": json.loads(request.POST['users']),
                 "id": group_id
         })
-        return JsonResponse({"foo": "bar"})
+        return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')
 
 

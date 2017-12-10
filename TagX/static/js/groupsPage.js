@@ -102,7 +102,7 @@ $(".cancel-create-group").click(function() {
 
 
 // this function handles what happens when the "Create Group" button in the modal is clicked
-$(".btn.btn-primary.confirm-create-group").click(function() {
+function createGroup(url) {
     var systems = $(".added-system").map(function() {
                         return $.trim($(this).attr('value'));
                     }).get();
@@ -111,6 +111,7 @@ $(".btn.btn-primary.confirm-create-group").click(function() {
                     }).get();
     var name = newGroupInput.val();
     var border = newGroupInput.css("border");
+    $('.loader').show();
     if(name === "") {
         var original_color = newGroupInput.css('border-color');
         newGroupInput.css("border", "2px solid red").animate({borderColor: original_color}, 800);
@@ -124,7 +125,7 @@ $(".btn.btn-primary.confirm-create-group").click(function() {
         });
         return;
     }
-    $.post("/groups/new/",
+    $.post(url,
     {
         "name": name,
         "systems": JSON.stringify(systems),
@@ -132,8 +133,10 @@ $(".btn.btn-primary.confirm-create-group").click(function() {
         csrfmiddlewaretoken: csrftoken,
         contentType: "application/json"
     });
-    window.location = "/mygroups/";
-});
+    setTimeout(function() {
+        window.location = "/mygroups/";
+    }, 500);
+}
 
 
 // the next two functions simply handle the border color of the group name input in the group modal
@@ -171,7 +174,10 @@ function changeText(button, groupId) {
     if(button == "edit"){
         $("h4#newGroupModal.modal-title").text("Edit Group");
         $("a.btn.btn-primary.confirm-create-group").text("Edit Group");
-        $("a.btn.btn-primary.confirm-create-group").attr('href', "/groups/edit/" + groupId)
+        $("a.btn.btn-primary.confirm-create-group").off('click');
+        $("a.btn.btn-primary.confirm-create-group").click(function() {
+            createGroup("/groups/edit/" + groupId + "/");
+        });
         newGroupInput.val(groups[groupId].name);
         if(groups[groupId].systems.length > 0) {
             systemsModalDivider.show();
@@ -196,7 +202,10 @@ function changeText(button, groupId) {
     } else if(button == "create"){
         $("h4#newGroupModal.modal-title").text("Create New Group");
         $("a.btn.btn-primary.confirm-create-group").text("Create Group");
-        $("a.btn.btn-primary.confirm-create-group").attr('href', "#");
+        $("a.btn.btn-primary.confirm-create-group").off('click');
+        $("a.btn.btn-primary.confirm-create-group").click(function() {
+            createGroup("/groups/new/");
+        });
     } 
 }
 
