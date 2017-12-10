@@ -160,3 +160,21 @@ input.new-group-input:focus {
   	transform: rotate(360deg); 
   }
 }
+
+.remove-group-modal-button {
+	color: #ca0e0e;
+}
+
+.remove-group-modal-button:hover {
+	color: #a20909;
+}
+
+.fa-times-circle.remove-group {
+	color: #ea0f0f;
+}
+
+.fa-times-circle.remove-group:hover {
+	color: #ca0e0e;
+}
+
+

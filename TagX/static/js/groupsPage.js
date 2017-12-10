@@ -42,7 +42,12 @@ $(".thumbnail").click(function () {
 	    subStr += '</div></div>';
         subStr += '<div class="edit-group-footer ' + myClass + '"> \
                         <div id="footer"> \
-                            <p class="edit-group"><i class="fa fa-pencil-square" aria-hidden="true"></i><a onclick=changeText("edit") type="button" class="edit-group" data-toggle="modal" data-target="#createGroupModal"' + myClass + '">Edit Group</a></p> \
+                            <p class="edit-group"> \
+                                <i class="fa fa-pencil-square" aria-hidden="true" onclick=changeText("edit") type="button" data-toggle="modal" data-target="#createGroupModal"' + myClass + '"></i> \
+                                <a onclick=changeText("edit") type="button" class="edit-group" data-toggle="modal" data-target="#createGroupModal"' + myClass + '">Edit Group</a> \
+                                 | <i class="fa fa-times-circle remove-group" aria-hidden="true" type="button" data-toggle="modal" data-target="#removeGroupModal"></i> \
+                                 <a class="remove-group-modal-button" type="button" data-toggle="modal" data-target="#removeGroupModal">Remove</a> \
+                            </p> \
                         </div> \
                     </div>'
     	$("." + myClass + ".thumbnail").append(subStr);
