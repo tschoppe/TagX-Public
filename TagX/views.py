@@ -84,7 +84,21 @@ def mysystems(request):
 def system(request, system_id):
     if request.method == 'GET' and request.user.is_authenticated:
         url = "\"" + str(request.path) + "\""
-        return render(request, "TagX/system.html", {'url': url, 'id': system_id})
+        company = User.objects.get(username=request.user.username).tagxuser.company
+        search = Search(using=client, index="devices") \
+                .query("match", serialNumber=system_id)
+        search = search[0:9999]
+        response = search.execute()
+        systems = {}
+        for hit in response:
+            dic = {}
+            for val in hit:
+                dic[val] = hit[val]
+            systems[hit.serialNumber] = dic
+        return render(request, "TagX/system.html", {
+            'url': url, 
+            'systems': systems[system_id]
+            })
     return HttpResponseRedirect('/')
 
 
@@ -236,6 +250,6 @@ def systemQuery(request):
                 "osVersion": hit.osVersion,
                 "model": hit.model,
                 "location": hit["location.country"],
-                "tags": [""] if (hit.tags == None) else hit.tags
+                "tags": [] if (hit.tags == None) else hit.tags
             }
     return systems

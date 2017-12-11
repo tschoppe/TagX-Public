@@ -1,0 +1,52 @@
+hr {
+	width: 100%;
+}
+
+i {
+	padding: 5px;
+    color: #0096d6;
+}
+
+.add-tag-button {
+	float: right;
+    margin: 20px 10px 0 0;
+    color: #0096d6;
+}
+
+.add-tag-button:hover {
+	text-decoration: none;
+	color: #0274a5;
+	cursor: pointer;
+}
+
+.btn.btn-primary {
+	background: #0096d6;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-primary:hover {
+	background: #0274a5;
+}
+
+.btn.btn-primary:focus {
+	outline: none;
+}
+
+.btn.btn-secondary {
+	background: #efefef;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-secondary:hover {
+	background: #d2d1d1d1;
+}
+
+.btn.btn-secondary:focus {
+	outline: none;
+}
+
+.modal-content {
+	border-radius: 0;
+}
