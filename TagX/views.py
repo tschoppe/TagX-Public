@@ -224,7 +224,7 @@ def systemQuery(request):
     searchStr = request.GET.get('search', '')
     criteria = request.GET.get('criteria', '')
     search = Search(using=client, index="devices") \
-            .query("match", companyName=company)
+            .query("match_phrase_prefix", companyName=company)
     if searchStr != '' and criteria == 'system_name':
         search = search.query("match", systemName=searchStr)
     elif searchStr != '' and criteria == 'operating_system':
