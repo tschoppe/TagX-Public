@@ -224,15 +224,15 @@ def systemQuery(request):
     searchStr = request.GET.get('search', '')
     criteria = request.GET.get('criteria', '')
     search = Search(using=client, index="devices") \
-            .query("match_phrase_prefix", companyName=company)
+            .query("match", companyName=company)
     if searchStr != '' and criteria == 'system_name':
-        search = search.query("match", systemName=searchStr)
+        search = search.query("match_phrase_prefix", systemName=searchStr)
     elif searchStr != '' and criteria == 'operating_system':
-        search = search.query("match", osVersion=searchStr)
+        search = search.query("match_phrase_prefix", osVersion=searchStr)
     elif searchStr != '' and criteria == 'location':
-        search = search.query("match", location__country=searchStr)
+        search = search.query("match_phrase_prefix", location__country=searchStr)
     elif searchStr != '' and criteria == 'tags':
-        search = search.query("match", companyName="Arkon")
+        search = search.query("match_phrase_prefix", companyName="Arkon")
     search = search[0:9999]
     response = search.execute()
     systems = {}
