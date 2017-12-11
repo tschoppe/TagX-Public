@@ -35,15 +35,17 @@
 		    	<div class="modal-header">
 		    		<h4 class="modal-title" id="addTagModal">Add Tag</h4>
 		    		</div>
-		    		<div class="modal-body">
-				    	Add Tag
-				    	<br></br>
-				    	<div class="loader" style="display:none"></div>
-				    </div>
-				    <div class="modal-footer">
-				    	<button type="button" class="btn btn-secondary cancel-remove-group" data-dismiss="modal">Cancel</button>
-				    	<a href="#" type="button" class="btn btn-primary confirm-remove-group">Add Tag</a>
-				    </div>
+		    		<form action="/mysystems/" method="GET">
+			    		<div class="modal-body">
+					    	<input type="text" required="true"></input>
+					    	<br></br>
+					    	<div class="loader" style="display:none"></div>
+					    </div>
+					    <div class="modal-footer">
+					    	<button type="button" class="btn btn-secondary cancel-remove-group" data-dismiss="modal">Cancel</button>
+					    	<input href="#" type="submit" class="btn btn-primary confirm-remove-group" value="Add Tag"></input>
+					    </div>
+					</form>
 				</div>
 			</div>
 		</div>
