@@ -6,13 +6,11 @@ from django import forms
 class LoginForm(forms.Form):
     username = forms.CharField(
         required = True,
-        label = 'Username',
-        max_length = 100
+        label = 'Username'
     )
     password = forms.CharField(
         required = True,
         label = 'Password',
-        max_length = 100,
         widget = forms.PasswordInput()
     )
 
@@ -20,13 +18,11 @@ class LoginForm(forms.Form):
 class UserRegistrationForm(forms.Form):
     username = forms.CharField(
         required = True,
-        label = 'Username',
-        max_length = 100
+        label = 'Username'
     )
     password = forms.CharField(
         required = True,
         label = 'Password',
-        max_length = 100,
         widget = forms.PasswordInput()
     )
 
@@ -34,8 +30,7 @@ class UserRegistrationForm(forms.Form):
 class SearchForm(forms.Form):
     search = forms.CharField(
         required = True,
-        label = 'search',
-        max_length = 100
+        label = 'search'
     )
     criteria = forms.CharField(
         required = True,
@@ -46,6 +41,5 @@ class SearchForm(forms.Form):
 class tagForm(forms.Form):
     tag = forms.CharField(
         required=True,
-        label='tag',
-        max_length='100'
+        label='tag'
     )
