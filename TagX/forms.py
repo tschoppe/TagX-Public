@@ -41,3 +41,11 @@ class SearchForm(forms.Form):
         required = True,
         label = 'criteria'
     )
+
+
+class tagForm(forms.Form):
+    tag = forms.CharField(
+        required=True,
+        label='tag',
+        max_length='100'
+    )

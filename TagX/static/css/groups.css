@@ -118,17 +118,25 @@ div.row.header {
 	width: 50%;
 }
 
-input.new-group-input {
-	width: 70%;
+label.new-group-input {
+	float: left;
+}
+
+span.new-group-input {
+    display: block;
+    overflow: hidden;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+span.new-group-input > input {
+	width: 100%;
 	border: 2px solid #c3c3c3;
 }
 
-input.new-group-input:focus {
+span.new-group-input > input:focus {
 	outline: none;
-}
-
-.new-group-input {
-	margin-left: 15px;
+	border: 2px solid #0096d6;
 }
 
 .loader {

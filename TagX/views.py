@@ -71,7 +71,6 @@ def mysystems(request):
         searchStr = request.GET.get('search', '')
         criteria = request.GET.get('criteria', '')
         return render(request, "TagX/my_systems.html", {
-            'url': str(request.path), 
             'systems': systemQuery(request),
             'search': {
                 'searchStr': searchStr,
@@ -83,8 +82,20 @@ def mysystems(request):
 
 def system(request, system_id):
     if request.method == 'GET' and request.user.is_authenticated:
-        url = "\"" + str(request.path) + "\""
-        return render(request, "TagX/system.html", {'url': url, 'id': system_id})
+        company = User.objects.get(username=request.user.username).tagxuser.company
+        search = Search(using=client, index="devices") \
+                .query("match", serialNumber=system_id)
+        search = search[0:9999]
+        response = search.execute()
+        systems = {}
+        for hit in response:
+            dic = {}
+            for val in hit:
+                dic[val] = hit[val]
+            systems[hit.serialNumber] = dic
+        return render(request, "TagX/system.html", {
+            'systems': systems[system_id]
+            })
     return HttpResponseRedirect('/')
 
 
@@ -110,7 +121,6 @@ def mygroups(request):
                 "users": group.users
             }
         return render(request, "TagX/mygroups.html", {
-            'url': str(request.path), 
             'groups': groups,
             'systems': systemQuery(request),
             'users': users
@@ -132,18 +142,24 @@ def search(request):
 
 
 # tagging function
-def addTag(request, SN, tag):
-    if request.method == 'PUT' and request.user.is_authenticated:
-        search = Search(using=client, index="devices").query("match", serialNumber=SN)
+def addTag(request, system_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        form = tagForm(request.POST)
+        if form.is_valid():
+            tagObj = form.cleaned_data
+            tag = tagObj['tag']
+        search = Search(using=client, index="devices").query("match", serialNumber=system_id)
         response = search.execute()
-        list = []
+        tagList = []
         if response.hits[0].tags is None:
-            list.append(tag)
+            tagList.append(tag)
         else:
-            list = response.hits[0].tags
-            list.append(tag)
-        client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
-    return
+            tagList = list(response.hits[0].tags)
+            tagList.append(tag)
+        client.update(index='devices', doc_type='doc', id=system_id, body={"doc": {"tags": tagList}})
+        sleep(1)
+        return HttpResponseRedirect("/system/" + system_id)
+    return HttpResponseRedirect("/")
 
 #remove tag
 def removeTag(request, SN, tag):
@@ -187,7 +203,7 @@ def editGroup(request, group_id):
     if request.method == 'POST' and request.user.is_authenticated:
         client.index(index='groups', doc_type='doc', id=group_id, body={
                 "name": request.POST['name'],
-                "owner": str(request.user),
+                "owner": request.POST['owner'],
                 "systems": json.loads(request.POST['systems']),
                 "users": json.loads(request.POST['users']),
                 "id": group_id
@@ -236,6 +252,6 @@ def systemQuery(request):
                 "osVersion": hit.osVersion,
                 "model": hit.model,
                 "location": hit["location.country"],
-                "tags": [""] if (hit.tags == None) else hit.tags
+                "tags": [] if (hit.tags == None) else hit.tags
             }
     return systems

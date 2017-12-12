@@ -4,8 +4,9 @@
 
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/system.css' %}">
 <script type="text/javascript">
-    var url = {{ url|safe }}
+    var url = "{{ request.path|safe }}"
 </script>
 {% endblock %}
 
@@ -13,6 +14,48 @@
 
 {% include "TagX/includes/nav.html" %}
 
-<h1>System Page for system {{ id }}</h1>
+<div class="container">
+	<div className="row header">
+		{% for key, values in systems.items %}
+			{% if key == "systemName" %}
+				<h1>{{ values }}</h1>
+			{% endif %}
+		{% endfor %}
+		<h5 class="tags-label"><strong>Current Tags: </strong></h5>
+		{% for key, values in systems.items %}
+			{% if key == "tags" and values %}
+				<p class="tags-listed">{{ values|join:", " }}</p>
+			{% endif %}
+		{% endfor %}
+		<a class="add-tag-button" type="button" data-toggle="modal" data-target="#addTagModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Tag</a> 
+		<hr></hr>            
+	</div>
+	{% for key, values in systems.items %}
+		<div><h4>{{ key }}: </h4><p>{{ values }}</p></div>
+	{% endfor %}
 
+	<!-- Remove Group Modal -->
+	<div class="modal fade" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="addTagModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    	<div class="modal-header">
+		    		<h4 class="modal-title" id="addTagModal">Add Tag</h4>
+		    		</div>
+		    		<form action="{{request.path}}addTag/" method="POST">
+		    			{% csrf_token %}
+			    		<div class="modal-body">
+					    	<label class="new-tag-input">Tag: </label>
+                    		<span class="new-tag-input"><input name="tag" type="text" placeholder="Enter Tag.." required="true" /></span>
+					    	<div class="loader" style="display:none"></div>
+					    </div>
+					    <div class="modal-footer">
+					    	<button type="button" class="btn btn-secondary cancel-remove-group" data-dismiss="modal">Cancel</button>
+					    	<input href="#" type="submit" class="btn btn-primary confirm-remove-group" value="Add Tag"></input>
+					    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
