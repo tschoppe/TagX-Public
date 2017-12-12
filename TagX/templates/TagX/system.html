@@ -35,10 +35,11 @@
 		    	<div class="modal-header">
 		    		<h4 class="modal-title" id="addTagModal">Add Tag</h4>
 		    		</div>
-		    		<form action="/mysystems/" method="GET">
+		    		<form action="{{request.path}}addTag/" method="GET">
+		    			{% csrf_token %}
 			    		<div class="modal-body">
 					    	<label class="new-tag-input">Tag: </label>
-                    		<input class="new-tag-input" type="text" placeholder="Enter Tag.." required="true" />
+                    		<input name="tag" class="new-tag-input" type="text" placeholder="Enter Tag.." required="true" />
 					    	<br></br>
 					    	<div class="loader" style="display:none"></div>
 					    </div>
