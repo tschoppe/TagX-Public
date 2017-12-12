@@ -110,7 +110,7 @@ def mygroups(request):
         allUsers = User.objects.all()
         users = []
         for user in allUsers:
-            if(User.objects.get(username=user).tagxuser.company == company and user.username != request.user.username):
+            if(User.objects.get(username=user).tagxuser.company == company):
                 users.append(user.username)
         groups = {}
         for group in groupResponse:
@@ -186,8 +186,19 @@ def editTag(request, SN, oldTag, newTag):
 
 def newGroup(request):
     if request.method == 'POST' and request.user.is_authenticated:
-        count = client.count(index="groups", doc_type="doc", body={ "query": {"match_all" : { }}})
-        groupId = count['count'] + 1
+        response = client.search(index='groups', body={
+                    "query": { "match_all": {} },
+                    "sort": {
+                        "_id": {
+                            "order": "desc"
+                        }
+                    },
+                    "size": 1
+                })['hits']
+        groupId = 0;
+        for hit in response:
+            if hit == "hits":
+                groupId = int(response[hit][0]['_id']) + 1
         client.index(index='groups', doc_type='doc', id=groupId, body={
                 "name": request.POST['name'],
                 "owner": str(request.user),

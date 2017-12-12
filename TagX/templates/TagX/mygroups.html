@@ -46,7 +46,8 @@
 						    			<label class="system-user-label">Systems: </label>
 									    <select name="systems">
 											<option value="none" selected="selected"></option>
-											{% for key, values in systems.items %}												<option value={{ key }}>{{ values.name }}</option>
+											{% for key, values in systems.items %}
+												<option value={{ key }}>{{ values.name }}</option>
 											{% endfor %}
 										</select>
 									</div>
