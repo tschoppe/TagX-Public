@@ -232,7 +232,7 @@ def systemQuery(request):
     elif searchStr != '' and criteria == 'location':
         search = search.query("match_phrase_prefix", location__country=searchStr)
     elif searchStr != '' and criteria == 'tags':
-        search = search.query("match_phrase_prefix", companyName="Arkon")
+        search = search.query("match_phrase_prefix", tags=searchStr)
     search = search[0:9999]
     response = search.execute()
     systems = {}
