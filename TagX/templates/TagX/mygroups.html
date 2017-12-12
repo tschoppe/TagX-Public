@@ -29,13 +29,13 @@
 	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
 	        		<h4 class="modal-title" id="newGroupModal">Create New Group</h4>
 	      		</div>
-	      		<form>
+	      		<form class="group-form">
 				    {% csrf_token %}
 				    <div class="modal-body">
 				    	<div class="row">
                     		<div class="col-xs-12">
                     			<label class="new-group-input">Group Name: </label>
-                    			<input class="new-group-input" type="text" placeholder="Enter Group Name.."/>
+                    			<input class="new-group-input" type="text" placeholder="Enter Group Name.." required="true" />
                     		</div>
                     	</div>
                     	<br>

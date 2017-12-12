@@ -111,19 +111,18 @@ function createGroup(url) {
                     }).get();
     var name = newGroupInput.val();
     var border = newGroupInput.css("border");
-    if(name === "") {
-        var original_color = newGroupInput.css('border-color');
-        newGroupInput.css("border", "2px solid red").animate({borderColor: original_color}, 800);
+    if(!$(".group-form")[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo($(".group-form")).click().remove();
         return;
     }
-    if(jQuery.isEmptyObject(systems) && jQuery.isEmptyObject(users)) {
-        $("label.system-user-label")
-        .css("color", "red")
-        .animate({color: "black"}, 1000, function() {
-            $("label.system-user-label").removeAttr('style');
-        });
-        return;
-    }
+    // if(jQuery.isEmptyObject(systems) && jQuery.isEmptyObject(users)) {
+    //     $("label.system-user-label")
+    //     .css("color", "red")
+    //     .animate({color: "black"}, 1000, function() {
+    //         $("label.system-user-label").removeAttr('style');
+    //     });
+    //     return;
+    // }
     $('.loader').show();
     $.post(url,
     {
