@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/groups.css' %}">
 <script type="text/javascript">
-    var url = {{ url|safe }}
+    var url = "{{ request.path|safe }}"
 </script>
 {% endblock %}
 
@@ -35,7 +35,7 @@
 				    	<div class="row">
                     		<div class="col-xs-12">
                     			<label class="new-group-input">Group Name: </label>
-                    			<input class="new-group-input" type="text" placeholder="Enter Group Name.." required="true" />
+                    			<span class="new-group-input"><input type="text" placeholder="Enter Group Name.." required="true" /></span>
                     		</div>
                     	</div>
                     	<br>

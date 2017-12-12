@@ -18,7 +18,7 @@
 		{% block content %}
 		{% endblock %}
 	</div>
-	{% if url %}
+	{% if request.path != "/" %}
 		<div class="footer">
 			<div id="footer" class="container">
 				<p class="your-company"><strong>Your Company: {{ request.user.tagxuser.company }}</strong></p>

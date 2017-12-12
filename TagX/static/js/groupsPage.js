@@ -1,4 +1,4 @@
-var newGroupInput = $("input.new-group-input");
+var newGroupInput = $(".new-group-input input");
 var usersModalDivider = $(".users.modal-divider");
 var systemsModalDivider = $(".systems.modal-divider");
 var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
@@ -102,7 +102,7 @@ $(".cancel-create-group").click(function() {
 
 
 // this function handles what happens when the "Create Group" button in the modal is clicked
-function createGroup(url) {
+function createGroup(url, owner) {
     var systems = $(".added-system").map(function() {
                         return $.trim($(this).attr('value'));
                     }).get();
@@ -127,6 +127,7 @@ function createGroup(url) {
     $.post(url,
     {
         "name": name,
+        "owner": owner,
         "systems": JSON.stringify(systems),
         "users": JSON.stringify(users),
         csrfmiddlewaretoken: csrftoken,
@@ -175,7 +176,7 @@ function changeText(button, groupId) {
         $("a.btn.btn-primary.confirm-create-group").text("Edit Group");
         $("a.btn.btn-primary.confirm-create-group").off('click');
         $("a.btn.btn-primary.confirm-create-group").click(function() {
-            createGroup("/groups/edit/" + groupId + "/");
+            createGroup("/groups/edit/" + groupId + "/", groups[groupId].owner);
         });
         newGroupInput.val(groups[groupId].name);
         if(groups[groupId].systems.length > 0) {
@@ -203,7 +204,7 @@ function changeText(button, groupId) {
         $("a.btn.btn-primary.confirm-create-group").text("Create Group");
         $("a.btn.btn-primary.confirm-create-group").off('click');
         $("a.btn.btn-primary.confirm-create-group").click(function() {
-            createGroup("/groups/new/");
+            createGroup("/groups/new/", "");
         });
     } 
 }

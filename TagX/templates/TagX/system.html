@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/system.css' %}">
 <script type="text/javascript">
-    var url = {{ url|safe }}
+    var url = "{{ request.path|safe }}"
 </script>
 {% endblock %}
 
@@ -19,6 +19,12 @@
 		{% for key, values in systems.items %}
 			{% if key == "systemName" %}
 				<h1>{{ values }}</h1>
+			{% endif %}
+		{% endfor %}
+		<h5 class="tags-label"><strong>Current Tags: </strong></h5>
+		{% for key, values in systems.items %}
+			{% if key == "tags" and values %}
+				<p class="tags-listed">{{ values|join:", " }}</p>
 			{% endif %}
 		{% endfor %}
 		<a class="add-tag-button" type="button" data-toggle="modal" data-target="#addTagModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Tag</a> 
@@ -35,12 +41,11 @@
 		    	<div class="modal-header">
 		    		<h4 class="modal-title" id="addTagModal">Add Tag</h4>
 		    		</div>
-		    		<form action="{{request.path}}addTag/" method="GET">
+		    		<form action="{{request.path}}addTag/" method="POST">
 		    			{% csrf_token %}
 			    		<div class="modal-body">
 					    	<label class="new-tag-input">Tag: </label>
-                    		<input name="tag" class="new-tag-input" type="text" placeholder="Enter Tag.." required="true" />
-					    	<br></br>
+                    		<span class="new-tag-input"><input name="tag" type="text" placeholder="Enter Tag.." required="true" /></span>
 					    	<div class="loader" style="display:none"></div>
 					    </div>
 					    <div class="modal-footer">
