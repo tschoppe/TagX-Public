@@ -42,6 +42,11 @@
         </div>
         <div class="form-group">
             <label class="radio-inline control-label">
+                <input type="radio" name="criteria" value="model" {% if search.criteria == "model" %} checked="checked"{% endif %}> Model
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="radio-inline control-label">
                 <input type="radio" name="criteria" value="location" {% if search.criteria == "location" %} checked="checked"{% endif %}> Location
             </label>
         </div>

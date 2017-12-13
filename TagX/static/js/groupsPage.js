@@ -4,6 +4,17 @@ var systemsModalDivider = $(".systems.modal-divider");
 var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
 
 
+function zeroPad(num, places) {
+  var zero = places - num.toString().length + 1;
+  return Array(+(zero > 0 && zero)).join("0") + num;
+}
+
+$(".disabled").attr("href", "#");
+$(".disabled").attr("onclick", "");
+$(".disabled").click(function() {
+    return(false);
+});
+
 // this funtion adds or removes all the elements that are seen when expanding a group
 $(".thumbnail").click(function () {
 	var INITIALHEIGHT = 60;
@@ -115,6 +126,8 @@ function createGroup(url, owner) {
         $('<input type="submit">').hide().appendTo($(".group-form")).click().remove();
         return;
     }
+    $("a.btn.btn-primary.confirm-create-group").attr('disabled', 'disabled');
+    $("a.btn.btn-primary.confirm-create-group").addClass("disabled");
     // if(jQuery.isEmptyObject(systems) && jQuery.isEmptyObject(users)) {
     //     $("label.system-user-label")
     //     .css("color", "red")
@@ -176,12 +189,12 @@ function changeText(button, groupId) {
         $("a.btn.btn-primary.confirm-create-group").text("Edit Group");
         $("a.btn.btn-primary.confirm-create-group").off('click');
         $("a.btn.btn-primary.confirm-create-group").click(function() {
-            createGroup("/groups/edit/" + groupId + "/", groups[groupId].owner);
+            createGroup("/groups/edit/" + zeroPad(groupId, 10) + "/", groups[zeroPad(groupId, 10)].owner);
         });
-        newGroupInput.val(groups[groupId].name);
-        if(groups[groupId].systems.length > 0) {
+        newGroupInput.val(groups[zeroPad(groupId, 10)].name);
+        if(groups[zeroPad(groupId, 10)].systems.length > 0) {
             systemsModalDivider.show();
-            groups[groupId].systems.forEach(function(system) {
+            groups[zeroPad(groupId, 10)].systems.forEach(function(system) {
                 $(".col-xs-6.sysRow").append('<div class="row"> \
                                             <div class="col-xs-12"> \
                                                 <p value="' + system + '" class="added-system">' + systems[system].name + '<i onclick=deleteFunc(this) class="fa fa-times-circle" aria-hidden="true"></i></p> \
@@ -189,9 +202,9 @@ function changeText(button, groupId) {
                                         </div>')
             })
         }
-        if(groups[groupId].users.length > 0) {
+        if(groups[zeroPad(groupId, 10)].users.length > 0) {
             usersModalDivider.show();
-            groups[groupId].users.forEach(function(user) {
+            groups[zeroPad(groupId, 10)].users.forEach(function(user) {
                 $(".col-xs-6.usersRow").append('<div class="row"> \
                                         <div class="col-xs-12"> \
                                             <p value="' + user + '" class="added-user">' + user + '<i onclick=deleteFunc(this) class="fa fa-times-circle" aria-hidden="true"></i></p> \
@@ -211,10 +224,21 @@ function changeText(button, groupId) {
 
 // this function handles setting the href for the confirm-remove-group button
 function setHref(groupId) {
-    $("a.btn.btn-primary.confirm-remove-group").attr('href', "/groups/delete/" + groupId);
+    $("a.btn.btn-primary.confirm-remove-group").attr('href', "/groups/delete/" + zeroPad(groupId, 10));
 }
 
 // this function shows the loading spinner when deleting a group
 $("a.btn.btn-primary.confirm-remove-group").click(function() {
     $('.loader').show();
+    $(this).attr("disabled", "disabled");
+    $(this).addClass("disabled");
+});
+
+$(document).ready(function() {
+    $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
 });

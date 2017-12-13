@@ -189,7 +189,7 @@ def newGroup(request):
         response = client.search(index='groups', body={
                     "query": { "match_all": {} },
                     "sort": {
-                        "_id": {
+                        "id": {
                             "order": "desc"
                         }
                     },
@@ -197,14 +197,15 @@ def newGroup(request):
                 })['hits']
         groupId = 0;
         for hit in response:
-            if hit == "hits":
+            if hit == "hits" and response[hit]:
                 groupId = int(response[hit][0]['_id']) + 1
+                print(groupId)
         client.index(index='groups', doc_type='doc', id=groupId, body={
                 "name": request.POST['name'],
                 "owner": str(request.user),
                 "systems": json.loads(request.POST['systems']),
                 "users": json.loads(request.POST['users']),
-                "id": groupId
+                "id": "{0:0>10}".format(int(groupId))
         })
         return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')
@@ -212,12 +213,12 @@ def newGroup(request):
 
 def editGroup(request, group_id):
     if request.method == 'POST' and request.user.is_authenticated:
-        client.index(index='groups', doc_type='doc', id=group_id, body={
+        client.update(index='groups', doc_type='doc', id=int(group_id), body={
+            "doc": {
                 "name": request.POST['name'],
-                "owner": request.POST['owner'],
                 "systems": json.loads(request.POST['systems']),
-                "users": json.loads(request.POST['users']),
-                "id": group_id
+                "users": json.loads(request.POST['users'])
+            }
         })
         return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')
@@ -225,7 +226,7 @@ def editGroup(request, group_id):
 
 def deleteGroup(request, group_id):
     if request.method == 'GET' and request.user.is_authenticated:
-        client.delete(index='groups', doc_type='doc', id=group_id)
+        client.delete(index='groups', doc_type='doc', id=int(group_id))
         sleep(1)
         return HttpResponseRedirect('/mygroups/')
     return HttpResponseRedirect('/')
@@ -242,6 +243,8 @@ def systemQuery(request):
         search = search.query("match_phrase_prefix", systemName=searchStr)
     elif searchStr != '' and criteria == 'operating_system':
         search = search.query("match_phrase_prefix", osVersion=searchStr)
+    elif searchStr != '' and criteria == 'model':
+        search = search.query("match_phrase_prefix", model=searchStr)
     elif searchStr != '' and criteria == 'location':
         search = search.query("match_phrase_prefix", location__country=searchStr)
     elif searchStr != '' and criteria == 'tags':
