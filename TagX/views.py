@@ -162,14 +162,17 @@ def addTag(request, system_id):
     return HttpResponseRedirect("/")
 
 #remove tag
-def removeTag(request, SN, tag):
-    if request.method == 'DELETE' and request.user.is_authenticated:
-        search = Search(using=client, index="devices").query("match", serialNumber=SN)
+def removeTag(request, system_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        tag = request.POST['tag']
+        tag = str(tag)
+        search = Search(using=client, index="devices").query("match", serialNumber=system_id)
         response = search.execute()
         tagList = response.hits[0].tags
         tagList.remove(tag)
-        client.update(index='devices', doc_type='doc', id=SN, body={"doc":{"tags": tagList}})
-    return
+        client.update(index='devices', doc_type='doc', id=system_id, body={"doc":{"tags": tagList}})
+        return HttpResponseRedirect("/system/" + system_id)
+    return HttpResponseRedirect("/")
 
 
 #edit tag
