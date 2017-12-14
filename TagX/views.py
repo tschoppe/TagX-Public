@@ -168,7 +168,7 @@ def removeTag(request, system_id):
         tag = str(tag)
         search = Search(using=client, index="devices").query("match", serialNumber=system_id)
         response = search.execute()
-        tagList = response.hits[0].tags
+        tagList = list(response.hits[0].tags)
         tagList.remove(tag)
         client.update(index='devices', doc_type='doc', id=system_id, body={"doc":{"tags": tagList}})
         return HttpResponseRedirect("/system/" + system_id)
@@ -184,7 +184,7 @@ def editTag(request, system_id):
         new = str(new)
         search = Search(using=client, index="devices").query("match", serialNumber=system_id)
         response = search.execute()
-        tagList = response.hits[0].tags
+        tagList = list(response.hits[0].tags)
         index = tagList.index(old)
         tagList[index] = new
         client.update(index='devices', doc_type='doc', id=system_id, body={"doc": {"tags": tagList}})

@@ -5,7 +5,38 @@ $('form').submit(function(){
 });
 
 $(".tags-listed").click(function() {
+    $("input[name='tag']").val($(this).text());
+    $(".tag-displayed").text($(this).text());
 	$("form#manage-tag-form").attr('value', $(this).text());
+});
+
+$(".btn.btn-primary.start-manage-tag").click(function() {
+    $("input.btn.btn-primary.confirm-manage-tag").show();
+    $(this).hide();
+    $(".tag-input").show();
+    $(".tag-displayed").hide();
+    $("span.tag-input").css("display", "block");
+});
+
+$(".btn.btn-secondary.cancel-manage-tag").click(function() {
+    $("input.btn.btn-primary.confirm-manage-tag").hide();
+    $(".btn.btn-primary.start-manage-tag").show();
+    $(".tag-input").hide();
+    $(".tag-displayed").show();
+    $("span.tag-input").css("display", "none");
+});
+
+$(".btn.btn-primary.remove-tag").click(function() {
+    $(this).addClass('disabled');
+    $.post(location.pathname + "removeTag/",
+    {
+        "tag": $("form#manage-tag-form").attr('value'),
+        csrfmiddlewaretoken: csrftoken,
+        contentType: "application/json"
+    });
+    setTimeout(function() {
+        window.location = window.location;
+    }, 1000);
 });
 
 $("input.btn.btn-primary.confirm-manage-tag").click(function() {
@@ -17,12 +48,16 @@ $("input.btn.btn-primary.confirm-manage-tag").click(function() {
     $("input.btn.btn-primary.confirm-manage-tag").addClass("disabled");
     $.post(location.pathname + "editTag/",
     {
-        "old": "aaa",
-        "new": "bbb",
+        "old": $("form#manage-tag-form").attr('value'),
+        "new": $("span.tag-input > input").val(),
         csrfmiddlewaretoken: csrftoken,
         contentType: "application/json"
     });
-    // setTimeout(function() {
-    //     window.location = window.location;
-    // }, 1000);
+    setTimeout(function() {
+        window.location = window.location;
+    }, 1000);
+});
+
+$(".add-tag-button").click(function() {
+    $("input[name='tag']").val("");
 });

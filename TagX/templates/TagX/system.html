@@ -52,7 +52,7 @@
 					    </div>
 					    <div class="modal-footer">
 					    	<button type="button" class="btn btn-secondary cancel-add-tag" data-dismiss="modal">Cancel</button>
-					    	<input href="#" type="submit" class="btn btn-primary confirm-add-tag" value="Add Tag"></input>
+					    	<input type="submit" class="btn btn-primary confirm-add-tag" value="Add Tag"></input>
 					    </div>
 					</form>
 				</div>
@@ -70,13 +70,17 @@
 		    		<form id="manage-tag-form">
 		    			{% csrf_token %}
 			    		<div class="modal-body">
-					    	<label class="new-tag-input">Tag: </label>
-                    		<span class="new-tag-input"><input name="tag" type="text" placeholder="Enter Tag.." required="true" /></span>
-					    	<div class="loader" style="display:none"></div>
+					    	<p class="tag-displayed">Can't find tag to display</p>
+					    	<label class="tag-input">Tag: </label>
+                            <span class="tag-input">
+                                <input name="tag" type="text" placeholder="Enter Tag.." required="true" />
+                            </span>
 					    </div>
 					    <div class="modal-footer">
+					    	<p class="btn btn-primary remove-tag">Remove</p>
 					    	<button type="button" class="btn btn-secondary cancel-manage-tag" data-dismiss="modal">Cancel</button>
-					    	<input type="submit" class="btn btn-primary confirm-manage-tag" value="Manage Tag"></input>
+					    	<p class="btn btn-primary start-manage-tag">Edit</p>
+					    	<input type="submit" class="btn btn-primary confirm-manage-tag" value="Edit Tag"></input>
 					    </div>
 					</form>
 				</div>

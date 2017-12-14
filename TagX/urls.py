@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^system/(?P<system_id>\d+)/$', views.system, name='system'),
     url(r'^system/(?P<system_id>[\w\-]+)/addTag/$', views.addTag, name='addTag'),
     url(r'^system/(?P<system_id>[\w\-]+)/editTag/$', views.editTag, name='editTag'),
+    url(r'^system/(?P<system_id>[\w\-]+)/removeTag/$', views.removeTag, name='removeTag'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^mygroups/$', views.mygroups, name='mygroups'),

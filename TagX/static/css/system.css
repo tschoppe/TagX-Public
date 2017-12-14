@@ -34,6 +34,10 @@ kbd:hover {
 	cursor: pointer;
 }
 
+input.btn.btn-primary.confirm-manage-tag {
+	display: none;
+}
+
 .tags-label {
 	margin: 25px 0 0 15px;
 	display: inline-block;
@@ -92,6 +96,28 @@ kbd:hover {
 	border-radius: 0;
 }
 
+label.tag-input {
+	float: left;
+	display: none;
+}
+
+span.tag-input {
+    display: none;
+    overflow: hidden;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+span.tag-input > input {
+	width: 100%;
+	border: 2px solid #c3c3c3;
+}
+
+span.tag-input > input:focus {
+	outline: none;
+	border: 2px solid #0096d6;
+}
+
 label.new-tag-input {
 	float: left;
 }
@@ -113,3 +139,16 @@ span.new-tag-input > input:focus {
 	border: 2px solid #0096d6;
 }
 
+.tag-displayed {
+	width: 100%;
+	text-align: center;
+}
+
+.btn.btn-primary.remove-tag {
+	float: left;
+	background-color: red;
+}
+
+.btn.btn-primary.remove-tag:hover {
+	background-color: #e01010;
+}
