@@ -38,6 +38,13 @@ input.btn.btn-primary.confirm-manage-tag {
 	display: none;
 }
 
+.system-page-body {
+	border: 2px solid #0096d6;
+	padding: 10px 20px;
+	margin-bottom: 25px;
+	border-radius: 20px;
+}
+
 .tags-label {
 	margin: 25px 0 0 15px;
 	display: inline-block;
@@ -144,11 +151,20 @@ span.new-tag-input > input:focus {
 	text-align: center;
 }
 
-.btn.btn-primary.remove-tag {
+.btn.btn-primary.start-remove-tag {
 	float: left;
 	background-color: red;
 }
 
-.btn.btn-primary.remove-tag:hover {
+.btn.btn-primary.start-remove-tag:hover {
 	background-color: #e01010;
+}
+
+.sys-info {
+	height: 50px;
+	line-height: 50px;
+}
+
+.sys-tag {
+	text-decoration: underline;
 }

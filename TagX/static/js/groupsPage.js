@@ -53,16 +53,18 @@ $(".thumbnail").click(function () {
 	    	subStr += '<p>Username: <kbd>' + user + '</kbd></p>'
 	    });
 	    subStr += '</div></div>';
-        subStr += '<div class="edit-group-footer ' + myClass + '"> \
-                        <div id="footer"> \
-                            <p class="edit-group"> \
-                                <i class="fa fa-pencil-square" aria-hidden="true" onclick=changeText("edit",' + myClass + ') type="button" data-toggle="modal" data-target="#createGroupModal"' + myClass + '"></i> \
-                                <a onclick=changeText("edit",' + myClass + ') type="button" class="edit-group" data-toggle="modal" data-target="#createGroupModal"' + myClass + '">Edit Group</a> \
-                                 | <i onclick=setHref(' + myClass + ') class="fa fa-times-circle remove-group" aria-hidden="true" type="button" data-toggle="modal" data-target="#removeGroupModal"></i> \
-                                 <a onclick=setHref(' + myClass + ') class="remove-group-modal-button" type="button" data-toggle="modal" data-target="#removeGroupModal">Remove</a> \
-                            </p> \
-                        </div> \
-                    </div>'
+        if(groups[myClass].owner == user) {
+            subStr += '<div class="edit-group-footer ' + myClass + '"> \
+                            <div id="footer"> \
+                                <p class="edit-group"> \
+                                    <i class="fa fa-pencil-square" aria-hidden="true" onclick=changeText("edit",' + myClass + ') type="button" data-toggle="modal" data-target="#createGroupModal"' + myClass + '"></i> \
+                                    <a onclick=changeText("edit",' + myClass + ') type="button" class="edit-group" data-toggle="modal" data-target="#createGroupModal"' + myClass + '">Edit Group</a> \
+                                     | <i onclick=setHref(' + myClass + ') class="fa fa-times-circle remove-group" aria-hidden="true" type="button" data-toggle="modal" data-target="#removeGroupModal"></i> \
+                                     <a onclick=setHref(' + myClass + ') class="remove-group-modal-button" type="button" data-toggle="modal" data-target="#removeGroupModal">Remove</a> \
+                                </p> \
+                            </div> \
+                        </div>'
+        }
     	$("." + myClass + ".thumbnail").append(subStr);
     }
 });
