@@ -24,7 +24,9 @@
 		<h5 class="tags-label"><strong>Current Tags: </strong></h5>
 		{% for key, values in systems.items %}
 			{% if key == "tags" and values %}
-				<p class="tags-listed">{{ values|join:", " }}</p>
+				{% for t in values %}
+					<a type="button" data-toggle="modal" data-target="#manageTagModal" class="tags-listed"><kbd>{{ t }}</kbd></a>
+				{% endfor %}
 			{% endif %}
 		{% endfor %}
 		<a class="add-tag-button" type="button" data-toggle="modal" data-target="#addTagModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Tag</a> 
@@ -34,7 +36,7 @@
 		<div><h4>{{ key }}: </h4><p>{{ values }}</p></div>
 	{% endfor %}
 
-	<!-- Remove Group Modal -->
+	<!-- Add Tag Modal -->
 	<div class="modal fade" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="addTagModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -51,6 +53,30 @@
 					    <div class="modal-footer">
 					    	<button type="button" class="btn btn-secondary cancel-add-tag" data-dismiss="modal">Cancel</button>
 					    	<input href="#" type="submit" class="btn btn-primary confirm-add-tag" value="Add Tag"></input>
+					    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Manage Tag Modal -->
+	<div class="modal fade" id="manageTagModal" tabindex="-1" role="dialog" aria-labelledby="manageTagModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		    	<div class="modal-header">
+		    		<h4 class="modal-title" id="manageTagModal">Manage Tag</h4>
+		    		</div>
+		    		<form id="manage-tag-form">
+		    			{% csrf_token %}
+			    		<div class="modal-body">
+					    	<label class="new-tag-input">Tag: </label>
+                    		<span class="new-tag-input"><input name="tag" type="text" placeholder="Enter Tag.." required="true" /></span>
+					    	<div class="loader" style="display:none"></div>
+					    </div>
+					    <div class="modal-footer">
+					    	<button type="button" class="btn btn-secondary cancel-manage-tag" data-dismiss="modal">Cancel</button>
+					    	<input type="submit" class="btn btn-primary confirm-manage-tag" value="Manage Tag"></input>
 					    </div>
 					</form>
 				</div>

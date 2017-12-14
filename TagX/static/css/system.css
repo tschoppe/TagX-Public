@@ -20,14 +20,32 @@ p {
 	display: inline-block;
 }
 
+kbd {
+	padding: 3px 4px;
+	border: none;
+	outline: none;
+	color: black;
+	background: #dcdcdc87;
+}
+
+kbd:hover {
+	color: white;
+	background: #0096d6;
+	cursor: pointer;
+}
+
 .tags-label {
 	margin: 25px 0 0 15px;
 	display: inline-block;
 }
 
 .tags-listed {
-	margin: 25px 0 0 10px;
+	margin: 25px 0 0 5px;
 	display: inline-block;
+}
+
+.tags-listed:hover {
+	text-decoration: none;
 }
 
 .add-tag-button {
