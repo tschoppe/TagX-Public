@@ -177,13 +177,16 @@ def editTag(request, system_id):
     if request.method == 'POST' and request.user.is_authenticated:
         old = request.POST['old']
         new = request.POST['new']
-        # search = Search(using=client, index="devices").query("match", serialNumber=SN)
-        # response = search.execute()
-        # tagList = response.hits[0].tags
-        # index = tagList.index(oldTag)
-        # tagList[index] = newTag
-        # client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": tagList}})
-    return
+        old = str(old)
+        new = str(new)
+        search = Search(using=client, index="devices").query("match", serialNumber=system_id)
+        response = search.execute()
+        tagList = response.hits[0].tags
+        index = tagList.index(old)
+        tagList[index] = new
+        client.update(index='devices', doc_type='doc', id=system_id, body={"doc": {"tags": tagList}})
+        return HttpResponseRedirect("/system/" + system_id)
+    return HttpResponseRedirect("/")
 
 
 def newGroup(request):
