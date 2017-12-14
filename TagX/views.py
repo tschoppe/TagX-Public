@@ -94,7 +94,8 @@ def system(request, system_id):
                 dic[val] = hit[val]
             systems[hit.serialNumber] = dic
         return render(request, "TagX/system.html", {
-            'systems': systems[system_id]
+            'system': systems[system_id],
+            'tags': systems[system_id]['tags']
             })
     return HttpResponseRedirect('/')
 
@@ -162,26 +163,34 @@ def addTag(request, system_id):
     return HttpResponseRedirect("/")
 
 #remove tag
-def removeTag(request, SN, tag):
-    if request.method == 'DELETE' and request.user.is_authenticated:
-        search = Search(using=client, index="devices").query("match", serialNumber=SN)
+def removeTag(request, system_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        tag = request.POST['tag']
+        tag = str(tag)
+        search = Search(using=client, index="devices").query("match", serialNumber=system_id)
         response = search.execute()
-        tagList = response.hits[0].tags
+        tagList = list(response.hits[0].tags)
         tagList.remove(tag)
-        client.update(index='devices', doc_type='doc', id=SN, body={"doc":{"tags": tagList}})
-    return
+        client.update(index='devices', doc_type='doc', id=system_id, body={"doc":{"tags": tagList}})
+        return HttpResponseRedirect("/system/" + system_id)
+    return HttpResponseRedirect("/")
 
 
 #edit tag
-def editTag(request, SN, oldTag, newTag):
-    if request.method == 'PUT' and request.user.is_authenticated:
-        search = Search(using=client, index="devices").query("match", serialNumber=SN)
+def editTag(request, system_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        old = request.POST['old']
+        new = request.POST['new']
+        old = str(old)
+        new = str(new)
+        search = Search(using=client, index="devices").query("match", serialNumber=system_id)
         response = search.execute()
-        tagList = response.hits[0].tags
-        index = tagList.index(oldTag)
-        tagList[index] = newTag
-        client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": tagList}})
-    return
+        tagList = list(response.hits[0].tags)
+        index = tagList.index(old)
+        tagList[index] = new
+        client.update(index='devices', doc_type='doc', id=system_id, body={"doc": {"tags": tagList}})
+        return HttpResponseRedirect("/system/" + system_id)
+    return HttpResponseRedirect("/")
 
 
 def newGroup(request):
