@@ -173,7 +173,7 @@ def removeTag(request, SN, tag):
 
 
 #edit tag
-def editTag(request, SN, oldTag, newTag):
+def editTag(request, system_id):
     if request.method == 'POST' and request.user.is_authenticated:
         old = request.POST['old']
         new = request.POST['new']
