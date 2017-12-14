@@ -1,0 +1,7 @@
+django_project/node_modules
+.idea
+venv
+*.pyc
+staticfiles
+.env
+node_modules

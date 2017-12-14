@@ -1,0 +1,15 @@
+{% block content %}
+
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+{% endblock %}
+<!-- navbar -->
+<div id="nav">
+    <script src="{% static 'bundles/commons.js' %}" charset="utf-8"></script>
+    <script src="{% static 'bundles/navbar.js' %}" charset="utf-8"></script>
+    <script src="{% static 'js/nav.js' %}" charset="utf-8"></script>
+</div>
+{% endblock %}

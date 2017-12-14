@@ -1,0 +1,72 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Encode Sans Expanded', sans-serif;
+    overflow: auto;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+
+h1 {
+	float: left;
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+
+i {
+  padding: 5px;
+  color: #0096d6;
+}
+
+i:hover {
+  color: #0274a5;
+  cursor: pointer;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.container {
+	height: 100%;
+}
+
+.your-company {
+	float: left;
+	margin-top: 8px;
+}
+
+.BBB {
+	float: right;
+	margin-top: 8px;
+}
+
+span.glyphicon-registration-mark:before {
+	color: black;
+}
+
+#footer {
+	margin: 0 auto;
+	padding: 0;
+}
+
+label#tag-error.error {
+  margin-top: 10px;
+}

@@ -1,0 +1,215 @@
+hr {
+	width: 100%;
+}
+
+h4 strong {
+	border-bottom: solid 1px #000000;
+	padding-bottom: 3px;
+}
+
+kbd {
+	padding: 3px 4px;
+	border: none;
+	outline: none;
+	color: black;
+	background: #dcdcdc87;
+}
+
+kbd.system:hover {
+	color: white;
+	background: #0096d6;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+div.thumbnail {
+	text-align: center;
+}
+
+div.groupEntry {
+	width: 75%;
+	margin: auto;
+}
+
+.thumbnail {
+	width: 100%;
+	margin: auto;
+	margin-bottom: 30px;
+	border: 2px solid #0096d6;
+}
+
+div.row.header {
+	padding-left: 10px;
+	margin-bottom: 35px;
+}
+
+.glyphicon {
+	color: #0096d6;
+	float: right;
+	margin: 10px;
+}
+
+.group-name {
+	margin: 10px 10px;
+	height: 30px;
+	text-align: left;
+}
+
+.thumbnail:hover {
+	cursor: pointer;
+}
+
+.owner {
+	margin: 10px;
+}
+
+.create-group {
+	float: right;
+	margin: 20px 10px 0 0;
+	color: #0096d6;
+}
+
+.create-group:hover {
+	text-decoration: none;
+	color: #0274a5;
+	cursor: pointer;
+}
+
+.btn.btn-primary.confirm-create-group {
+	background: #0096d6;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-primary.confirm-create-group:hover {
+	background: #0274a5;
+}
+
+.btn.btn-primary.confirm-create-group:focus {
+	outline: none;
+}
+
+.btn.btn-default.cancel-create-group {
+	background: #efefef;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-default.cancel-create-group:hover {
+	background: #d2d1d1d1;
+}
+
+.btn.btn-default.cancel-create-group:focus {
+	outline: none;
+}
+
+.modal-content {
+	border-radius: 0;
+}
+
+.col-xs-6 {
+	text-align: center;
+}
+
+.modal-divider {
+	display: none;
+	width: 50%;
+}
+
+label.new-group-input {
+	float: left;
+}
+
+span.new-group-input {
+    display: block;
+    overflow: hidden;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+span.new-group-input > input {
+	width: 100%;
+	border: 2px solid #c3c3c3;
+}
+
+span.new-group-input > input:focus {
+	outline: none;
+	border: 2px solid #0096d6;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #0096d6;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin .7s linear infinite; /* Safari */
+  animation: spin .7s linear infinite;
+  margin: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { 
+  	-webkit-transform: rotate(0deg); 
+  }
+  100% { 
+  	-webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% { 
+  	transform: rotate(0deg); 
+  }
+  100% { 
+  	transform: rotate(360deg); 
+  }
+}
+
+.remove-group-modal-button {
+	color: #ca0e0e;
+}
+
+.remove-group-modal-button:hover {
+	color: #a20909;
+}
+
+.fa-times-circle.remove-group {
+	color: #ea0f0f;
+}
+
+.fa-times-circle.remove-group:hover {
+	color: #ca0e0e;
+}
+
+.btn.btn-primary.confirm-remove-group {
+	background: #0096d6;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-primary.confirm-remove-group:hover {
+	background: #0274a5;
+}
+
+.btn.btn-primary.confirm-remove-group:focus {
+	outline: none;
+}
+
+.btn.btn-secondary.cancel-remove-group {
+	background: #efefef;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-secondary.cancel-remove-group:hover {
+	background: #d2d1d1d1;
+}
+
+.btn.btn-secondary.cancel-remove-group:focus {
+	outline: none;
+}
+

@@ -1,0 +1,146 @@
+table {
+	margin-top: 35px;
+}
+
+thead {
+	background: #0096d6;
+	color: white;
+}
+
+form {
+	overflow: hidden;
+}
+
+input {
+	display: table-cell; 
+	width: 100%;
+	margin: 10px auto;
+    height: 3em;
+}
+
+input[type="radio"] {
+	height: 100%;
+	margin-top: 0;
+}
+
+img {
+	width: 75px;
+	padding: 5px 0;
+}
+
+label {
+  display: inline-block;
+  float: left;
+}
+
+li {
+	padding-left: 10px;
+}
+
+tbody tr:hover {
+	cursor: pointer;
+}
+
+.container {
+	padding: 10px;
+}
+
+.my-systems {
+	margin-left: 20px;
+}
+
+.search-by {
+	margin: 0 20px 0 0;
+	float: left;
+	display: inline-block;
+}
+
+.radio-inline {
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.form-group {
+	margin: 0;
+}
+
+.radio {
+	margin: 0;
+}
+
+.search {
+    display: inline-block;
+}
+
+.search.bar {
+	width: 90%;
+}
+
+.search.button {
+	float: right;
+	width: 10%;
+}
+
+#bar {
+	border: 2px solid #c3c3c3;
+	-webkit-transition: border 500ms; /* For Safari 3.1 to 6.0 */
+    transition: border 500ms;
+}
+
+#bar:focus {
+	outline: none;
+	border: 2px solid #0096d6;
+}
+
+#button {
+	background: #c3c3c3;
+	border: none;
+	border-radius: 0;
+	color: white;
+	-webkit-transition: border 500ms; /* For Safari 3.1 to 6.0 */
+    transition: background 500ms;
+}
+
+#button:focus {
+	outline: none;
+	background: #0096d6;
+}
+
+.search-form {
+	margin-bottom: 25px;
+}
+
+input#button.focused {
+	outline: none;
+	background: #0096d6;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #0096d6;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin .7s linear infinite; /* Safari */
+  animation: spin .7s linear infinite;
+  margin: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { 
+  	-webkit-transform: rotate(0deg); 
+  }
+  100% { 
+  	-webkit-transform: rotate(360deg); 
+  }
+}
+
+@keyframes spin {
+  0% { 
+  	transform: rotate(0deg); 
+  }
+  100% { 
+  	transform: rotate(360deg); 
+  }
+}

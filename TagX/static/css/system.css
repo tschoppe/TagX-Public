@@ -1,0 +1,170 @@
+hr {
+	width: 100%;
+}
+
+i {
+	padding: 5px;
+    color: #0096d6;
+}
+
+strong {
+	font-weight: bolder;
+}
+
+h4 {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+p {
+	display: inline-block;
+}
+
+kbd {
+	padding: 3px 4px;
+	border: none;
+	outline: none;
+	color: black;
+	background: #dcdcdc87;
+}
+
+kbd:hover {
+	color: white;
+	background: #0096d6;
+	cursor: pointer;
+}
+
+input.btn.btn-primary.confirm-manage-tag {
+	display: none;
+}
+
+.system-page-body {
+	border: 2px solid #0096d6;
+	padding: 10px 20px;
+	margin-bottom: 25px;
+	border-radius: 20px;
+}
+
+.tags-label {
+	margin: 25px 0 0 15px;
+	display: inline-block;
+}
+
+.tags-listed {
+	margin: 25px 0 0 5px;
+	display: inline-block;
+}
+
+.tags-listed:hover {
+	text-decoration: none;
+}
+
+.add-tag-button {
+	float: right;
+    margin: 25px 10px 0 0;
+    color: #0096d6;
+}
+
+.add-tag-button:hover {
+	text-decoration: none;
+	color: #0274a5;
+	cursor: pointer;
+}
+
+.btn.btn-primary {
+	background: #0096d6;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-primary:hover {
+	background: #0274a5;
+}
+
+.btn.btn-primary:focus {
+	outline: none;
+}
+
+.btn.btn-secondary {
+	background: #efefef;
+	border: none;
+	border-radius: 0;
+}
+
+.btn.btn-secondary:hover {
+	background: #d2d1d1d1;
+}
+
+.btn.btn-secondary:focus {
+	outline: none;
+}
+
+.modal-content {
+	border-radius: 0;
+}
+
+label.tag-input {
+	float: left;
+	display: none;
+}
+
+span.tag-input {
+    display: none;
+    overflow: hidden;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+span.tag-input > input {
+	width: 100%;
+	border: 2px solid #c3c3c3;
+}
+
+span.tag-input > input:focus {
+	outline: none;
+	border: 2px solid #0096d6;
+}
+
+label.new-tag-input {
+	float: left;
+}
+
+span.new-tag-input {
+    display: block;
+    overflow: hidden;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+span.new-tag-input > input {
+	width: 100%;
+	border: 2px solid #c3c3c3;
+}
+
+span.new-tag-input > input:focus {
+	outline: none;
+	border: 2px solid #0096d6;
+}
+
+.tag-displayed {
+	width: 100%;
+	text-align: center;
+}
+
+.btn.btn-primary.start-remove-tag {
+	float: left;
+	background-color: red;
+}
+
+.btn.btn-primary.start-remove-tag:hover {
+	background-color: #e01010;
+}
+
+.sys-info {
+	height: 50px;
+	line-height: 50px;
+}
+
+.sys-tag {
+	text-decoration: underline;
+}
