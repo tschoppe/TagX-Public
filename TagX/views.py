@@ -166,23 +166,23 @@ def removeTag(request, SN, tag):
     if request.method == 'DELETE' and request.user.is_authenticated:
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
-        list = []
-        list.remove(tag)
-        client.update(index='devices', doc_type='doc', id=SN, body={"doc":{"tags": list}})
+        tagList = response.hits[0].tags
+        tagList.remove(tag)
+        client.update(index='devices', doc_type='doc', id=SN, body={"doc":{"tags": tagList}})
     return
 
 
 #edit tag
-def editTag(request, system_id):
+def editTag(request, SN, oldTag, newTag):
     if request.method == 'POST' and request.user.is_authenticated:
         old = request.POST['old']
         new = request.POST['new']
         # search = Search(using=client, index="devices").query("match", serialNumber=SN)
         # response = search.execute()
-        # list = response.hits[0].tags
-        # index = list.index(oldTag)
-        # list[index] = newTag
-        # client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": list}})
+        # tagList = response.hits[0].tags
+        # index = tagList.index(oldTag)
+        # tagList[index] = newTag
+        # client.update(index='devices', doc_type='doc', id=SN, body={"doc": {"tags": tagList}})
     return
 
 
