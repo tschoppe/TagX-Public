@@ -1,7 +1,46 @@
 var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
 
-$('form').submit(function(){
-    $("input.btn.btn-primary.confirm-add-tag", this).attr('disabled', 'disabled');
+function inTags(value) {
+       if (tags.includes(value)) { 
+         return true; 
+       } else {
+        return false;
+       }
+}
+
+jQuery.validator.addMethod( 
+     "exists", 
+     function(value, element) { 
+       if (tags.includes(value)) { 
+         return false; 
+       } else {
+        return true;
+       }
+        
+     }, 
+    "This tag already exists." 
+  ); 
+  $(document).ready(function() { 
+    $(".add-tag-form").validate({ 
+      rules: { 
+        tag: { 
+          exists: true 
+        } 
+      }, 
+    });
+    $("#manage-tag-form").validate({ 
+      rules: { 
+        tag: { 
+          exists: true 
+        } 
+      }, 
+    }); 
+});
+
+$('form.add-tag-form').submit(function(){
+    if($(this)[0].checkValidity() && !inTags($("input[name='tag']").val())) {
+        $("input.btn.btn-primary.confirm-add-tag", this).attr('disabled', 'disabled');
+    }
 });
 
 $(".tags-listed").click(function() {
@@ -36,11 +75,11 @@ $(".btn.btn-primary.remove-tag").click(function() {
     });
     setTimeout(function() {
         window.location = window.location;
-    }, 1000);
+    }, 1500);
 });
 
 $("input.btn.btn-primary.confirm-manage-tag").click(function() {
-	if(!$("form#manage-tag-form")[0].checkValidity()) {
+	if($("span.tag-input > input").val() == "" || inTags($("span.tag-input > input").val())) {
         $('<input type="submit">').hide().appendTo($("form#manage-tag-form")).click().remove();
         return;
     }
@@ -55,7 +94,7 @@ $("input.btn.btn-primary.confirm-manage-tag").click(function() {
     });
     setTimeout(function() {
         window.location = window.location;
-    }, 1000);
+    }, 1500);
 });
 
 $(".add-tag-button").click(function() {

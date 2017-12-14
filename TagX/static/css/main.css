@@ -66,3 +66,7 @@ span.glyphicon-registration-mark:before {
 	margin: 0 auto;
 	padding: 0;
 }
+
+label#tag-error.error {
+  margin-top: 10px;
+}

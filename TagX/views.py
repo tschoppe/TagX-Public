@@ -94,7 +94,8 @@ def system(request, system_id):
                 dic[val] = hit[val]
             systems[hit.serialNumber] = dic
         return render(request, "TagX/system.html", {
-            'systems': systems[system_id]
+            'system': systems[system_id],
+            'tags': systems[system_id]['tags']
             })
     return HttpResponseRedirect('/')
 

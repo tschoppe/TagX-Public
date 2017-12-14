@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/system.css' %}">
 <script type="text/javascript">
     var url = "{{ request.path|safe }}"
+    var tags = {{ tags|safe }}
 </script>
 {% endblock %}
 
@@ -16,13 +17,13 @@
 
 <div class="container">
 	<div className="row header">
-		{% for key, values in systems.items %}
+		{% for key, values in system.items %}
 			{% if key == "systemName" %}
 				<h1>{{ values }}</h1>
 			{% endif %}
 		{% endfor %}
 		<h5 class="tags-label"><strong>Current Tags: </strong></h5>
-		{% for key, values in systems.items %}
+		{% for key, values in system.items %}
 			{% if key == "tags" and values %}
 				{% for t in values %}
 					<a type="button" data-toggle="modal" data-target="#manageTagModal" class="tags-listed"><kbd>{{ t }}</kbd></a>
@@ -32,7 +33,7 @@
 		<a class="add-tag-button" type="button" data-toggle="modal" data-target="#addTagModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Tag</a> 
 		<hr></hr>            
 	</div>
-	{% for key, values in systems.items %}
+	{% for key, values in system.items %}
 		<div><h4>{{ key }}: </h4><p>{{ values }}</p></div>
 	{% endfor %}
 
@@ -43,7 +44,7 @@
 		    	<div class="modal-header">
 		    		<h4 class="modal-title" id="addTagModal">Add Tag</h4>
 		    		</div>
-		    		<form action="{{request.path}}addTag/" method="POST">
+		    		<form class="add-tag-form" action="{{request.path}}addTag/" method="POST">
 		    			{% csrf_token %}
 			    		<div class="modal-body">
 					    	<label class="new-tag-input">Tag: </label>
