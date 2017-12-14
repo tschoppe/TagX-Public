@@ -166,7 +166,7 @@ def removeTag(request, SN, tag):
     if request.method == 'DELETE' and request.user.is_authenticated:
         search = Search(using=client, index="devices").query("match", serialNumber=SN)
         response = search.execute()
-        tagList = []
+        tagList = response.hits[0].tags
         tagList.remove(tag)
         client.update(index='devices', doc_type='doc', id=SN, body={"doc":{"tags": tagList}})
     return
