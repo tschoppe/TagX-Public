@@ -17,7 +17,7 @@ import json
 import certifi
 from time import sleep
 
-client = Elasticsearch(['https://tagx-3122626671.us-east-1.bonsaisearch.net:443'], http_auth=('ct4pntszfp', 'dwz5l5vzy2'), port=443, use_ssl=True, ca_certs=certifi.where())
+client = Elasticsearch(['https://tagx-3122626671.us-east-1.bonsaisearch.net:443'], http_auth=('username', 'secret'), port=443, use_ssl=True, ca_certs=certifi.where())
 
 
 # route for loading the initial homepage, which is the login page in this case.
